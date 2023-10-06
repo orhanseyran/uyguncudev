@@ -73,7 +73,7 @@
                         </div>
                         <ul class="mainmenu">
                             <li><a href="/">Ana Sayfa</a></li>
-                            <li><a href="#">Ürünler</a></li>
+                            <li><a href="/shop">Ürünler</a></li>
                             <li><a href="#">Biz Kimiz</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">İletişim</a></li>

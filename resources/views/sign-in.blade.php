@@ -41,8 +41,9 @@
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
                         <p>Üye Değilmisiniz?</p>
-                        <a href="{{ route("registerget") }}" class="axil-btn btn-bg-secondary sign-up-btn">Üye Ol</a>
+
                     </div>
+                    <a href="{{ route("registerget") }}" class="axil-btn btn-bg-secondary sign-up-btn">Üye Ol</a>
                 </div>
             </div>
         </div>

@@ -67,7 +67,12 @@
                             <div class="single-product-content">
                                 <div class="inner">
                                     <h2 class="product-title">{{ $product ->baslik }}</h2>
+                                    @if ($product->fiyat == null )
+                                    <span class="price-amount">Fiyat İçin İletişme Geçin</span>
+                                    @else
                                     <span class="price-amount">{{  $product->fiyat   }}  TL</span>
+                                    @endif
+
                                     <div class="product-rating">
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -83,7 +88,7 @@
                                     <div class="product-variations-wrapper">
 
                                         <!-- Start Product Variation  -->
-                                        <div class="product-variation product-size-variation">
+                                        {{-- <div class="product-variation product-size-variation">
                                             <h6 class="title">Size:</h6>
                                             <ul class="range-variant">
                                                 <li class="active">xs</li>
@@ -92,10 +97,10 @@
                                                 <li>l</li>
                                                 <li>xl</li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <!-- End Product Variation  -->
                                         <!-- Start Product Variation  -->
-                                        <div class="product-variation">
+                                        {{-- <div class="product-variation">
                                             <h6 class="title">Colors:</h6>
                                             <div class="color-variant-wrapper">
                                                 <ul class="color-variant mt--0">
@@ -109,24 +114,33 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- End Product Variation  -->
-                                        <div class="product-variation quantity-variant-wrapper">
+                                        {{-- <div class="product-variation quantity-variant-wrapper">
                                             <h6 class="title">Quantity</h6>
                                             <div class="pro-qty"><input type="text" value="1"></div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
                                     <!-- Start Product Action Wrapper  -->
                                     <div class="product-action-wrapper">
+                                        @if ($product->fiyat == null)
+                                        <ul class="product-action d-flex-center mb--0">
+                                            <li class="add-to-cart"><a href="#" class="axil-btn btn-bg-primary"><i class="far fa-shopping-bag"></i> İletişime Geç</a></li>
 
-                                        <!-- Start Product Action  -->
+
+                                        </ul>
+                                        @else
                                         <ul class="product-action d-flex-center mb--0">
                                             <li class="add-to-cart"><a href="{{ route("checkout") }}" class="axil-btn btn-bg-secondary"><i class="far fa-shopping-bag"></i> Şimdi Satın Al</a></li>
                                             <li class="add-to-cart"><a href="{{ route("addtocart",$product ->id) }}" class="axil-btn btn-bg-primary"><i class="far fa-shopping-cart"></i> Sepete Ekle</a></li>
 
                                         </ul>
+                                        @endif
+
+                                        <!-- Start Product Action  -->
+
                                         <!-- End Product Action  -->
 
                                     </div>

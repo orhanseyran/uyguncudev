@@ -14,11 +14,15 @@ class FrontAndController extends Controller
         $cart= ShoppingCart::all();
 
         $product =product::latest()->limit(10)->get();
-        $person=collect(["name"=>"Orhan","Soyad"=>"Seyran"]);
 
 
 
-        return view("home",compact("product","cart","person"));
+
+
+
+
+
+        return view("home",compact("product","cart"));
     }
     public function product($id)
     {
@@ -34,20 +38,39 @@ class FrontAndController extends Controller
         return view("my-account");
 
     }
-    public function search(Request $request)
-    {
+    public function shop(Request $request){
+        $product =product::latest()->limit(10)->get();
+        $query = Product::query();
 
 
-    $orderByColumn = $request->input('yeni', 'id'); // Varsayılan sıralama sütunu "id"
-    $orderByColumn = $request->input('yeni', 'total_price'); // Varsayılan sıralama sütunu "id"
-    $orderByDirection = $request->input('orderByDirection', 'asc'); // Varsayılan sıralama yönü "asc"
+        // Kategori filtresi
+        if ($request->has('kategori') && $request->input('kategori') !== 'Categories') {
+            $query->where('kategori', $request->input('kategori'));
+        }
 
-    // Sıralama işlemi
-    $orderBy = orders::orderBy($orderByColumn, $orderByDirection)->get();
+        // Renk filtresi
+        if ($request->has('color') && $request->input('color') !== 'Color') {
+            $query->where('color', $request->input('color'));
+        }
 
-    // Sonucu görüntülemek için view'e döndür
-    return view("yeni", compact("orderBy"));
+        // // Fiyat aralığı filtresi
+        // if ($request->has('fiyat') && $request->input('fiyat') !== 'fiyat') {
+        //     $priceRange = explode(' - ', $request->input('fiyat'));
+        //     $query->whereBetween('fiyat', $priceRange);
+        // }
 
+
+
+        $products = $query->get();
+
+        $Temizle = $request->input("Temizle");
+
+        if ($Temizle) {
+            return redirect()->route("shop");
+        }
+
+        return view('shop', compact('products',"product"));
 
     }
+
 }

@@ -75,3 +75,5 @@ Route::get("array/{name}",[ArrayOparationController::class,"show"]);
 Route::get("/gelen",[CheakOutController::class,"orderdetail"]);
 
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
+Route::get("/shop",[FrontAndController::class,"shop"])->name("shop");
+
