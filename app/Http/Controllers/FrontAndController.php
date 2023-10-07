@@ -14,14 +14,6 @@ class FrontAndController extends Controller
         $cart= ShoppingCart::all();
 
         $product =product::latest()->limit(10)->get();
-
-
-
-
-
-
-
-
         return view("home",compact("product","cart"));
     }
     public function product($id)
@@ -67,6 +59,8 @@ class FrontAndController extends Controller
         $sort = $request->input('sort', 'latest');
         $query->orderBy($sortOptions[$sort] ?? 'created_at', $sort === 'viewed' ? 'desc' : 'asc');
 
+        $qu = $request->input('prod-search');
+        $search = Product::where("baslik", "like", "%" .$qu. "%")->get();
         // Sonuçları al
         $products = $query->latest()->limit(10)->get();
 
@@ -76,8 +70,12 @@ class FrontAndController extends Controller
         if ($temizle) {
             return redirect()->route('shop');
         }
+        // arama işlemleri
 
-        return view('shop', compact('products'));
+
+
+        return view('shop', compact('products',"search"));
     }
+
 
 }

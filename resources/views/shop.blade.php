@@ -46,19 +46,14 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
-                            <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">My Account</li>
-                            </ul>
-                            <h1 class="title">Explore All Products</h1>
+                            <h1 class="title">Ürünler</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-4">
                         <div class="inner">
-                            <div class="bradcrumb-thumb">
+                            {{-- <div class="bradcrumb-thumb">
                                 <img src="assets/images/product/product-45.png" alt="Image">
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -78,7 +73,7 @@
 
 
                                             <select name="kategori" class="single-select">
-                                                <option value="" {{ request('kategori') === '' ? 'selected' : '' }}>Categories</option>
+                                                <option value="" {{ request('kategori') === '' ? 'selected' : '' }}>Kategoriler</option>
                                                 <option value="Fashion" {{ request('kategori') === 'Fashion' ? 'selected' : '' }}>Fashion</option>
                                                 <option value="Electronics" {{ request('kategori') === 'Electronics' ? 'selected' : '' }}>Electronics</option>
                                                 <option value="Furniture" {{ request('kategori') === 'Furniture' ? 'selected' : '' }}>Furniture</option>
@@ -88,7 +83,7 @@
 
                                             <!-- Start Single Select  -->
                                             <select name="color"  class="single-select">
-                                                <option value="" {{ request('color') === '' ? 'selected' : '' }}>Color</option>
+                                                <option value="" {{ request('color') === '' ? 'selected' : '' }}>Renk</option>
                                                 <option value="Red" {{ request('color') === 'Red' ? 'selected' : '' }}>Red</option>
                                                 <option value="Blue" {{ request('color') === 'Blue' ? 'selected' : '' }}>Blue</option>
                                                 <option value="Green" {{ request('color') === 'Green' ? 'selected' : '' }}>Green</option>
@@ -98,17 +93,17 @@
 
                                             <!-- Start Single Select  -->
                                             <select name="fiyat" class="single-select">
-                                                <option>Price Range</option>
-                                                <option>0 - 100</option>
-                                                <option>100 - 500</option>
-                                                <option>500 - 1000</option>
-                                                <option>1000 - 1500</option>
+                                                <option value="" {{ request("fiyat") === "" ? "selected":"" }}>Fiyat-Aralığı</option>
+                                                <option value="0 - 100" {{ request("fiyat") === "0 - 100" ? "selected":"" }}>0 - 100</option>
+                                                <option value="100 - 500" {{ request("fiyat") === "100 - 500" ? "selected":"" }}>100 - 500</option>
+                                                <option value="500 - 1000" {{ request("fiyat") === "500 - 1000" ? "selected":"" }}>500 - 1000</option>
+                                                <option value="1000 - 1500" {{ request("fiyat") === "1000 - 1500" ? "selected":"" }}>1000 - 1500</option>
                                             </select>
                                             <select name="sort" class="single-select">
-                                                <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Sort by Latest</option>
-                                                <option value="name" {{ request('sort') === 'name' ? 'selected' : '' }}>Sort by Name</option>
-                                                <option value="price" {{ request('sort') === 'price' ? 'selected' : '' }}>Sort by Price</option>
-                                                <option value="viewed" {{ request('sort') === 'viewed' ? 'selected' : '' }}>Sort by Viewed</option>
+                                                <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>En Son Yayınlanan</option>
+                                                <option value="name" {{ request('sort') === 'name' ? 'selected' : '' }}>İsme Göre Sırala</option>
+                                                <option value="price" {{ request('sort') === 'price' ? 'selected' : '' }}>En Düşük Fiyata Göre Sirala</option>
+                                                <option value="viewed" {{ request('sort') === 'viewed' ? 'selected' : '' }}>Popüler Ürünler</option>
                                             </select>
 
 
@@ -119,6 +114,7 @@
 
                                     </div>
                                 </div>
+                                <br>
                                 <div class="col-lg-3">
                                     <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
                                         <!-- Start Single Select  -->
@@ -135,44 +131,98 @@
                 </div>
                 <div class="row row--15">
 
-                    <!-- End Single Product  -->
-                    @foreach ($products as $pr )
-                    <div class="col-xl-3 col-lg-4 col-sm-6">
-                        <div class="axil-product product-style-one has-color-pick mt--40">
-                            <div class="thumbnail">
-                                <a href="single-product.html">
-                                    <img src="assets/images/product/electric/product-06.png" alt="Product Images">
-                                </a>
-                                <div class="product-hover-action">
-                                    <ul class="cart-action">
-                                        <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <h5 class="title"><a href="single-product.html">Level 20 RGB Cherry</a></h5>
-                                    <div class="product-price-variant">
-                                        <span class="price current-price">$25</span>
-                                        <span class="price old-price">$40</span>
-                                    </div>
-                                    <div class="color-variant-wrapper">
-                                        <ul class="color-variant">
-                                            <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                            </li>
-                                            <li class="color-extra-02"><span><span class="color"></span></span>
-                                            </li>
-                                            <li class="color-extra-03"><span><span class="color"></span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                 @if($search->count() == 1)
+                 @foreach ($search as $pr )
+                 <div class="col-xl-3 col-lg-4 col-sm-6">
+                     <div class="axil-product product-style-one has-color-pick mt--40">
+                         <div class="thumbnail">
+                             <a href="single-product.html">
+                                 @if ($pr->resim == null)
+                                 <img src="resimler/resimYok.png" alt="Product Images">
+                                 @else
+                                 <img src="resimler/{{ $pr->resim }}" alt="Product Images">
+                                 @endif
+
+                             </a>
+                             <div class="product-hover-action">
+                                 <ul class="cart-action">
+                                     <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                     <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                     <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                 </ul>
+                             </div>
+                         </div>
+                         <div class="product-content">
+                             <div class="inner">
+                                 <h5 class="title"><a href="single-product.html">Level 20 RGB Cherry</a></h5>
+                                 <div class="product-price-variant">
+                                     <span class="price current-price">$25</span>
+                                     <span class="price old-price">$40</span>
+                                 </div>
+                                 <div class="color-variant-wrapper">
+                                     <ul class="color-variant">
+                                         <li class="color-extra-01 active"><span><span class="color"></span></span>
+                                         </li>
+                                         <li class="color-extra-02"><span><span class="color"></span></span>
+                                         </li>
+                                         <li class="color-extra-03"><span><span class="color"></span></span>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             @endforeach
+                @elseif($search->count() == null)
+
+                 <p style="text-align: center; font-size:28px;">Ürün Bulunamadı</p>
+                 @else
+                 @foreach ($products as $pr )
+                 <div class="col-xl-3 col-lg-4 col-sm-6">
+                     <div class="axil-product product-style-one has-color-pick mt--40">
+                         <div class="thumbnail">
+                             <a href="single-product.html">
+                                 @if ($pr->resim == null)
+                                 <img src="resimler/resimYok.png" alt="Product Images">
+                                 @else
+                                 <img src="resimler/{{ $pr->resim }}" alt="Product Images">
+                                 @endif
+
+                             </a>
+                             <div class="product-hover-action">
+                                 <ul class="cart-action">
+                                     <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                     <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                     <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                 </ul>
+                             </div>
+                         </div>
+                         <div class="product-content">
+                             <div class="inner">
+                                 <h5 class="title"><a href="single-product.html">Level 20 RGB Cherry</a></h5>
+                                 <div class="product-price-variant">
+                                     <span class="price current-price">$25</span>
+                                     <span class="price old-price">$40</span>
+                                 </div>
+                                 <div class="color-variant-wrapper">
+                                     <ul class="color-variant">
+                                         <li class="color-extra-01 active"><span><span class="color"></span></span>
+                                         </li>
+                                         <li class="color-extra-02"><span><span class="color"></span></span>
+                                         </li>
+                                         <li class="color-extra-03"><span><span class="color"></span></span>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             @endforeach
+                 @endif
+
+
 
                     <!-- End Single Product  -->
 

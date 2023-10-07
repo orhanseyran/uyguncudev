@@ -76,4 +76,5 @@ Route::get("/gelen",[CheakOutController::class,"orderdetail"]);
 
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::get("/shop",[FrontAndController::class,"shop"])->name("shop");
+Route::get("/search",[FrontAndController::class,"search"])->name("search");
 
