@@ -78,37 +78,37 @@
 
 
                                             <select name="kategori" class="single-select">
-                                                <option>Categories</option>
-                                                <option>Fashion</option>
-                                                <option>Electronics</option>
-                                                <option>Furniture</option>
-                                                <option>Beauty</option>
+                                                <option value="" {{ request('kategori') === '' ? 'selected' : '' }}>Categories</option>
+                                                <option value="Fashion" {{ request('kategori') === 'Fashion' ? 'selected' : '' }}>Fashion</option>
+                                                <option value="Electronics" {{ request('kategori') === 'Electronics' ? 'selected' : '' }}>Electronics</option>
+                                                <option value="Furniture" {{ request('kategori') === 'Furniture' ? 'selected' : '' }}>Furniture</option>
+                                                <option value="Beauty" {{ request('kategori') === 'Beauty' ? 'selected' : '' }}>Beauty</option>
                                             </select>
                                             <!-- End Single Select  -->
 
                                             <!-- Start Single Select  -->
                                             <select name="color"  class="single-select">
-                                                <option>Color</option>
-                                                <option>Red</option>
-                                                <option>Blue</option>
-                                                <option>Green</option>
-                                                <option>Pink</option>
+                                                <option value="" {{ request('color') === '' ? 'selected' : '' }}>Color</option>
+                                                <option value="Red" {{ request('color') === 'Red' ? 'selected' : '' }}>Red</option>
+                                                <option value="Blue" {{ request('color') === 'Blue' ? 'selected' : '' }}>Blue</option>
+                                                <option value="Green" {{ request('color') === 'Green' ? 'selected' : '' }}>Green</option>
+                                                <option value="Pink" {{ request('color') === 'Pink' ? 'selected' : '' }}>Pink</option>
                                             </select>
                                             <!-- End Single Select  -->
 
                                             <!-- Start Single Select  -->
-                                            <select name="" class="single-select">
+                                            <select name="fiyat" class="single-select">
                                                 <option>Price Range</option>
                                                 <option>0 - 100</option>
                                                 <option>100 - 500</option>
                                                 <option>500 - 1000</option>
                                                 <option>1000 - 1500</option>
                                             </select>
-                                            <select class="single-select">
-                                                <option>Sort by Latest</option>
-                                                <option>Sort by Name</option>
-                                                <option>Sort by Price</option>
-                                                <option>Sort by Viewed</option>
+                                            <select name="sort" class="single-select">
+                                                <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Sort by Latest</option>
+                                                <option value="name" {{ request('sort') === 'name' ? 'selected' : '' }}>Sort by Name</option>
+                                                <option value="price" {{ request('sort') === 'price' ? 'selected' : '' }}>Sort by Price</option>
+                                                <option value="viewed" {{ request('sort') === 'viewed' ? 'selected' : '' }}>Sort by Viewed</option>
                                             </select>
 
 
