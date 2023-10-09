@@ -419,19 +419,10 @@
                                         <div class="inner">
                                             <h5 class="title"><a href="{{ route("productid",$urun->id) }}">{{ $urun->baslik }}</a></h5>
                                             <div class="product-price-variant">
-                                                <span class="price current-price">{{ $urun->fiyat }}</span>
+                                                <span class="price current-price">{{ $urun->fiyat }} TL</span>
                                                 <span class="price old-price"></span>
                                             </div>
-                                            <div class="color-variant-wrapper">
-                                                <ul class="color-variant">
-                                                    <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                    </li>
-                                                    <li class="color-extra-02"><span><span class="color"></span></span>
-                                                    </li>
-                                                    <li class="color-extra-03"><span><span class="color"></span></span>
-                                                    </li>
-                                                </ul>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -502,7 +493,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                        <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">View All Products</a>
+                        <a href="{{ route("shop") }}" class="axil-btn btn-bg-lighter btn-load-more">Tüm Ürünleri Göster</a>
                     </div>
                 </div>
 

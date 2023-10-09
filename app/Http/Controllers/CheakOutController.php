@@ -32,86 +32,87 @@ class CheakOutController extends Controller
 
     }
     public function store(Request $request){
-        $order = new orders();
-        $order->user_id= auth()->check() ?  auth()->user()->id : 0 ;
-        $order->total_price = ShoppingCart::totalPrice();
 
-        $order->payment_method="shopier";
-        $order->save();
+        if ($request->input("shopier")) {
+            $order = new orders();
+            $order->user_id= auth()->check() ?  auth()->user()->id : 0 ;
 
-        // E-posta gönderme işlemi
+            $order->total_price = ShoppingCart::totalPrice();
 
+            $order->payment_method="shopier";
+            $order->save();
 
-        $sipariş = ShoppingCart::all();
-        Mail::to($request->email)->send(new OrderMail($sipariş));
-        foreach ($sipariş as $al) {
-
-            $orderdetail =  new orderdetail();
-
-            $orderdetail->fill($request->all());
-            $orderdetail->product_id = $al->id;
-            $orderdetail->per_price = $al->price;
-            $orderdetail->urun_adı = $al->name;
-            $orderdetail->user_id = auth()->check() ?  auth()->user()->id : 0 ;
-            $orderdetail->qty = $al->qty;
-            $orderdetail->sub_total = $al->price * $al->qty ;
-            $orderdetail->save();
+            // E-posta gönderme işlemi
 
 
+            $sipariş = ShoppingCart::all();
+            Mail::to($request->email)->send(new OrderMail($sipariş));
+            foreach ($sipariş as $al) {
 
-            define('API_KEY', '4b98b4af1280065d600e4a9e97c42e08');
-            define('API_SECRET', '093cac914803da610e635d6d1e53e50f');
+                $orderdetail =  new orderdetail();
 
-            $shopier = new Shopier(API_KEY, API_SECRET);
-
-            // Satın alan kişi bilgileri
-            $buyer = new Buyer([
-                'id' => auth()->check() ?  auth()->user()->id : 0 ,
-                'name' => $request->name,
-                'surname' => $request->surname,
-                'email' => $request->email,
-                'phone' => $request->phone,
-            ]);
-
-
-            // Fatura ve kargo adresi birlikte tanımlama
-            // Ayrı ayrı da tanımlabilir
-            $address = new Address([
-                'address' => $request->adress,
-                'city' => $request->city,
-                'country' => $request->phone,
-                'postcode' => '56565',
-            ]);
+                $orderdetail->fill($request->all());
+                $orderdetail->product_id = $al->id;
+                $orderdetail->per_price = $al->price;
+                $orderdetail->urun_adı = $al->name;
+                $orderdetail->user_id = auth()->check() ?  auth()->user()->id : 0 ;
+                $orderdetail->qty = $al->qty;
+                $orderdetail->sub_total = $al->price * $al->qty ;
+                $orderdetail->save();
 
 
-            // shopier parametlerini al
-            $params = $shopier->getParams();
 
-            // Satın alan kişi bilgisini ekle
-            $params->setBuyer($buyer);
+                define('API_KEY', '4b98b4af1280065d600e4a9e97c42e08');
+                define('API_SECRET', '093cac914803da610e635d6d1e53e50f');
 
-            // Fatura ve kargo adresini aynı şekilde ekle
-            $params->setAddress($address);
-            // Sipariş numarsı ve sipariş tutarını ekle
-            $shopier->setOrderData($orderdetail->id*85, ShoppingCart::totalPrice());
+                $shopier = new Shopier(API_KEY, API_SECRET);
 
-            $shopier->setProductData($orderdetail->urun_adı, ProductType::DOWNLOADABLE_VIRTUAL);
+                // Satın alan kişi bilgileri
+                $buyer = new Buyer([
+                    'id' => auth()->check() ?  auth()->user()->id : 0 ,
+                    'name' => $request->name,
+                    'surname' => $request->surname,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                ]);
 
 
-            $renderer = $shopier->createRenderer(AutoSubmitFormRenderer::class);
+                // Fatura ve kargo adresi birlikte tanımlama
+                // Ayrı ayrı da tanımlabilir
+                $address = new Address([
+                    'address' => $request->adress,
+                    'city' => $request->city,
+                    'country' => $request->phone,
+                    'postcode' => '56565',
+                ]);
 
-            $shopier->goWith($renderer);
+
+                // shopier parametlerini al
+                $params = $shopier->getParams();
+
+                // Satın alan kişi bilgisini ekle
+                $params->setBuyer($buyer);
+
+                // Fatura ve kargo adresini aynı şekilde ekle
+                $params->setAddress($address);
+                // Sipariş numarsı ve sipariş tutarını ekle
+                $shopier->setOrderData($orderdetail->id*85, ShoppingCart::totalPrice());
+
+                $shopier->setProductData($orderdetail->urun_adı, ProductType::DOWNLOADABLE_VIRTUAL);
+
+
+                $renderer = $shopier->createRenderer(AutoSubmitFormRenderer::class);
+
+                $shopier->goWith($renderer);
 
 
 
         }
-
-
-
-
-
-
-
+        }
+        else{
+            session()->flash("Hata","Lütfen Ödeme Yöntemi Seçiniz");
+            return redirect()->back();
+        }
 
     }
     public function orderdetail(){

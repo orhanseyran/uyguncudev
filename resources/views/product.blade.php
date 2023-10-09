@@ -8,6 +8,7 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
@@ -27,7 +28,42 @@
     <link rel="stylesheet" href="{{ asset("assets/css/style.min.css") }}">
 
 </head>
+<style>
+    .rating-form {
+    display: flex;
+    flex-direction: column;
 
+}
+
+.rating-stars {
+    display: flex;
+    justify-content: flex-end; /* Sola yasla */
+    margin: 10px 0;
+}
+
+.rating-stars label {
+    font-size: 25px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.rating-stars input[type="radio"] {
+    display: none;
+}
+
+.rating-stars label:before {
+    content: "\2605";
+}
+
+.rating-stars input[type="radio"]:checked ~ label:before {
+    color: #ff9800;
+}
+
+/* Tersten Puan Verme */
+.rating-stars {
+    flex-direction: row-reverse;
+}
+</style>
 
 <body class="sticky-header overflow-md-visible">
     <!--[if lte IE 9]>
@@ -64,15 +100,11 @@
                             </div>
                         </div>
                         <div class="col-lg-6 mb--40">
-                            <div class="single-product-content">
-                                <div class="inner">
+                           <div class="single-product-content">
+                                <form method="GET" action="{{ route("addtocart",$product ->id) }}">
+                                    <div class="inner">
                                     <h2 class="product-title">{{ $product ->baslik }}</h2>
-                                    @if ($product->fiyat == null )
-                                    <span class="price-amount">Fiyat İçin İletişme Geçin</span>
-                                    @else
                                     <span class="price-amount">{{  $product->fiyat   }}  TL</span>
-                                    @endif
-
                                     <div class="product-rating">
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -81,14 +113,14 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <div class="review-number">6,405</div>
+                                        <div class="review-number">{{ $comments->count() }}</div>
                                         <div class="total-answerd">2 answered questions</div>
                                     </div>
 
                                     <div class="product-variations-wrapper">
 
                                         <!-- Start Product Variation  -->
-                                        {{-- <div class="product-variation product-size-variation">
+                                        <div class="product-variation product-size-variation">
                                             <h6 class="title">Size:</h6>
                                             <ul class="range-variant">
                                                 <li class="active">xs</li>
@@ -97,16 +129,16 @@
                                                 <li>l</li>
                                                 <li>xl</li>
                                             </ul>
-                                        </div> --}}
+                                        </div>
                                         <!-- End Product Variation  -->
                                         <!-- Start Product Variation  -->
-                                        {{-- <div class="product-variation">
+                                        <div class="product-variation">
                                             <h6 class="title">Colors:</h6>
                                             <div class="color-variant-wrapper">
                                                 <ul class="color-variant mt--0">
                                                     <li class="color-extra-01 active"><span><span class="color"></span></span>
                                                     </li>
-                                                    <li class="color-extra-02"><span><span class="color"></span></span>
+                                                    <li  class="color-extra-02"><span><span  class="color"> </span> </span>
                                                     </li>
                                                     <li class="color-extra-03"><span><span class="color"></span></span>
                                                     </li>
@@ -114,38 +146,43 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                         <!-- End Product Variation  -->
-                                        {{-- <div class="product-variation quantity-variant-wrapper">
+                                        <div class="product-variation quantity-variant-wrapper">
                                             <h6 class="title">Quantity</h6>
-                                            <div class="pro-qty"><input type="text" value="1"></div>
-                                        </div> --}}
+                                            <form method="get" action="{{ route("addtocart",$product ->id) }}">
+                                                <div class="pro-qty"><input type="text" name="qty" value="1"></div>
+
+                                                <div class="product-action-wrapper mt-5">
+
+
+                                                    <!-- Start Product Action  -->
+                                                    <ul class="product-action d-flex-center mb--0">
+                                                        <form method="GET" action="">
+                                                            <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Hızlı Satın Al">
+                                                        </form>
+
+                                                        <input style="background-color: rgb(0, 132, 255); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Sepete Ekle">
+
+                                                    </ul>
+                                                    <!-- End Product Action  -->
+
+                                                </div>
+                                            </form>
+
+                                        </div>
 
                                     </div>
 
                                     <!-- Start Product Action Wrapper  -->
-                                    <div class="product-action-wrapper">
-                                        @if ($product->fiyat == null)
-                                        <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a href="#" class="axil-btn btn-bg-primary"><i class="far fa-shopping-bag"></i> İletişime Geç</a></li>
 
-
-                                        </ul>
-                                        @else
-                                        <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a href="{{ route("checkout") }}" class="axil-btn btn-bg-secondary"><i class="far fa-shopping-bag"></i> Şimdi Satın Al</a></li>
-                                            <li class="add-to-cart"><a href="{{ route("addtocart",$product ->id) }}" class="axil-btn btn-bg-primary"><i class="far fa-shopping-cart"></i> Sepete Ekle</a></li>
-
-                                        </ul>
-                                        @endif
-
-                                        <!-- Start Product Action  -->
-
-                                        <!-- End Product Action  -->
-
-                                    </div>
                                     <!-- End Product Action Wrapper  -->
                                 </div>
+
+
+
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -190,7 +227,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb--40">
                                             <div class="axil-comment-area pro-desc-commnet-area">
-                                                <h5 class="title">Review for this product</h5>
+                                                <h5 class="title">Yorumlar</h5>
                                                 <ul class="comment-list">
                                                     <!-- Start Single Comment  -->
 
@@ -198,7 +235,12 @@
 
                                                     <!-- Start Single Comment  -->
                                                     <li class="comment">
+
+
+                                                        @if ($comments->count() > 1)
+                                                        @foreach ($comments as $com)
                                                         <div class="comment-body">
+
                                                             <div class="single-comment">
                                                                 <div class="comment-img">
                                                                     <img src="{{ asset("./assets/images/blog/author-image-4.png") }}" alt="Author Images">
@@ -207,31 +249,85 @@
                                                                     <h6 class="commenter">
                                                                         <a class="hover-flip-item-wrapper" href="#">
                                                                             <span class="hover-flip-item">
-                                                                                <span data-text="Rahabi Khan">Courtney
-                                                                                    Henry</span>
+                                                                                <span data-text="{{ $com->ad }} {{ $com->soyad }}">{{ $com->ad }}-{{ $com->soyad }}
+                                                                                    </span>
                                                                             </span>
                                                                         </a>
+                                                                        @if ($com->puan == 1)
                                                                         <span
-                                                                            class="commenter-rating ratiing-four-star">
-                                                                            <a href="#"><i class="fas fa-star"></i></a>
-                                                                            <a href="#"><i class="fas fa-star"></i></a>
-                                                                            <a href="#"><i class="fas fa-star"></i></a>
-                                                                            <a href="#"><i class="fas fa-star"></i></a>
-                                                                            <a href="#"><i class="fas fa-star"></i></a>
+                                                                        class="commenter-rating ratiing-four-star">
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
                                                                         </span>
+
+                                                                        @elseif($com->puan == 2)
+                                                                        <span
+                                                                        class="commenter-rating ratiing-four-star">
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
+                                                                        </span>
+                                                                        @elseif($com->puan == 3)
+                                                                        <span
+                                                                        class="commenter-rating ratiing-four-star">
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
+                                                                        </span>
+                                                                        @elseif($com->puan == 4)
+                                                                        <span
+                                                                        class="commenter-rating ratiing-four-star">
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
+                                                                        </span>
+                                                                        @elseif($com->puan == 5)
+                                                                        <span
+                                                                        class="commenter-rating ratiing-four-star">
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+
+                                                                        </span>
+
+                                                                        @else
+
+                                                                        @endif
+
                                                                     </h6>
                                                                     <div class="comment-text">
-                                                                        <p>“We’ve created a full-stack structure for our
-                                                                            working workflow processes, were from the
-                                                                            funny the century initial all the made, have
-                                                                            spare to negatives. ”</p>
+                                                                        <p>{{ $com->yorum }}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endforeach
+                                                        @else
+                                                        <p>Henüz Yorum Yapılmamış</p>
+
+                                                        @endif
+
+
+
+
+
+
+
                                                     </li>
                                                     <!-- End Single Comment  -->
-
+                                                {{-- <span
+                                                    class="commenter-rating ratiing-four-star">
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                </span> --}}
                                                     <!-- Start Single Comment  -->
 
                                                     <!-- End Single Comment  -->
@@ -246,46 +342,64 @@
                                                 <h5 class="title mb--30">Add a Review</h5>
                                                 <p>Your email address will not be published. Required fields are marked
                                                     *</p>
-                                                <div class="rating-wrapper d-flex-center mb--40">
-                                                    Your Rating <span class="require">*</span>
-                                                    <div class="reating-inner ml--20">
-                                                        <a href="#"><i class="fal fa-star"></i></a>
-                                                        <a href="#"><i class="fal fa-star"></i></a>
-                                                        <a href="#"><i class="fal fa-star"></i></a>
-                                                        <a href="#"><i class="fal fa-star"></i></a>
-                                                        <a href="#"><i class="fal fa-star"></i></a>
-                                                    </div>
-                                                </div>
 
-                                                <form action="#">
+
+                                                    <form  action="{{ route("commentadd",$product->id) }}" method="POST"  class="comment-form m-0">
+
+                                                    @csrf
+                                                    <p>Ürüne kaç yıldız vermek istersiniz?</p>
+                                                    <div class="rating-stars">
+                                                        <input type="radio" name="puan" id="star5" value="5">
+                                                        <label for="star5"></label>
+                                                        <input type="radio" name="puan" id="star4" value="4">
+                                                        <label for="star4"></label>
+                                                        <input type="radio" name="puan" id="star3" value="3">
+                                                        <label for="star3"></label>
+                                                        <input type="radio" name="puan" id="star2" value="2">
+                                                        <label for="star2"></label>
+                                                        <input type="radio" name="puan" id="star1" value="1">
+                                                        <label for="star1"></label>
+                                                    </div><br>
+                                                    <div class="form-group">
+                                                        <label>Yorumunuz <span class="required">*</span></label>
+                                                        <textarea name="yorum" cols="5" rows="6" class="form-control form-control-sm"></textarea>
+                                                    </div><!-- End .form-group -->
+
+
                                                     <div class="row">
-                                                        <div class="col-12">
+                                                        <div class="col-md-6 col-xl-12">
                                                             <div class="form-group">
-                                                                <label>Other Notes (optional)</label>
-                                                                <textarea name="message" placeholder="Your Comment"></textarea>
-                                                            </div>
+                                                                <label>Ad <span class="required">*</span></label>
+                                                                <input name="ad" type="text" class="form-control form-control-sm" required>
+                                                            </div><!-- End .form-group -->
                                                         </div>
-                                                        <div class="col-lg-6 col-md-6 col-12">
+                                                        <div class="col-md-6 col-xl-12">
                                                             <div class="form-group">
-                                                                <label>Name <span class="require">*</span></label>
-                                                                <input id="name" type="text">
-                                                            </div>
+                                                                <label>Soyad <span class="required">*</span></label>
+                                                                <input name="soyad" type="text" class="form-control form-control-sm" required>
+                                                            </div><!-- End .form-group -->
                                                         </div>
-                                                        <div class="col-lg-6 col-md-6 col-12">
+
+                                                        <div class="col-md-6 col-xl-12">
                                                             <div class="form-group">
-                                                                <label>Email <span class="require">*</span> </label>
-                                                                <input id="email" type="email">
-                                                            </div>
+                                                                <label>Email <span class="required">*</span></label>
+                                                                <input name="email" type="text" class="form-control form-control-sm" required>
+                                                            </div><!-- End .form-group -->
                                                         </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="form-submit">
-                                                                <button type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Submit
-                                                                    Comment</button>
-                                                            </div>
-                                                        </div>
+
+                                                        <input type="submit" class="btn btn-primary" value="Gönder">
+
                                                     </div>
+
+
                                                 </form>
+
+
+
+
+
                                             </div>
+
                                             <!-- End Comment Respond  -->
                                         </div>
                                         <!-- End .col -->

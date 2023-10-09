@@ -197,14 +197,14 @@
                                             <a href="#">(<span>1</span> customer reviews)</a>
                                         </div>
                                     </div>
-                                    <h3 class="product-title">Serif Coffee Table</h3>
-                                    <span class="price-amount">$155.00 - $255.00</span>
-                                    <ul class="product-meta">
+                                    <h3 class="product-title"></h3>
+                                    <span class="price-amount"></span>
+                                    {{-- <ul class="product-meta">
                                         <li><i class="fal fa-check"></i>In stock</li>
                                         <li><i class="fal fa-check"></i>Free delivery available</li>
                                         <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
-                                    </ul>
-                                    <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p>
+                                    </ul> --}}
+                                    <p class="description"></p>
 
                                     <div class="product-variations-wrapper">
 

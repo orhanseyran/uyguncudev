@@ -17,11 +17,11 @@ class ShoppingCartController extends Controller
 
     }
 
-    public function addtocart($id)
+    public function addtocart(Request $request, $id)
     {
         $yeni = product::FindOrFail($id);
 
-        ShoppingCart::add($yeni->id,$yeni->baslik,1,$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+        ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
 
         return redirect(route("cart"));
     }

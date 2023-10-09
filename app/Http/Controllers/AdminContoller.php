@@ -36,5 +36,8 @@ class AdminContoller extends Controller
     public function kategoriekleme(){
         return view("admin.categoryadd");
     }
+    public function comments(){
+        return view("admin.comments");
+    }
 
 }

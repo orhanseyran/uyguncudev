@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminContoller;
 use App\Http\Controllers\AdminControllerPost;
 use App\Http\Controllers\ArrayOparationController;
 use App\Http\Controllers\CheakOutController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FrontAndController;
 use App\Http\Controllers\LoginAndRegisterController;
 use App\Http\Controllers\UserController;
@@ -50,7 +51,7 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/ürün-düzenle/{id}",[AdminContoller::class,"productedit"])->name("productedit");
     Route::post("/ürün-düzenle/{id}",[AdminControllerPost::class,"productedit"])->name("producteditpost");
     Route::get("/ürün-sil/{id}",[AdminControllerPost::class,"delete"])->name("delete");
-    Route::get("/kategoriler",[AdminContoller::class,"kategori"])->name("kategori");
+    Route::get("/kategoriler",[AdminContoller::class,"kategorigetir"])->name("kategori");
     Route::get("/katagori-ekle",[AdminContoller::class,"kategoriekleme"])->name("katagoriekle");
     Route::post("/kategori-ekle",[AdminControllerPost::class,"kategoriekle"])->name("kategoriekle");
 });
@@ -77,4 +78,5 @@ Route::get("/gelen",[CheakOutController::class,"orderdetail"]);
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::get("/shop",[FrontAndController::class,"shop"])->name("shop");
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
+Route::post("/yorum-yap/{id}",[CommentsController::class,"commentadd"])->name("commentadd");
 

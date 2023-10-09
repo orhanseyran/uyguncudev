@@ -16,11 +16,18 @@ class FrontAndController extends Controller
         $product =product::latest()->limit(10)->get();
         return view("home",compact("product","cart"));
     }
-    public function product($id)
+    public function product(Request $request,$id)
     {
         $cart= ShoppingCart::all();
         $product = product::FindOrFail($id);
-        return view("product",compact("product","cart"));
+        if ($request->input("fast")) {
+            $yeni= ShoppingCart::all();
+            ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
+            return view("checkout",compact("yeni"));
+        }
+        // $comments = $product->comments()->AktifYorum()->latest()->get();
+        $comments = $product->comments()->latest()->get();
+        return view("product",compact("product","cart","comments"));
     }
     public function loginform(){
         return view("sign-in");
