@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        {{-- </div> merhaba --}}
     </div>
     <!-- Start Footer Area  -->
     @include('footer');
