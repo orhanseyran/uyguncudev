@@ -143,7 +143,12 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @if ( ShoppingCart::totalPrice() == null )
+                                <a href="#" class="axil-btn btn-bg-primary checkout-btn">Sepetiniz Boş</a>
+                                @else
                                 <a href="{{ route("checkout") }}" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
+                                @endif
+
                             </div>
                         </div>
                     </div>

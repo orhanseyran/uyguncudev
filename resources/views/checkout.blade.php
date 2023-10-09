@@ -101,24 +101,24 @@
                                 </div> --}}
                             </div>
                             <div class="axil-checkout-billing">
-                                <h4 class="title mb--40">Billing details</h4>
+                                <h4 class="title mb--40">Sipariş Detayı</h4>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>First Name <span>*</span></label>
-                                            <input type="text" id="first-name" name="name" placeholder="Adam">
+                                            <label>Ad <span>*</span></label>
+                                            <input type="text" id="first-name" name="name"required >
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Last Name <span>*</span></label>
-                                            <input type="text" id="last-name" name="surname" placeholder="John">
+                                            <label>Soyad <span>*</span></label>
+                                            <input type="text" id="last-name" name="surname"required >
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Street Address <span>*</span></label>
-                                    <input type="text" id="address1" name="adress" class="mb--15" placeholder="House number and street name">
+                                    <label>Adres <span>*</span></label>
+                                    <input type="text" id="address1" name="adress" class="mb--15" placeholder="" required>
 
                                 </div>
                                 <div class="form-group">
@@ -127,54 +127,49 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Phone <span>*</span></label>
+                                    <label>Telefon <span>*</span></label>
                                     <input type="text" name="phone" id="phone" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Email Address <span>*</span></label>
+                                    <label>Email <span>*</span></label>
                                     <input type="email" name="email" id="email" required>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label>Other Notes (optional)</label>
-                                    <textarea id="notes" name="ordernote" rows="2" placeholder="Notes about your order, e.g. speacial notes for delivery."></textarea>
+                                    <label>Sipariş Notu (Opsiyonel)</label>
+                                    <textarea id="notes" name="ordernote" rows="2" placeholder=""></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="axil-order-summery order-checkout-summery">
-                                <h5 class="title mb--20">Your Order</h5>
+                                <h5 class="title mb--20">Siparişim</h5>
                                 <div class="summery-table-wrap">
                                     <table class="table summery-table">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Subtotal</th>
+                                                <th>Ürün</th>
+                                                <th>Toplam Tutar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($yeni as $get )
                                             <tr class="order-product">
-                                                <td>Commodo Blown Lamp <span class="quantity">x1</span></td>
-                                                <td>$117.00</td>
+                                                <td>{{  $get->name }} <span class="quantity">x{{ $get->qty }}</span></td>
+                                                <td>{{ $get->price }}TL</td>
                                             </tr>
-                                            <tr class="order-product">
-                                                <td>Commodo Blown Lamp <span class="quantity">x1</span></td>
-                                                <td>$198.00</td>
-                                            </tr>
-                                            <tr class="order-subtotal">
-                                                <td>Subtotal</td>
-                                                <td>$117.00</td>
-                                            </tr>
+                                            @endforeach
+
                                             <tr class="order-shipping">
                                                 <td colspan="2">
                                                     <div class="shipping-amount">
-                                                        <span class="title">Shipping Method</span>
-                                                        <span class="amount">$35.00</span>
+                                                        <span class="title">Kargo</span>
+                                                        <span class="amount">Ücretsiz</span>
                                                     </div>
-                                                    <div class="input-group">
+                                                    {{-- <div class="input-group">
                                                         <input type="radio" id="radio1" name="shipping" checked>
-                                                        <label for="radio1">Free Shippping</label>
+                                                        <label for="radio1">Ücretsiz Gönderim</label>
                                                     </div>
                                                     <div class="input-group">
                                                         <input type="radio" id="radio2" name="shipping">
@@ -183,41 +178,49 @@
                                                     <div class="input-group">
                                                         <input type="radio" id="radio3" name="shipping">
                                                         <label for="radio3">Flat rate</label>
-                                                    </div>
+                                                    </div> --}}
                                                 </td>
                                             </tr>
                                             <tr class="order-total">
-                                                <td>Total</td>
-                                                <td class="order-total-amount">{{ ShoppingCart::totalPrice() }}</td>
+                                                <td>Toplam</td>
+                                                <td class="order-total-amount">{{ ShoppingCart::totalPrice() }} TL</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="order-payment-method">
-                                    <div class="single-payment">
+                                    {{-- <div class="single-payment">
                                         <div class="input-group">
                                             <input type="radio" id="radio4" name="payment">
                                             <label for="radio4">Direct bank transfer</label>
                                         </div>
                                         <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                                    </div>
+                                    </div>> --}}
                                     <div class="single-payment">
-                                        <div class="input-group">
-                                            <input type="radio" id="radio5" name="payment">
-                                            <label for="radio5">Cash on delivery</label>
-                                        </div>
-                                        <p>Pay with cash upon delivery.</p>
-                                    </div>
-                                    <div class="single-payment">
+                                        @if(session('giris'))
+                                           <div class="alert alert-success">
+                                                {{ session('giris') }}
+                                            </div>
+                                            @elseif(session('Hata'))
+                                            <div class="alert alert-danger">
+                                                {{ session('Hata') }}
+                                            </div>
+
+                                        @endif
                                         <div class="input-group justify-content-between align-items-center">
-                                            <input type="radio" id="radio6" name="payment" checked>
-                                            <label for="radio6">Paypal</label>
+                                            <input type="radio" id="radio6" name="shopier">
+                                            <label for="radio6">Shopier Ödeme</label>
                                             <img src="./assets/images/others/payment.png" alt="Paypal payment">
                                         </div>
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                        <p>Shopier İle Güvenli Ödeme</p>
                                     </div>
                                 </div>
-                                <button type="submit" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</button>
+                                @if ( ShoppingCart::totalPrice() == null)
+                                <a href="#" class="axil-btn btn-bg-primary checkout-btn">Sepetiniz Boş</a>
+                                @else
+                                <button type="submit" class="axil-btn btn-bg-primary checkout-btn">Ödeme Yap</button>
+                                @endif
+
                             </div>
                         </div>
                     </div>
