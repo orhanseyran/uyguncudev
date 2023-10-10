@@ -378,6 +378,7 @@
                 </div>
             </div>
         </div>
+        {{-- merhaba --}}
         <!-- End Poster Countdown Area  -->
 
         <!-- Start Expolre Product Area  -->
