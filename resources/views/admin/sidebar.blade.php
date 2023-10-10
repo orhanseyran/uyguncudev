@@ -89,18 +89,18 @@
                             </li> --}}
                         </ul>
                     </li>
-                    {{-- <li class="nav-parent ">
+                    <li class="nav-parent ">
                         <a class="nav-link" href="#">
                             <i class="bx bx-about" aria-hidden="true"></i>
                             <span>Web Site Sayfalar</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
+                            {{-- <li>
                                 <a class="nav-link" href="{{ route("bloglar") }}">
                                     - Bloglar
                                 </a>
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a class="nav-link" href="{{ route("blogekle") }}">
                                     - Blog Ekle
                                 </a>
@@ -109,28 +109,28 @@
                                 <a class="nav-link" href="{{ route("yorumlar") }}">
                                     - Yorumlar
                                 </a>
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a class="nav-link" href="{{ route("register") }}">
                                     <i class="bx bx-detail" aria-hidden="true"></i>
                                     <span>Kullanıcı Ekle</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a class="nav-link" href="{{ route("sliderlar") }}">
                                     <i class="bx bx-loader-circle" aria-hidden="true"></i>
                                     <span>Slider</span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a class="nav-link" href="{{ route("kimiz") }}">
                                     <i class="bx bx-window-alt" aria-hidden="true"></i>
                                     <span>Biz Kimiz Sayfası <em class="not-included"></em></span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
-                    </li> --}}
+                    </li>
                     <li>
 
 

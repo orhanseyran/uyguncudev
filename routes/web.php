@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginAndRegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,12 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/kategoriler",[AdminContoller::class,"kategorigetir"])->name("kategori");
     Route::get("/katagori-ekle",[AdminContoller::class,"kategoriekleme"])->name("katagoriekle");
     Route::post("/kategori-ekle",[AdminControllerPost::class,"kategoriekle"])->name("kategoriekle");
+    Route::get("/sliderlar",[SliderController::class,"slider"])->name("sliderlar");
+    Route::get("/slider-ekle",[SliderController::class,"sliderekle"])->name("sliderekle");
+    Route::get("/slider-düzenle/{id}",[SliderController::class,"sliderdüzenle"])->name("sliderdüzenle");
+    Route::get("/slider-sil/{id}",[SliderController::class,"slidersil"])->name("slidersil");
+    Route::post("/slider-düzenle/{id}",[SliderController::class,"sliderdüzen"])->name("sliderdüzen");
+    Route::post("/slider-ekle",[SliderController::class,"sliderpost"])->name("sliderpost");
 });
 
 Route::middleware(["Alici"])->group(function(){
