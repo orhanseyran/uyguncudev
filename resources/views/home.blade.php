@@ -411,7 +411,7 @@
                                             <ul class="cart-action">
                                                 <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                                 <li class="select-option"><a href="{{ route("productid",$urun->id) }}">Ürünü İncele</a></li>
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                                <li class="wishlist"><a href=""onclick="submitForm('{{ $urun->id }}'); return false;"><i class="far fa-heart"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -605,145 +605,27 @@
                         <h2 class="title">New Arrivals</h2>
                     </div>
                     <div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
+
+                        @foreach ($product as $urun )
                         <div class="slick-single-layout">
                             <div class="axil-product product-style-two">
                                 <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500" src="assets/images/product/electric/product-05.png" alt="Product Images">
+                                    <a href="{{ route("productid",$urun->id) }}">
+                                        @if ($urun->resim == null)
+                                        <img data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500" src="resimler/resimYok.png" alt="Product Images">
+                                        @else
+                                        <img data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500" src="resimler/{{ $urun->resim }}" alt="Product Images">
+                                        @endif
+
                                     </a>
                                     <div class="label-block label-right">
-                                        <div class="product-badget">10% OFF</div>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <div class="color-variant-wrapper">
-                                            <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title"><a href="single-product.html">Demon's Souls</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price old-price">$40</span>
-                                            <span class="price current-price">$30</span>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                <li class="select-option"><a href="single-product.html">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End .slick-single-layout -->
-                        <div class="slick-single-layout">
-                            <div class="axil-product product-style-two">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500" src="assets/images/product/electric/product-06.png" alt="Product Images">
-                                    </a>
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <div class="color-variant-wrapper">
-                                            <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title"><a href="single-product.html">Google Home</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price old-price">$50</span>
-                                            <span class="price current-price">$40</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-hover-action">
-                                        <ul class="cart-action">
-                                            <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            <li class="select-option"><a href="single-product.html">Select Option</a></li>
-                                            <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End .slick-single-layout -->
-                        <div class="slick-single-layout">
-                            <div class="axil-product product-style-two">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="400" data-sal-duration="500" src="assets/images/product/electric/product-07.png" alt="Product Images">
-                                    </a>
-                                    <div class="label-block label-right">
-                                        <div class="product-badget">15% OFF</div>
+                                        {{-- <div class="product-badget">30% OFF</div> --}}
                                     </div>
 
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">
-                                        <div class="color-variant-wrapper">
-                                            <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title"><a href="single-product.html">Netfilx Remot</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price old-price">$60</span>
-                                            <span class="price current-price">$45</span>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                <li class="select-option"><a href="single-product.html">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End .slick-single-layout -->
-                        <div class="slick-single-layout">
-                            <div class="axil-product product-style-two">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500" src="assets/images/product/electric/product-08.png" alt="Product Images">
-                                    </a>
-                                    <div class="label-block label-right">
-                                        <div class="product-badget">30% OFF</div>
-                                    </div>
-
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <div class="color-variant-wrapper">
-                                            <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title"><a href="single-product.html">Digital Accessories</a></h5>
+                                        <h5 class="title"><a href="{{ route("productid",$urun->id) }}">{{ $urun->baslik }}</a></h5>
                                         <div class="product-price-variant">
                                             <span class="price old-price">$30</span>
                                             <span class="price current-price">$20</span>
@@ -751,53 +633,44 @@
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
                                                 <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                <li class="select-option"><a href="single-product.html">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                                <li class="select-option"><a href="{{ route("addtocart",$urun->id) }}">Sepete Ekle</a></li>
+
+                                                <li class="wishlist">
+                                                    <!-- Form -->
+                                                    <form method="post" action="{{ route("wishlistadd", $urun->id) }}" id="wishlistForm_{{ $urun->id }}">
+                                                        @csrf
+                                                        <input type="submit" id="wishlistSubmit_{{ $urun->id }}" name="wish" style="display: none;">
+                                                    </form>
+
+                                                    <!-- <a> etiketini kullanarak formu programatik olarak gönder -->
+                                                    <a href="#" onclick="submitForm('{{ $urun->id }}'); return false;">
+                                                        <i class="far fa-heart"></i>
+                                                    </a>
+
+                                                    <!-- JavaScript Kodu -->
+
+                                                </li>
+
+
+
+                                                    <!-- <a> etiketini kullanarak formu programatik olarak gönder -->
+
+
+                                                    <!-- JavaScript Kodu -->
+
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+
                         <!-- End .slick-single-layout -->
-                        <div class="slick-single-layout">
-                            <div class="axil-product product-style-two">
-                                <div class="thumbnail">
-                                    <a href="single-product.html">
-                                        <img data-sal="zoom-out" data-sal-delay="100" data-sal-duration="500" src="assets/images/product/electric/product-04.png" alt="Product Images">
-                                    </a>
-                                    <div class="label-block label-right">
-                                        <div class="product-badget">50% OFF</div>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <div class="color-variant-wrapper">
-                                            <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <h5 class="title"><a href="single-product.html">PS5 Smart Remote</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price old-price">$50</span>
-                                            <span class="price current-price">$25</span>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                <li class="select-option"><a href="single-product.html">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <!-- End .slick-single-layout -->
+
                         <!-- End .slick-single-layout -->
                     </div>
                 </div>
@@ -1224,6 +1097,7 @@
     <div class="closeMask"></div>
     <!-- Offer Modal End -->
     <!-- JS
+
 ============================================ -->
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr.min.js"></script>
@@ -1247,6 +1121,12 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        function submitForm(productId) {
+            // Formu gönder
+            document.getElementById('wishlistSubmit_' + productId).click();
+        }
+    </script>
 
 </body>
 

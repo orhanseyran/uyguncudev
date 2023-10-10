@@ -87,3 +87,8 @@ Route::get("/shop",[FrontAndController::class,"shop"])->name("shop");
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::post("/yorum-yap/{id}",[CommentsController::class,"commentadd"])->name("commentadd");
 
+Route::post("/beğendiklerim/{id}",[FrontAndController::class,"wishlistadd"])->name("wishlistadd");
+Route::get("/İstek-Listem",[FrontAndController::class,"wishlist"])->name("wishlist");
+Route::get("/wishlist-sil/{id}",[FrontAndController::class,"wishlistdelete"])->name("wishlistdelete");
+
+

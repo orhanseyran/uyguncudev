@@ -49,6 +49,7 @@
         </div>
         <!-- End Header -->
 
+
         <div class="row">
             <div class="col-xl-4 col-lg-6">
                 <div class="axil-signin-banner bg_image bg_image--9">
@@ -57,7 +58,18 @@
             </div>
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
+
                     <div class="axil-signin-form">
+                        @if(session('giris'))
+                    <div class="alert alert-success">
+                        {{ session('giris') }}
+                    </div>
+                    @elseif(session('Hata'))
+                    <div class="alert alert-danger">
+                        {{ session('Hata') }}
+                    </div>
+
+                   @endif
                         <h3 class="title">Giriş Yap.</h3>
                         <p class="b2 mb--55">Giriş Bilgilerinizi Giriniz</p>
                         <form method="POST" action="{{ route("login") }}" class="singin-form">

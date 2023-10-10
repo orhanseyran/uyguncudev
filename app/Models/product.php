@@ -27,6 +27,9 @@ class product extends Model
     public function comments(){
         return $this->hasMany(Comments::class,"urun_id");
     }
+    public function wishlisturun(){
+        return $this->hasMany(wishlist::class,"urun_id");
+    }
 
     public function scopeAktifÜrün($query){
         return $query->where("active",1);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\orderdetail;
 use App\Models\orders;
 use App\Models\product;
+use App\Models\User;
+use App\Models\wishlist;
 use Illuminate\Http\Request;
 use ShoppingCart;
 
@@ -14,12 +16,15 @@ class FrontAndController extends Controller
         $cart= ShoppingCart::all();
 
         $product =product::latest()->limit(10)->get();
-        return view("home",compact("product","cart"));
+
+        $rndproduct = product::inRandomOrder()->latest()->limit(8);
+        return view("home",compact("product","cart","rndproduct"));
     }
     public function product(Request $request,$id)
     {
         $cart= ShoppingCart::all();
         $product = product::FindOrFail($id);
+
         if ($request->input("fast")) {
             $yeni= ShoppingCart::all();
             ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
@@ -82,6 +87,52 @@ class FrontAndController extends Controller
 
 
         return view('shop', compact('products',"search"));
+    }
+    public function wishlist(){
+
+        $wihslist = wishlist::list()->latest()->get();
+
+        return view("wishlist",compact("wihslist"));
+    }
+
+    public function wishlistadd(Request $request,$id){
+
+        $product = product::FindOrFail($id);
+
+        $user = auth()->user()->name;
+
+
+
+
+
+        if( $request->input("wish")){
+
+
+            $wishlist = new wishlist();
+
+            $wishlist->wish_resim = $product->resim;
+
+            $wishlist->urun_id =  $product->id;
+            $wishlist->price = $product->fiyat;
+            $wishlist->user_name = $user;
+            $wishlist->product_name	= $product->baslik;
+
+            $wishlist->save();
+
+
+        }
+        return redirect(route("wishlist"));
+
+
+
+
+    }
+    public function wishlistdelete($id){
+
+        $wihslist = wishlist::FindOrFail($id);
+        $wihslist->delete();
+
+        return redirect()->back();
     }
 
 

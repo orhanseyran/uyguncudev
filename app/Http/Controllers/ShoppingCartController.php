@@ -21,7 +21,14 @@ class ShoppingCartController extends Controller
     {
         $yeni = product::FindOrFail($id);
 
-        ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+        if ($request->input("qty") == null) {
+            ShoppingCart::add($yeni->id,$yeni->baslik,1,$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+        } else {
+            ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+        }
+
+
+
 
         return redirect(route("cart"));
     }
@@ -37,13 +44,26 @@ class ShoppingCartController extends Controller
     {
         $yeni=ShoppingCart::get($rawId);
 
+        if (!$yeni) {
+            // Handle the case where the item is not found in the shopping cart.
+            return redirect()->back()->with("error", "Ürün bulunamadı.");
+        }
+
         if ($type == "increase"){
             ShoppingCart::update($rawId,$yeni->qty+1);
             session()->flash("basarı","Sepetinize Yeni Ürün Eklendi");
         }
         else{
-            ShoppingCart::update($rawId,$yeni->qty-1);
-            session()->flash("basarı","Sepetinizden Ürün Çıkarıldı");
+            if ($yeni->qty == 1 ) {
+                ShoppingCart::update($rawId,$yeni->qty-1);
+                return redirect()->back();
+                session()->flash("basarı","Sepetiniz Boş");
+            } else {
+                ShoppingCart::update($rawId,$yeni->qty-1);
+                session()->flash("basarı","Sepetinizden Ürün Çıkarıldı");
+            }
+
+
         }
 
 
