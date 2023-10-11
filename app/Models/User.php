@@ -51,6 +51,6 @@ class User extends Authenticatable
         return $this->hasMany(wishlist::class,"user_id");
     }
     public function get(){
-        return $this->belongsTo(product::class);
+        return $this->hasMany(product::class);
     }
 }

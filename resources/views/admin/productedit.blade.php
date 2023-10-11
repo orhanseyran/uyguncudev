@@ -134,7 +134,7 @@
 
                                                         <div class="col-lg7 col-xl-6">
 
-                                                            <input type="file" class="form-control form-control-modern"  name="resim" multiple />
+                                                            <input type="file" class="form-control form-control-modern" value="{{ $getir->resim }}"  name="resim" required multiple />
 
                                                         </div>
 

@@ -89,13 +89,13 @@
                             </a>
                         </li>
                         <li class="wishlist">
-                            <a href="wishlist.html">
+                            <a href="{{ route("wishlist") }}">
                                 <i class="flaticon-heart"></i>
                             </a>
                         </li>
                         <li class="shopping-cart">
                             <a href="cart.html" class="cart-dropdown-btn">
-                                <span class="cart-count">3</span>
+                                <span class="cart-count">{{ ShoppingCart::count(); }}</span>
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
                         </li>

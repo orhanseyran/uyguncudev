@@ -291,16 +291,19 @@
 
 
 <div class="cart-dropdown" id="cart-dropdown">
+
     <div class="cart-content-wrap">
-        {{-- <div class="cart-header">
+        <div class="cart-header">
             <h2 class="header-title">Cart review</h2>
             <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
-        </div> --}}
-        {{-- <div class="cart-body">
+        </div>
+        <div class="cart-body">
             <ul class="cart-item-list">
+
                 <li class="cart-item">
+                    @foreach ( $yeni as $get )
                     <div class="item-img">
-                        <a href="single-product.html"><img src="assets/images/product/electric/product-01.png" alt="Commodo Blown Lamp"></a>
+                        <a href="{{ route("removecart",$get->__raw_id) }}"><img src="resimler/resimYok.png" alt="Commodo Blown Lamp"></a>
                         <button class="close-btn"><i class="fas fa-times"></i></button>
                     </div>
                     <div class="item-content">
@@ -317,11 +320,12 @@
                             <input type="number" class="quantity-input" value="1">
                         </div>
                     </div>
+                    @endforeach
                 </li>
 
 
             </ul>
-        </div> --}}
+        </div>
         <div class="cart-footer">
             <h3 class="cart-subtotal">
                 <span class="subtotal-title">Subtotal:</span>

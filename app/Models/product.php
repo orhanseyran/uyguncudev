@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     protected $table = "urunler";
-    protected $fillable = ["baslik","aciklama","resim","kategori","active"];
+    protected $fillable = ["id","baslik","aciklama","resim","kategori","active"];
     use HasFactory;
 
     public function user(){
@@ -19,12 +19,12 @@ class product extends Model
         return $this->belongsTo(Kategori::class);
 
     }
-    public function urunResimler(){
-
-        return $this->hasMany(UrunResim::class,"urun_id");
+    public function urunResimler()
+    {
+        return $this->hasMany(UrunResim::class, 'urun_id'); //alıancak ürünresimleri
     }
 
-    public function comments(){
+    public function comments (){
         return $this->hasMany(Comments::class,"urun_id");
     }
     public function wishlisturun(){

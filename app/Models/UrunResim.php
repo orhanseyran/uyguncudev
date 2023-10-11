@@ -10,5 +10,6 @@ class UrunResim extends Model
     protected $table ="resimler";
     protected $fillable = ["urun_id","resim_adi"];
 
+
     use HasFactory;
 }

@@ -45,13 +45,16 @@
                 <div class="row align-items-center">
                     <div class="col-lg-5 col-sm-6">
                         <div class="main-slider-content">
+
                             <div class="slider-content-activation-one">
+
+                                @foreach ($slider as $s )
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="400" data-sal-duration="800">
-                                    <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                                    <h1 class="title">Roco Wireless Headphone</h1>
+                                    <span class="subtitle"><i class="fas fa-fire"></i> {{ $s->baslik }}</span>
+                                    <h1 class="title">{{ $s->icerik }}</h1>
                                     <div class="slide-action">
                                         <div class="shop-btn">
-                                            <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
+                                            <a href="{{ $s->butonlink }}" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Satın Al</a>
                                         </div>
                                         <div class="item-rating">
                                             <div class="thumb">
@@ -77,133 +80,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="single-slide slick-slide">
-                                    <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                                    <h1 class="title">Smart Digital Watch</h1>
-                                    <div class="slide-action">
-                                        <div class="shop-btn">
-                                            <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
-                                        </div>
-                                        <div class="item-rating">
-                                            <div class="thumb">
-                                                <ul>
-                                                    <li><img src="assets/images/others/author1.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author2.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author3.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author4.png" alt="Author"></li>
-                                                </ul>
-                                            </div>
-                                            <div class="content">
-                                                <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                                <span class="review-text">
-                                            <span>100+</span> Reviews
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-slide slick-slide">
-                                    <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                                    <h1 class="title">Roco Wireless Headphone</h1>
-                                    <div class="slide-action">
-                                        <div class="shop-btn">
-                                            <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
-                                        </div>
-                                        <div class="item-rating">
-                                            <div class="thumb">
-                                                <ul>
-                                                    <li><img src="assets/images/others/author1.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author2.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author3.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author4.png" alt="Author"></li>
-                                                </ul>
-                                            </div>
-                                            <div class="content">
-                                                <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                                <span class="review-text">
-                                            <span>100+</span> Reviews
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-slide slick-slide">
-                                    <span class="subtitle"><i class="fas fa-fire"></i> Hot Deal In This Week</span>
-                                    <h1 class="title">Smart Digital Watch</h1>
-                                    <div class="slide-action">
-                                        <div class="shop-btn">
-                                            <a href="shop.html" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Shop Now</a>
-                                        </div>
-                                        <div class="item-rating">
-                                            <div class="thumb">
-                                                <ul>
-                                                    <li><img src="assets/images/others/author1.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author2.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author3.png" alt="Author"></li>
-                                                    <li><img src="assets/images/others/author4.png" alt="Author"></li>
-                                                </ul>
-                                            </div>
-                                            <div class="content">
-                                                <span class="rating-icon">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fal fa-star"></i>
-                                        </span>
-                                                <span class="review-text">
-                                            <span>100+</span> Reviews
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
+
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 col-sm-6">
                         <div class="main-slider-large-thumb">
+
                             <div class="slider-thumb-activation-one axil-slick-dots">
+                                @foreach ( $slider as $s )
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                                    <img src="assets/images/product/product-38.png" alt="Product">
+                                    <img src="resimler/{{ $s->picture }}" alt="Product">
                                     <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
                                     </div>
                                 </div>
-                                <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
-                                    <img src="assets/images/product/product-39.png" alt="Product">
-                                    <div class="product-price">
-                                        <span class="text">From</span>
-                                        <span class="price-amount">$49.00</span>
-                                    </div>
-                                </div>
-                                <div class="single-slide slick-slide">
-                                    <img src="assets/images/product/product-38.png" alt="Product">
-                                    <div class="product-price">
-                                        <span class="text">From</span>
-                                        <span class="price-amount">$49.00</span>
-                                    </div>
-                                </div>
-                                <div class="single-slide slick-slide">
-                                    <img src="assets/images/product/product-39.png" alt="Product">
-                                    <div class="product-price">
-                                        <span class="text">From</span>
-                                        <span class="price-amount">$49.00</span>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -351,20 +246,26 @@
         <div class="axil-poster-countdown">
             <div class="container">
                 <div class="poster-countdown-wrap bg-lighter">
+                    @foreach ($rndone as $rnd)
                     <div class="row">
                         <div class="col-xl-5 col-lg-6">
                             <div class="poster-countdown-content">
                                 <div class="section-title-wrapper">
                                     <span class="title-highlighter highlighter-secondary"> <i class="fal fa-headphones-alt"></i> Don’t Miss!!</span>
-                                    <h2 class="title">Enhance Your Music Experience</h2>
+                                    <h2 class="title">{{ $rnd->baslik }}</h2>
                                 </div>
                                 <div class="poster-countdown countdown mb--40"></div>
-                                <a href="#" class="axil-btn btn-bg-primary">Check it Out!</a>
+                                <a href="{{ route("productid",$rnd->id) }}" class="axil-btn btn-bg-primary">Şimdi Göz At</a>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-6">
                             <div class="poster-countdown-thumbnail">
-                                <img src="./assets/images/product/poster/poster-03.png" alt="Poster Product">
+                                @if ($rnd->resim == null)
+                                <img src="resimler/resimYok.png" alt="Poster Product">
+                                @else
+                                <img src="resimler/{{ $rnd->resim }}" alt="Poster Product">
+                                @endif
+
                                 <div class="music-singnal">
                                     <div class="item-circle circle-1"></div>
                                     <div class="item-circle circle-2"></div>
@@ -375,6 +276,9 @@
                             </div>
                         </div>
                     </div>
+
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -506,93 +410,36 @@
         <div class="axil-testimoial-area axil-section-gap bg-vista-white">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-secondary"> <i class="fal fa-quote-left"></i>Testimonials</span>
-                    <h2 class="title">Users Feedback</h2>
+                    <span class="title-highlighter highlighter-secondary"> <i class="fal fa-quote-left"></i>Sizi Önemsiyoruz</span>
+                    <h2 class="title">Sizden Gelen Yorumlar</h2>
                 </div>
-                <!-- End .section-title -->
+
                 <div class="testimonial-slick-activation testimonial-style-one-wrapper slick-layout-wrapper--20 axil-slick-arrow arrow-top-slide">
+                    @foreach ($comments as $comment )
                     <div class="slick-single-layout testimonial-style-one">
                         <div class="review-speech">
-                            <p>“ It’s amazing how much easier it has been to
-                                meet new people and create instantly non
-                                connections. I have the exact same personal
-                                the only thing that has changed is my mind
-                                set and a few behaviors. “</p>
+                            <p>“ {{ $comment->yorum }} “</p>
                         </div>
                         <div class="media">
                             <div class="thumbnail">
                                 <img src="./assets/images/testimonial/image-1.png" alt="testimonial image">
                             </div>
                             <div class="media-body">
-                                <span class="designation">Head Of Idea</span>
-                                <h6 class="title">James C. Anderson</h6>
+                                <span class="designation">{{ $comment->urun }}</span>
+                                <h6 class="title">{{ $comment->ad }} {{ $comment->soyad }}</h6>
                             </div>
                         </div>
-                        <!-- End .thumbnail -->
+
                     </div>
+                    @endforeach
+                <!-- End .section-title -->
+
                     <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout testimonial-style-one">
-                        <div class="review-speech">
-                            <p>“ It’s amazing how much easier it has been to
-                                meet new people and create instantly non
-                                connections. I have the exact same personal
-                                the only thing that has changed is my mind
-                                set and a few behaviors. “</p>
-                        </div>
-                        <div class="media">
-                            <div class="thumbnail">
-                                <img src="./assets/images/testimonial/image-2.png" alt="testimonial image">
-                            </div>
-                            <div class="media-body">
-                                <span class="designation">Head Of Idea</span>
-                                <h6 class="title">James C. Anderson</h6>
-                            </div>
-                        </div>
-                        <!-- End .thumbnail -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout testimonial-style-one">
-                        <div class="review-speech">
-                            <p>“ It’s amazing how much easier it has been to
-                                meet new people and create instantly non
-                                connections. I have the exact same personal
-                                the only thing that has changed is my mind
-                                set and a few behaviors. “</p>
-                        </div>
-                        <div class="media">
-                            <div class="thumbnail">
-                                <img src="./assets/images/testimonial/image-3.png" alt="testimonial image">
-                            </div>
-                            <div class="media-body">
-                                <span class="designation">Head Of Idea</span>
-                                <h6 class="title">James C. Anderson</h6>
-                            </div>
-                        </div>
-                        <!-- End .thumbnail -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout testimonial-style-one">
-                        <div class="review-speech">
-                            <p>“ It’s amazing how much easier it has been to
-                                meet new people and create instantly non
-                                connections. I have the exact same personal
-                                the only thing that has changed is my mind
-                                set and a few behaviors. “</p>
-                        </div>
-                        <div class="media">
-                            <div class="thumbnail">
-                                <img src="./assets/images/testimonial/image-2.png" alt="testimonial image">
-                            </div>
-                            <div class="media-body">
-                                <span class="designation">Head Of Idea</span>
-                                <h6 class="title">James C. Anderson</h6>
-                            </div>
-                        </div>
-                        <!-- End .thumbnail -->
-                    </div>
+
                     <!-- End .slick-single-layout -->
 
                 </div>
+
             </div>
         </div>
         <!-- End Testimonila Area  -->

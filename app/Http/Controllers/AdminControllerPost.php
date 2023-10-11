@@ -85,13 +85,13 @@ class AdminControllerPost extends Controller
         $orderadd->meta_aciklama = $request->meta_aciklama;
         $orderadd->fiyat = $request->fiyat;
         $orderadd->user_id = auth()->id();
-        $orderadd->username = auth()->user();
+        $orderadd->username = auth()->user()->name;
 
         if ($request->hasFile("resim")) {
 
             $resim = $request->file("resim");
             $resimAdi = time().".".$resim->getClientOriginalExtension();
-            $resimYolu = public_path("resimler/",$resimAdi);
+
             $resim->move(public_path("resimler"),$resimAdi);
 
             $orderadd->resim = $resimAdi;

@@ -149,7 +149,7 @@
                                         </div>
                                         <!-- End Product Variation  -->
                                         <div class="product-variation quantity-variant-wrapper">
-                                            <h6 class="title">Quantity</h6>
+                                            <h6 class="title">Adet</h6>
                                             <form method="get" action="{{ route("addtocart",$product ->id) }}">
                                                 <div class="pro-qty"><input type="text" name="qty" value="1"></div>
 

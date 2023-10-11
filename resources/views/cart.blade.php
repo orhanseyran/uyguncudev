@@ -69,8 +69,8 @@
                                 @foreach ($yeni as $get )
                                 <tr>
                                     <td class="product-remove"><a href="{{ route("removecart",$get->__raw_id) }}" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                    <td class="product-thumbnail"><a href="single-product.html"><img src="./assets/images/product/electric/product-01.png" alt="Digital Product"></a></td>
-                                    <td class="product-title"><a href="single-product.html">{{  $get->name }}</a></td>
+                                    <td class="product-thumbnail"><a href="{{ route("removecart",$get->__raw_id) }}"><img src="resimler/{{  $get->image }}" alt="Digital Product"></a></td>
+                                    <td class="product-title"><a href="{{ route("removecart",$get->__raw_id) }}">{{  $get->name }}</a></td>
                                     <td class="product-price" data-title="Price"><span class="currency-symbol">TL</span>{{ $get->price }}</td>
                                     <td class="product-quantity" data-title="Qty">
 

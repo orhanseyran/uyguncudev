@@ -17,6 +17,7 @@ class CommentsController extends Controller
         $comment->yorum = $request->yorum;
         $comment->puan = $request->puan;
         $comment->urun_id = $product->id;
+        $comment->urun = $product->baslik;
 
         $comment->save();
         session()->flash("basarı","Yorumunuz Başarıyla Eklendi");
