@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::get("/",[FrontAndController::class,"home"])->name("home");
 
 Route::middleware(["Guest"])->group(function(){
-
     Route::get("/KullaniciGiris",[FrontAndController::class,"loginform"])->name("loginkullanıcı");
     Route::get("/login",[LoginAndRegisterController::class,"login"])->name("login");
     Route::get("/login-user",[LoginAndRegisterController::class,"loginuser"])->name("loginuser");
@@ -41,9 +40,15 @@ Route::middleware(["Guest"])->group(function(){
 
 
 Route::middleware(["Admin"])->group(function(){
+    Route::get("/Kullanıcılar",[AdminContoller::class,"users"])->name("users");
+    Route::get("/düzenle/{id}",[AdminContoller::class,"usr"])->name("usr");
+    Route::get("/Kullanıcı-sil/{id}",[AdminContoller::class,"usersdelete"])->name("usersdelete");
     Route::get("/register",[LoginAndRegisterController::class,"register"])->name("register");
+    Route::post("/register",[LoginAndRegisterController::class,"registerpost"])->name("registerpost");
 
+    Route::post("/useredit/{id}",[LoginAndRegisterController::class,"useredit"])->name("useredit");
 
+    Route::get("/Kullanıcı-düzenle/{id}",[LoginAndRegisterController::class,"store"])->name("store");
     Route::get("/panelim",[AdminContoller::class,"homeadmin"])->name("homeadmin");
     Route::get("/logout",[LoginAndRegisterController::class,"logout"])->name("logout");
     Route::get("/ürünler",[AdminContoller::class,"products"])->name("products");
@@ -52,6 +57,24 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/ürün-düzenle/{id}",[AdminContoller::class,"productedit"])->name("productedit");
     Route::post("/ürün-düzenle/{id}",[AdminControllerPost::class,"productedit"])->name("producteditpost");
     Route::get("/ürün-sil/{id}",[AdminControllerPost::class,"delete"])->name("delete");
+
+    //ürün renk ekle düzenleme başlangıc
+    Route::post("/Ürün-renk-ekle",[AdminControllerPost::class,"coloraddpost"])->name("coloraddpost");
+    Route::post("/Ürün-renk-düzenle/{id}",[AdminControllerPost::class,"coloreditpost"])->name("coloreditpost");
+    //ürün renk ekle düzenleme bitiş
+    //ürün boyut ekle düzenleme başlangıc
+    Route::post("ürün-boyut-ekle",[AdminControllerPost::class,"sizeaddpost"])->name("sizeaddpost");
+    Route::post("ürün-boyut-düzenle/{id}",[AdminControllerPost::class,"sizeeditpost"])->name("sizeeditpost");
+    //ürün boyut ekle düzenleme bitiş
+    Route::get("ürün-boyutları",[AdminContoller::class,"ürünboyut"])->name("ürünboyut");
+    Route::get("ürün-boyutu-ekle",[AdminContoller::class,"ürünboyutadd"])->name("ürünboyutadd");
+    Route::get("ürün-boyutu-düzenle/{id}",[AdminContoller::class,"ürünboyutedit"])->name("ürünboyutedit");
+    Route::get("ürün-boyut-sil/{id}",[AdminControllerPost::class,"sizedeletepost"])->name("sizedeletepost");
+    Route::get("ürün-renkleri",[AdminContoller::class,"ürünrenk"])->name("ürünrenk");
+    Route::get("ürün-renkleri-ekle",[AdminContoller::class,"ürünrenkadd"])->name("ürünrenkadd");
+    Route::get("ürün-renkleri-düzenle/{id}",[AdminContoller::class,"ürünrenkedit"])->name("ürünrenkedit");
+    Route::get("ürün-renk-sil/{id}",[AdminControllerPost::class,"colordeletepost"])->name("colordeletepost");
+
     Route::get("/kategoriler",[AdminContoller::class,"kategorigetir"])->name("kategori");
     Route::get("/katagori-ekle",[AdminContoller::class,"kategoriekleme"])->name("katagoriekle");
     Route::post("/kategori-ekle",[AdminControllerPost::class,"kategoriekle"])->name("kategoriekle");

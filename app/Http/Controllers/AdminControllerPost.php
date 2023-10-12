@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\product;
 use App\Models\UrunResim;
-
+use App\Models\ürünboyut;
+use App\Models\ürünrenk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use Intervention\Image\Facades\Image;
@@ -71,6 +72,7 @@ class AdminControllerPost extends Controller
     //ürün post düzenleme işlemi
     public function productedit(Request $request,$id){
         $orderadd = product::findOrFail($id);
+
 
         if (!$orderadd) {
             return redirect()->back()->with("error","Urun Bulunamadı");
@@ -160,6 +162,52 @@ class AdminControllerPost extends Controller
         return redirect()->back();
 
     }
+
+    public function coloraddpost(Request $request){
+        $coloradd = new ürünrenk();
+        $coloradd->color = $request->color;
+        $coloradd->save();
+        return redirect(route("ürünrenk"));
+
+    }
+    public function coloreditpost(Request $request,$id){
+        $coloradd = ürünrenk::findorfail($id);
+        $coloradd->color = $request->color;
+        $coloradd->save();
+        return redirect(route("ürünrenk"));
+
+
+    }
+    public function colordeletepost($id){
+        $coloradd = ürünrenk::findorfail($id);
+        $coloradd->delete();
+        return redirect()->back();
+
+
+    }
+    public function sizeaddpost(Request $request){
+        $coloradd = new ürünboyut();
+        $coloradd->size = $request->size;
+        $coloradd->save();
+        return redirect()->back();
+
+    }
+    public function sizeeditpost(Request $request,$id){
+        $coloradd = ürünboyut::findorfail($id);
+        $coloradd->size = $request->size;
+        $coloradd->save();
+        return redirect(route(""));
+
+    }
+    public function sizedeletepost($id){
+        $coloradd = ürünboyut::findorfail($id);
+        $coloradd->delete();
+
+        return redirect()->back();
+
+    }
+
+
 
     }
 

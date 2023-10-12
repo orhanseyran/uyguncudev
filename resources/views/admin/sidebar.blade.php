@@ -42,9 +42,15 @@
                                     - Katagori Listesi
                                 </a>
                             </li>
+
                             <li>
                                 <a class="nav-link" href="{{ route("katagoriekle") }}">
                                     - Katagori Ekle
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ route("ürünrenk") }}">
+                                    - Ürün Renkleri
                                 </a>
                             </li>
                             {{-- <li>
@@ -110,6 +116,7 @@
                                     - Yorumlar
                                 </a>
                             </li> --}}
+
                             {{-- <li>
                                 <a class="nav-link" href="{{ route("register") }}">
                                     <i class="bx bx-detail" aria-hidden="true"></i>
@@ -131,6 +138,27 @@
 
                         </ul>
                     </li>
+                    <li>
+                        <li class="nav-parent ">
+                            <a class="nav-link" href="#">
+                                <i class="bx bx-user" aria-hidden="true"></i>
+                                <span>Kullanıcı Yönetimi</span>
+                            </a>
+                            <ul class="nav nav-children">
+                                <a class="nav-link" href="{{ route("users") }}">
+                                    <i class="bx bx-detail" aria-hidden="true"></i>
+                                    <span>Kullanıcılar</span>
+                                </a>
+                                <a class="nav-link" href="{{ route("register") }}">
+                                    <i class="bx bx-user" aria-hidden="true"></i>
+                                    <span>Kullanıcı Ekle</span>
+                                </a>
+
+                            </ul>
+                        </li>
+
+                    </li>
+
                     <li>
 
 

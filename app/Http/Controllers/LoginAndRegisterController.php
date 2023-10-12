@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -42,7 +44,7 @@ class LoginAndRegisterController extends Controller
 
     }
     public function register(){
-        return view("admin.useradd");
+        return view("admin.usersadd");
 
     }
     public function registerpost(Request $request){
@@ -55,11 +57,11 @@ class LoginAndRegisterController extends Controller
         $user = User::where("email",$email)->first();
         if ($user) {
             // Kullanıcı zaten kayıtlı ise hata mesajını ayarlayın
-            session()->flash('hata', 'Bu Email Zaten Kayıtlı');
+            session()->flash('reddet', 'Bu Email Zaten Kayıtlı');
         } else {
             // Kullanıcı kayıtlı değilse yeni kullanıcı kaydını yapın
             User::create($data);
-            session()->flash('basarı', 'Kullanıcı Başarı İle Eklendi');
+            session()->flash('onay', 'Kullanıcı Başarı İle Eklendi');
         }
         return redirect()->back();
 
@@ -98,5 +100,29 @@ class LoginAndRegisterController extends Controller
         return redirect()->back();
 
     }
+    public function useredit(Request $request,$id)
+{
+  $getir = user::findorfail($id);
+ $password = $getir->password;
+ $oldpassword = bcrypt($request->input("old_password"));
+ dd($oldpassword);
+
+  if ($password )  {
+    $getir->name = $request->name;
+    $getir->email = $request->email;
+    $password == $request->input("old_password");
+    $getir->role = $request->role;
+    $getir->save();
+    session()->flash("onay","Kullanıcı Başarıyla Güncellendi");
+    return redirect()->back();
+  }
+  else{
+    session()->flash("reddet","Kullanıcı Güncellenemedi Girilen Bilgileri Kontrol ediniz");
+    return redirect()->back();
+  }
+
+
+}
+
 
 }
