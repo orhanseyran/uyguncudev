@@ -46,11 +46,11 @@
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="axil-breadcrumb-item"><a href="/">Ana Sayfa</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">My Account</li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">Hesabım</li>
                             </ul>
-                            <h1 class="title">Explore All Products</h1>
+                            <h1 class="title">Merhaba  {{ auth()->user()->name }} </h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-4">
@@ -72,11 +72,21 @@
                     <div class="axil-dashboard-author">
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="./assets/images/product/author1.png" alt="Hello Annie">
+                                <img src="./assets/images/product/author1.png" alt="{{ auth()->user()->name }}">
                             </div>
                             <div class="media-body">
-                                <h5 class="title mb-0">Hello Annie</h5>
-                                <span class="joining-date">eTrade Member Since Sep 2020</span>
+                                <h5 class="title mb-0">{{ auth()->user()->name }}</h5>
+                                <span class="joining-date">Üyelik Tarihi {{ auth()->user()->created_at}}</span>
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+
+                               @endif
                             </div>
                         </div>
 
@@ -87,12 +97,12 @@
                             <aside class="axil-dashboard-aside">
                                 <nav class="axil-dashboard-nav">
                                     <div class="nav nav-tabs" role="tablist">
-                                        <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-dashboard" role="tab" aria-selected="true"><i class="fas fa-th-large"></i>Dashboard</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-downloads" role="tab" aria-selected="false"><i class="fas fa-file-download"></i>Downloads</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Addresses</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Account Details</a>
-                                        <a class="nav-item nav-link" href="sign-in.html"><i class="fal fa-sign-out"></i>Logout</a>
+                                        <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-dashboard" role="tab" aria-selected="true"><i class="fas fa-th-large"></i>Ana Sayfa</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Siparişler</a>
+                                        {{-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-downloads" role="tab" aria-selected="false"><i class="fas fa-file-download"></i>Downloads</a> --}}
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Adres Bilgilerim</a>
+                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Hesap Detaylarım</a>
+                                        <a class="nav-item nav-link" href="{{ route("logoutalici") }}"><i class="fal fa-sign-out"></i>Çıkış Yap</a>
                                     </div>
                                 </nav>
                             </aside>
@@ -101,8 +111,8 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
                                     <div class="axil-dashboard-overview">
-                                        <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a href="sign-in.html">Log Out</a>)</div>
-                                        <p>From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.</p>
+                                        <div class="welcome-text">Merhaba {{ auth()->user()->name }} (<span>{{ auth()->user()->name }}?</span> değilmisin  <a href="{{ route("logoutalici") }}">Çıkış Yap</a>)</div>
+                                        <p>Hesap kontrol panelinizden son siparişlerinizi görüntüleyebilir, teslimat ve fatura adreslerinizi yönetebilir, şifrenizi ve hesap ayrıntılarınızı düzenleyebilirsiniz.</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-orders" role="tabpanel">
@@ -111,49 +121,24 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Order</th>
-                                                        <th scope="col">Date</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Total</th>
-                                                        <th scope="col">Actions</th>
+                                                        <th scope="col">Sipariş</th>
+                                                        <th scope="col">Tarih</th>
+                                                        <th scope="col">Durum</th>
+                                                        <th scope="col">Toplam Tutar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @foreach ($orders as $order )
                                                     <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
+                                                        <th scope="row">#{{ $order->id }}</th>
+                                                        <td>{{ $order->created_at }}</td>
                                                         <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                                        <td>{{ $order->per_price}}TL için {{ $order->qty}} ürün</td>
+
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>On Hold</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">#6523</th>
-                                                        <td>September 10, 2020</td>
-                                                        <td>Processing</td>
-                                                        <td>$326.63 for 3 items</td>
-                                                        <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                    </tr>
+                                                    @endforeach
+
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -172,7 +157,7 @@
                                                 <div class="address-info mb--40">
                                                     <div class="addrss-header d-flex align-items-center justify-content-between">
                                                         <h4 class="title mb-0">Shipping Address</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
+                                                        <a href="" data-bs-toggle="modal" data-bs-target="#adres" class="address-edit" ><i class="far fa-edit"></i></a>
                                                     </div>
                                                     <ul class="address-details">
                                                         <li>Name: Annie Mario</li>
@@ -187,7 +172,106 @@
                                                 <div class="address-info">
                                                     <div class="addrss-header d-flex align-items-center justify-content-between">
                                                         <h4 class="title mb-0">Billing Address</h4>
-                                                        <a href="#" class="address-edit"><i class="far fa-edit"></i></a>
+
+                                                          <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <button style="padding: 30px" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <form style="padding: 10px">
+                                                                            <h4 style="text-align: center">Fatura Adresi</h4>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleInputEmail1" class="form-label">Ad - Soyad</label>
+                                                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleInputEmail1" class="form-label">Telefon</label>
+                                                                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                              <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                                              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                              <label for="exampleInputPassword1" class="form-label">Password</label>
+                                                                              <input type="password" class="form-control" id="exampleInputPassword1">
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleFormControlTextarea1" class="form-label">Adres Bilgileri</label>
+                                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                                                              </div>
+                                                                            <div class="mb-3 form-check">
+                                                                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                                            </div>
+                                                                            <button style="justify-content: center; height: 40px; font-size:18px;" type="submit" class="btn btn-primary col-12">Submit</button>
+                                                                          </form>
+
+                                                                    </div>
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal fade" id="adres" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <button style="padding: 30px" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <form style="padding: 10px">
+                                                                            <h4 style="text-align: center">Teslimat Adresi</h4>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleInputEmail1" class="form-label">Ad - Soyad</label>
+                                                                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleInputEmail1" class="form-label">Telefon</label>
+                                                                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                              <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                                              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                              <label for="exampleInputPassword1" class="form-label">Password</label>
+                                                                              <input type="password" class="form-control" id="exampleInputPassword1">
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="exampleFormControlTextarea1" class="form-label">Adres Bilgileri</label>
+                                                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                                                              </div>
+                                                                            <div class="mb-3 form-check">
+                                                                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                                            </div>
+                                                                            <button style="justify-content: center; height: 40px; font-size:18px;" type="submit" class="btn btn-primary col-12">Submit</button>
+                                                                          </form>
+
+                                                                    </div>
+
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="address-edit"><i class="far fa-edit"></i></a>
                                                     </div>
                                                     <ul class="address-details">
                                                         <li>Name: Annie Mario</li>
@@ -204,21 +288,25 @@
                                 <div class="tab-pane fade" id="nav-account" role="tabpanel">
                                     <div class="col-lg-9">
                                         <div class="axil-dashboard-account">
-                                            <form class="account-details-form">
+                                            <form method="POST" action="{{ route("updateDetails") }}" class="account-details-form">
+                                                @csrf
+                                                @foreach ($user as $u )
+
                                                 <div class="row">
+                                                    <h4 class="col-12">Hesap Bilgilerimi Güncelle</h4>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>First Name</label>
-                                                            <input type="text" class="form-control" value="Annie">
+                                                            <label>Ad Soyad</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $u->name }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label>Last Name</label>
-                                                            <input type="text" class="form-control" value="Mario">
+                                                            <label>Email</label>
+                                                            <input type="email" name="email" class="form-control" value="{{ $u->email }}">
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    {{-- <div class="col-12">
                                                         <div class="form-group mb--40">
                                                             <label>Country/ Region</label>
                                                             <select class="select2">
@@ -229,26 +317,32 @@
                                                             </select>
                                                             <p class="b3 mt--10">This will be how your name will be displayed in the account section and in reviews</p>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-12">
-                                                        <h5 class="title">Password Change</h5>
+                                                        <h5 class="title">Şifre Değiştir</h5>
                                                         <div class="form-group">
-                                                            <label>Password</label>
-                                                            <input type="password" class="form-control" value="123456789101112131415">
+                                                            <label>Eski Şifre</label>
+                                                            <input type="password" class="form-control" name="current_password" required>
                                                         </div>
+
                                                         <div class="form-group">
-                                                            <label>New Password</label>
-                                                            <input type="password" class="form-control">
+                                                            <label>Yeni Şifre</label>
+                                                            <input type="password" class="form-control" name="new_password" required>
                                                         </div>
+
                                                         <div class="form-group">
-                                                            <label>Confirm New Password</label>
-                                                            <input type="password" class="form-control">
+                                                            <label>Yeni Şifreyi Tekrar Yaz</label>
+                                                            <input type="password" class="form-control" name="confirm_password" required>
                                                         </div>
+
                                                         <div class="form-group mb--0">
-                                                            <input type="submit" class="axil-btn" value="Save Changes">
+                                                            <button type="submit" class="axil-btn">Kaydet</button>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                @endforeach
+
                                             </form>
                                         </div>
                                     </div>

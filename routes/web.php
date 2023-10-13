@@ -50,7 +50,7 @@ Route::middleware(["Admin"])->group(function(){
 
     Route::get("/Kullanıcı-düzenle/{id}",[LoginAndRegisterController::class,"store"])->name("store");
     Route::get("/panelim",[AdminContoller::class,"homeadmin"])->name("homeadmin");
-    Route::get("/logout",[LoginAndRegisterController::class,"logout"])->name("logout");
+    Route::get("/logout-admin",[LoginAndRegisterController::class,"logout"])->name("logout");
     Route::get("/ürünler",[AdminContoller::class,"products"])->name("products");
     Route::post("/ürün-ekle",[AdminControllerPost::class,"productpost"])->name("productpost");
     Route::get("/ürün-ekle",[AdminContoller::class,"productadd"])->name("productadd");
@@ -78,16 +78,21 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/kategoriler",[AdminContoller::class,"kategorigetir"])->name("kategori");
     Route::get("/katagori-ekle",[AdminContoller::class,"kategoriekleme"])->name("katagoriekle");
     Route::post("/kategori-ekle",[AdminControllerPost::class,"kategoriekle"])->name("kategoriekle");
+    Route::post("/kategori-sil/{id}",[AdminControllerPost::class,"katagorisil"])->name("katagorisil");
+    Route::post("/kategori-düzenle/{id}",[AdminContoller::class,"katagoridüzenle"])->name("katagoridüzenle");
     Route::get("/sliderlar",[SliderController::class,"slider"])->name("sliderlar");
     Route::get("/slider-ekle",[SliderController::class,"sliderekle"])->name("sliderekle");
     Route::get("/slider-düzenle/{id}",[SliderController::class,"sliderdüzenle"])->name("sliderdüzenle");
     Route::get("/slider-sil/{id}",[SliderController::class,"slidersil"])->name("slidersil");
     Route::post("/slider-düzenle/{id}",[SliderController::class,"sliderdüzen"])->name("sliderdüzen");
     Route::post("/slider-ekle",[SliderController::class,"sliderpost"])->name("sliderpost");
+
+    Route::post("/Kullanıcı-Güncelle/{id}",[LoginAndRegisterController::class,"updateDetailsadmin"])->name("updateDetailsadmin");
 });
 
 Route::middleware(["Alici"])->group(function(){
     Route::get("/hesabim",[UserController::class,"myaccount"])->name("myaccount");
+    Route::get("/logout",[LoginAndRegisterController::class,"logoutalici"])->name("logoutalici");
 });
 
 //FrontEndGetMetodlar//
@@ -114,4 +119,4 @@ Route::post("/beğendiklerim/{id}",[FrontAndController::class,"wishlistadd"])->n
 Route::get("/İstek-Listem",[FrontAndController::class,"wishlist"])->name("wishlist");
 Route::get("/wishlist-sil/{id}",[FrontAndController::class,"wishlistdelete"])->name("wishlistdelete");
 
-
+Route::post("/Kullanıcı-güncelle",[UserController::class,"updateDetails"])->name("updateDetails");

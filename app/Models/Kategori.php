@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori extends Model
 {
     protected $table = "kategori";
-    protected $fillable = ["katagoriname","katagori_resim"];
+    protected $fillable = ["katagoriname"];
     use HasFactory;
 
     public function urunler(){

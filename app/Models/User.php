@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -52,5 +53,8 @@ class User extends Authenticatable
     }
     public function get(){
         return $this->hasMany(product::class);
+    }
+    public function scopeuser($query){
+        return $query->where("id",auth()->user()->id);
     }
 }

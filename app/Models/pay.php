@@ -9,5 +9,9 @@ class pay extends Model
 {
     protected $table = "shopier";
     protected $fillable = ["orders_id","active"];
+
+    public function order(){
+        return $this->hasMany(orders::class);
+    }
     use HasFactory;
 }

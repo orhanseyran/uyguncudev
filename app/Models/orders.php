@@ -18,4 +18,10 @@ class orders extends Model
     {
         return $this->hasMany(orderdetail::class); //verileri almak istediğin tablo
     }
+    public function orders(){
+        return $this->belongsTo(pay::class);
+    }
+    public function shopiers(){
+        return $this->hasMany(orderdetail::class);
+    }
 }

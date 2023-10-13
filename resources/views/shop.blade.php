@@ -92,7 +92,7 @@
                                             <!-- End Single Select  -->
 
                                             <!-- Start Single Select  -->
-                                            <select name="fiyat" class="single-select">
+                                            {{-- <select name="fiyat" class="single-select">
                                                 <option value="" {{ request("fiyat") === "" ? "selected":"" }}>Fiyat-Aralığı</option>
                                                 <option value="0 - 100" {{ request("fiyat") === "0 - 100" ? "selected":"" }}>0 - 100</option>
                                                 <option value="100 - 500" {{ request("fiyat") === "100 - 500" ? "selected":"" }}>100 - 500</option>
@@ -104,7 +104,7 @@
                                                 <option value="name" {{ request('sort') === 'name' ? 'selected' : '' }}>İsme Göre Sırala</option>
                                                 <option value="price" {{ request('sort') === 'price' ? 'selected' : '' }}>En Düşük Fiyata Göre Sirala</option>
                                                 <option value="viewed" {{ request('sort') === 'viewed' ? 'selected' : '' }}>Popüler Ürünler</option>
-                                            </select>
+                                            </select> --}}
 
 
 
@@ -174,11 +174,12 @@
                      </div>
                  </div>
              @endforeach
+
                 @elseif($search->count() == null)
 
                  <p style="text-align: center; font-size:28px;">Ürün Bulunamadı</p>
                  @else
-                 @foreach ($products as $pr )
+                 @foreach ($filteredProducts as $pr )
                  <div class="col-xl-3 col-lg-4 col-sm-6">
                      <div class="axil-product product-style-one has-color-pick mt--40">
                          <div class="thumbnail">

@@ -41,44 +41,48 @@ class FrontAndController extends Controller
         return view("sign-in");
     }
     public function hesabım(){
+        $yeni=ShoppingCart::all();
+        $orders = orderdetail::AktifSipariş()->latest()->get();
+        $user = User::user()->get();
 
-        return view("my-account");
+        return view("my-account",compact("yeni","orders",""));
 
     }
     public function shop(Request $request){
         $yeni=ShoppingCart::all();
-        $query = Product::query();
+        $products = Product::query();
 
-        // Kategori filtresi
-        if ($request->filled('kategori') && $request->input('kategori') !== 'Categories') {
-            $query->where('kategori', $request->input('kategori'));
+        $kategori = $request->input("kategori");
+        $color = $request->input("color");
+        $size = $request->input("size");
+
+        if ($kategori !== null && $kategori !== "") {
+            $products->where("kategori", $kategori);
         }
 
-        // Renk filtresi
-        if ($request->filled('color') && $request->input('color') !== 'Color') {
-            $query->where('color', $request->input('color'));
+        if ($color !== null && $color !== "") {
+            $products->where('color', $color);
+        }
+        if ($size !== null && $size !== "") {
+            $products->where('size', $size);
         }
 
-        // Fiyat aralığı filtresi
-        if ($request->filled('fiyat') && $request->input('fiyat') !== 'Price Range') {
-            $priceRange = explode(' - ', $request->input('fiyat'));
-            $query->whereBetween('fiyat', $priceRange);
-        }
+        $filteredProducts = $products->get();
+
+
+
+
+
+
+
 
         // Sıralama
-        $sortOptions = [
-            'latest' => 'created_at',
-            'name' => 'baslik',
-            'price' => 'fiyat',
-        ];
 
-        $sort = $request->input('sort', 'latest');
-        $query->orderBy($sortOptions[$sort] ?? 'created_at', $sort === 'viewed' ? 'desc' : 'asc');
 
         $qu = $request->input('prod-search');
         $search = Product::where("baslik", "like", "%" .$qu. "%")->get();
         // Sonuçları al
-        $products = $query->latest()->limit(10)->get();
+
 
         // Temizleme işlemi
         $temizle = $request->input('Temizle');
@@ -90,13 +94,14 @@ class FrontAndController extends Controller
 
 
 
-        return view('shop', compact('products',"search","yeni"));
+        return view('shop', compact('filteredProducts',"search","yeni"));
     }
     public function wishlist(){
 
+        $yeni=ShoppingCart::all();
         $wihslist = wishlist::list()->latest()->get();
 
-        return view("wishlist",compact("wihslist"));
+        return view("wishlist",compact("wihslist","yeni"));
     }
 
     public function wishlistadd(Request $request,$id){

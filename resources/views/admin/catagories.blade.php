@@ -77,7 +77,7 @@
                                                 @foreach ($getir as $get )
                                                 <tr>
 													<td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-													<td><a href="{{ route("katagoriliste") }}"><strong>{{ $get->id }}</strong></a></td>
+													<td><a href=""><strong>{{ $get->id }}</strong></a></td>
 													<td><a href="ecommerce-category-form.html"><strong>{{ $get->katagoriname }}</strong></a></td>
                                                     <td><a href="{{ route("katagorisil",$get->id) }}"onclick="return confirm('Silmek istediğinize emin misiniz?')"><button class="btn btn-danger">Sil</button></a></td>
 													<td><a href="{{ route("katagoridüzenle",$get->id) }}"><button class="btn btn-success">Düzenle</button></a></td>

@@ -60,7 +60,7 @@
                 <div class="axil-signin-form-wrap">
 
                     <div class="axil-signin-form">
-                        @if(session('giris'))
+                    @if(session('giris'))
                     <div class="alert alert-success">
                         {{ session('giris') }}
                     </div>

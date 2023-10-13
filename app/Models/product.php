@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
     protected $table = "urunler";
-    protected $fillable = ["id","baslik","aciklama","resim","kategori","active"];
+    protected $fillable = ["id","baslik","aciklama","resim","kategori","active","color"];
     use HasFactory;
 
     public function user(){
@@ -30,7 +31,12 @@ class product extends Model
     public function wishlisturun(){
         return $this->hasMany(wishlist::class,"urun_id");
     }
-
+    public function scopeKatagori($query,$kategori){
+        return $query->where("kategori",[$kategori]);
+     }
+       public function scoperenk($query,$color){
+        return $query->where("color",[$color]);
+     }
     public function scopeAktifÜrün($query){
         return $query->where("active",1);
     }

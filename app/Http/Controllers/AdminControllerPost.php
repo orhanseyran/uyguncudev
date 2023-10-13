@@ -140,26 +140,30 @@ class AdminControllerPost extends Controller
 
     public function kategoriekle(Request $request){
         $kategori = new Kategori();
-        $kategori -> kategori_name = $request ->kategori_name;
-        $kategori -> kategori_resim = $request ->kategori_resim;
+        $kategori->katagoriname = $request ->katagoriname;
 
-        if ($request->hasFile("resim")) {
-            $kategori_resim = $request->file("resim");
-            $resimAdi = time().".".$kategori_resim->getClientOriginalExtension();
-            $resimYolu = public_path("resimler/".$resimAdi);
-            $kategori_resim->move(public_path("resimler"),$resimAdi);
+        // if ($request->hasFile("resim")) {
+        //     $kategori_resim = $request->file("resim");
+        //     $resimAdi = time().".".$kategori_resim->getClientOriginalExtension();
+        //     $resimYolu = public_path("resimler/".$resimAdi);
+        //     $kategori_resim->move(public_path("resimler"),$resimAdi);
 
-            $kategori->kategori_resim = $resimAdi;
+        //     $kategori->kategori_resim = $resimAdi;
 
-            $imageKucuk = Image::make(public_path('resimler/' . $kategori->kategori_resim));
-            $imageKucuk->resize(64, 64);
-            $imageKucuk->save(public_path('resimler/' . 'icon_' . $kategori->kategori_resim));
+        //     $imageKucuk = Image::make(public_path('resimler/' . $kategori->kategori_resim));
+        //     $imageKucuk->resize(64, 64);
+        //     $imageKucuk->save(public_path('resimler/' . 'icon_' . $kategori->kategori_resim));
 
-        }
+        // }
         $kategori->save();
 
         session()->flash("basarı","Kategori Başarıyla eklendi");
         return redirect()->back();
+
+    }
+    public function katagorisil($id){
+        $sil = Kategori::findorfail($id);
+        $sil->delete();
 
     }
 

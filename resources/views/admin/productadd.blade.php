@@ -152,7 +152,7 @@
 
                                                             <div class="col-lg-7 col-xl-6">
                                                                 <h4> Lütfen Katagori Seçiniz</h4>
-                                                                <select style="width: 120px;" class="form-select form-select-sm" name="katagori" id="role">
+                                                                <select style="width: 220px;" class="form-select form-select-sm" name="katagori" id="role">
                                                                     @foreach ($getir as $get )
                                                                      <option value="{{ $get->katagoriname }}">{{ $get->katagoriname }}</option>
 
@@ -160,11 +160,43 @@
 
                                                                   <!-- Diğer rol seçenekleri... -->
                                                                 </select>
+
                                                             </div>
+
                                                        </div>
 
 
+
                                                     </div>
+
+                                                    <div class="form-group row pb-3">
+
+                                                        <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Ürün Renkleri</label>
+
+                                                        <div class="col-lg7 col-xl-6">
+                                                            <div class="col-lg-7 col-xl-6">
+                                                                <h4>Lütfen Kategori Seçiniz</h4>
+                                                                <div class="dropdown">
+                                                                  <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Renkler
+                                                                  </button>
+                                                                  <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                                                    @foreach ($color as $get)
+                                                                      <li><input class="form-check-input" type="checkbox" id="{{ $get->color }}" name="color[]" value="{{ $get->color  }}"><label class="form-check-label" for="{{ $get->color  }}">{{ $get->color }}</label></li>
+                                                                    @endforeach
+                                                                  </ul>
+                                                                </div>
+                                                              </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
 
 
 
@@ -256,7 +288,9 @@
 		<script src="admin/js/theme.init.js"></script>
 		<script src="admin/js/examples/examples.header.menu.js"></script>
         <script src="vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
 

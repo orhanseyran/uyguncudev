@@ -35,7 +35,7 @@ class CheakOutController extends Controller
 
         if ($request->input("shopier")) {
             $order = new orders();
-            $order->user_id= auth()->check() ?  auth()->user()->id : 0 ;
+            $order->user_id= auth()->user()->id ?  auth()->user()->id : 0 ;
 
             $order->total_price = ShoppingCart::totalPrice();
 

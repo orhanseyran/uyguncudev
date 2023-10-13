@@ -75,6 +75,12 @@ class LoginAndRegisterController extends Controller
         session()->flash('giris', 'Çıkış İşlemi Başarılı');
         return redirect('/'); // Kullanıcıyı anasayfaya yönlendir
     }
+    public function logoutalici(Request $request)
+    {
+        Auth::logout(); // Kullanıcının oturumunu sonlandır
+        session()->flash('giris', 'Çıkış İşlemi Başarılı');
+        return redirect('/'); // Kullanıcıyı anasayfaya yönlendir
+    }
     public function registerget(){
         return view("sign-up");
 
@@ -100,29 +106,45 @@ class LoginAndRegisterController extends Controller
         return redirect()->back();
 
     }
-    public function useredit(Request $request,$id)
-{
-  $getir = user::findorfail($id);
- $password = $getir->password;
- $oldpassword = bcrypt($request->input("old_password"));
- dd($oldpassword);
+    public function updateDetailsadmin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
 
-  if ($password )  {
-    $getir->name = $request->name;
-    $getir->email = $request->email;
-    $password == $request->input("old_password");
-    $getir->role = $request->role;
-    $getir->save();
-    session()->flash("onay","Kullanıcı Başarıyla Güncellendi");
-    return redirect()->back();
-  }
-  else{
-    session()->flash("reddet","Kullanıcı Güncellenemedi Girilen Bilgileri Kontrol ediniz");
-    return redirect()->back();
-  }
+        // Kullanıcı bilgilerini güncelle
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'role' => $request->input('role'),
+        ]);
+
+        // Şifreyi güncelle
+        if ($request->filled('current_password') && $request->filled('new_password')) {
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required|different:current_password|same:confirm_password',
+                'confirm_password' => 'required',
+            ]);
 
 
-}
+
+            if (!Hash::check($request->current_password, $user->password)) {
+                session()->flash("hata", "Eski Girilen Şifre Hatalı");
+                return redirect()->back()->withInput();
+            }
+
+
+            $user->update([
+                'password' => bcrypt($request->new_password),
+            ]);
+
+        }
+        elseif($request->input("new_password") !== $request->input("confirm_password")) {
+            session()->flash("hata", "Şifreler Hatalı");
+            return redirect()->back()->withInput();
+        }
+        session()->flash("onay", "Üyelik bilgileriniz güncellendi");
+        return redirect()->back();
+    }
 
 
 }

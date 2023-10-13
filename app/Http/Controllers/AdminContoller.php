@@ -66,6 +66,11 @@ class AdminContoller extends Controller
         $getir = Kategori::latest()->get();
         return view("admin.catagories",compact("getir"));
     }
+    public function katagoridüzenle($id){
+        $getir = Kategori::findorfail($id);
+        return view("admin.categoryaddedit",compact("getir"));
+
+    }
     public function kategoriekleme(){
         return view("admin.categoryadd");
     }

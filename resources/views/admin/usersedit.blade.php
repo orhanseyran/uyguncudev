@@ -52,7 +52,7 @@
 					</header>
 
 					<!-- start: page -->
-					<form class="ecommerce-form action-buttons-fixed" action="{{ route("useredit",$getir->id) }}" method="post" enctype="multipart/form-data">
+					<form class="ecommerce-form action-buttons-fixed" action="{{ route("updateDetailsadmin",$getir->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
 
 						<div class="row">
@@ -73,14 +73,9 @@
                                                         <div class="alert alert-success">
                                                             {{ session('onay') }}
                                                         </div>
-                                                        @elseif(session('pasif'))
+                                                        @elseif(session('hata'))
                                                         <div class="alert alert-danger">
-                                                            {{ session('pasif') }}
-                                                        </div>
-
-                                                        @elseif(session('reddet'))
-                                                        <div class="alert alert-warning">
-                                                            {{ session('reddet') }}
+                                                            {{ session('hata') }}
                                                         </div>
 
                                                         @endif
@@ -96,12 +91,16 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword">Eski Şifre:</label>
-                                                            <input type="password" class="form-control" name="old_password" id="inputPassword" placeholder="Şifrenizi girin">
+                                                            <input type="password" class="form-control" name="current_password" id="inputPassword" placeholder="Şifrenizi girin">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="inputPassword">Yeni Şifre:</label>
-                                                            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Şifrenizi Tekrar Girin">
+                                                            <input type="password" class="form-control" name="new_password" id="inputPassword" placeholder="Şifrenizi Tekrar Girin">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword">Yeni Şifreyi Tekrar Gir:</label>
+                                                            <input type="password" class="form-control" name="confirm_password" id="inputPassword" placeholder="Şifrenizi Tekrar Girin">
                                                         </div>
 
 
@@ -109,15 +108,15 @@
                                                             <label for="inputRole">Rol:</label>
                                                             <select name="role" class="form-control" id="inputRole">
                                                                 <option value="{{ $getir->role }}">{{ $getir->role }}</option>
-                                                                <option value="admin">Admin</option>
-                                                                <option value="moderator">Moderatör</option>
-                                                                <option value="satici">Satıcı</option>
-                                                                <option value="alici">Alıcı</option>
+                                                                <option value="Admin">Admin</option>
+                                                                <option value="Moderatör">Moderatör</option>
+                                                                <option value="Satıcı">Satıcı</option>
+                                                                <option value="Alici">Alıcı</option>
                                                             </select>
                                                         </div>
                                                         <br>
 
-                                                        <button type="submit" class="btn btn-primary">Kullanıcıyı Güncelle</button>
+
 													</div>
 												</div>
 

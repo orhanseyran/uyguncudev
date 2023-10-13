@@ -39,7 +39,12 @@
                 <div class="col-sm-6">
                     <div class="header-top-link">
                         <ul class="quick-link">
+                            @if (auth()->user()->role == "Admin")
+                            <li><a href="{{ route("hesabım") }}">Merhaba Admin {{ auth()->user()->name }}</a></li>
+                            @else
                             <li><a href="{{ route("hesabım") }}">Merhaba {{ auth()->user()->name }}</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -103,7 +108,7 @@
                             <a href="javascript:void(0)">
                                 <i class="flaticon-person"></i>
                             </a>
-                            @if (!auth()->check())
+                        @if (!auth()->check())
 
                                 <div class="my-account-dropdown">
                                     <div class="login-btn">
@@ -137,12 +142,12 @@
 
                                 </ul>
                                 <div class="login-btn">
-                                    <a href="{{ route("logout") }}" class="axil-btn btn-bg-primary">Çıkış Yap</a>
+                                    <a href="{{ route("logoutalici") }}" class="axil-btn btn-bg-primary">Çıkış Yap</a>
                                 </div>
 
 
 
-                            @endif
+                          @endif
 
                         </li>
                         <li class="axil-mobile-toggle">
