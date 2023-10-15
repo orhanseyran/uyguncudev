@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminContoller;
 use App\Http\Controllers\AdminControllerPost;
 use App\Http\Controllers\ArrayOparationController;
+use App\Http\Controllers\BlogFrontEndController;
 use App\Http\Controllers\CheakOutController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FrontAndController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,16 +88,27 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/slider-sil/{id}",[SliderController::class,"slidersil"])->name("slidersil");
     Route::post("/slider-düzenle/{id}",[SliderController::class,"sliderdüzen"])->name("sliderdüzen");
     Route::post("/slider-ekle",[SliderController::class,"sliderpost"])->name("sliderpost");
-
     Route::post("/Kullanıcı-Güncelle/{id}",[LoginAndRegisterController::class,"updateDetailsadmin"])->name("updateDetailsadmin");
+    Route::get("/bloglar",[AdminContoller::class,"blogs"])->name("blogs");
+    Route::get("/blog-ekle",[AdminContoller::class,"blogekle"])->name("blogekle");
+    Route::get("/blog-düzenle/{id}",[AdminContoller::class,"blogedit"])->name("blogedit");
+    Route::get("/blog-sil/{id}",[AdminContoller::class,"blogsil"])->name("blogesil");
+
+    Route::post("/blog-ekle",[AdminControllerPost::class,"blogaddpost"])->name("blogaddpost");
+    Route::post("/blog-düzenle/{id}",[AdminControllerPost::class,"blogaddedit"])->name("blogaddedit");
+
+
+
 });
 
 Route::middleware(["Alici"])->group(function(){
     Route::get("/hesabim",[UserController::class,"myaccount"])->name("myaccount");
-    Route::get("/logout",[LoginAndRegisterController::class,"logoutalici"])->name("logoutalici");
+    Route::get("/logout-alici",[LoginAndRegisterController::class,"logoutalici"])->name("logoutalici");
 });
 
 //FrontEndGetMetodlar//
+Route::get("/blog",[BlogFrontEndController::class,"blog"])->name("blog");
+Route::get("/bloglar/{id}",[BlogFrontEndController::class,"blogdetail"])->name("blogdetail");
 Route::get("/urun/{id}",[FrontAndController::class,"product"])->name("productid");
 Route::get("/hesabım",[FrontAndController::class,"hesabım"])->name("hesabım");
 Route::get("/sepetim",[ShoppingCartController::class,"cart"])->name("cart");
@@ -111,7 +124,7 @@ Route::get("array/{name}",[ArrayOparationController::class,"show"]);
 Route::get("/gelen",[CheakOutController::class,"orderdetail"]);
 
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
-Route::get("/shop",[FrontAndController::class,"shop"])->name("shop");
+Route::get("/mağaza",[FrontAndController::class,"shop"])->name("shop");
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::post("/yorum-yap/{id}",[CommentsController::class,"commentadd"])->name("commentadd");
 
@@ -120,3 +133,5 @@ Route::get("/İstek-Listem",[FrontAndController::class,"wishlist"])->name("wishl
 Route::get("/wishlist-sil/{id}",[FrontAndController::class,"wishlistdelete"])->name("wishlistdelete");
 
 Route::post("/Kullanıcı-güncelle",[UserController::class,"updateDetails"])->name("updateDetails");
+
+Route::post("Abone-Ol",[SubscribeController::class,"subscribe"])->name("subscribe");

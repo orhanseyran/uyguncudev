@@ -72,7 +72,7 @@
 														<select class="form-control select-style-1 filter-by" name="filter-by">
 															<option value="all" selected>Hepsi</option>
 															<option value="1">Resim</option>
-															<option value="2">Ürün Adı</option>
+															<option value="2">Blog Adı</option>
 															<option value="3">Fiyatı</option>
 															<option value="4">Yayınlayan</option>
 
@@ -128,9 +128,9 @@
                                                     @endif
 													<td><a href="#"><strong>{{ $blog->baslik}}</strong></a></td>
 													<td>{{ $blog->baslik}}</td>
-													<td>{{ $blog->username}}</td>
-													{{-- <td><a href=" {{ route("urundüzenle",$blog->id) }}"><button type="button" class="btn btn-danger">Düzenle</button></a></td>
-                                                    <td><a href="{{ route("sil",$blog->id)}}"><button type="button" class="btn btn-warning">Sil</button></a></td> --}}
+													<td>{{ $blog->user_name}}</td>
+													<td><a href=" {{ route("blogedit",$blog->id) }}"><button type="button" class="btn btn-danger">Düzenle</button></a></td>
+                                                    <td><a href="{{ route("blogesil",$blog->id)}}"><button type="button" class="btn btn-warning">Sil</button></a></td>
                                                     <td><div class="switch switch-lg switch-primary">
 														<input type="checkbox" name="switch" data-plugin-ios-switch checked="checked" />
 													</div></td>

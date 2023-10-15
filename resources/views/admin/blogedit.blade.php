@@ -68,7 +68,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("blogaddpost") }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("blogpost") }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">
@@ -152,10 +152,10 @@
                                                             <div class="col-lg-7 col-xl-6">
                                                                 <h4> Lütfen Katagori Seçiniz</h4>
                                                                 <select style="width: 120px;" class="form-select form-select-sm" name="katagori" id="role">
-                                                                    {{-- @foreach ($getir as $get )
+                                                                    @foreach ($getir as $get )
                                                                      <option value="{{ $get->katagoriname }}">{{ $get->katagoriname }}</option>
 
-                                                                    @endforeach --}}
+                                                                    @endforeach
 
                                                                   <!-- Diğer rol seçenekleri... -->
                                                                 </select>
@@ -183,7 +183,7 @@
                                     <input type="submit" value="Yayınla" class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
 								</div>
                                 <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
-									<a href="{{ route("blogs") }}" class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">İptal</a>
+									<a href="{{ route("ürünler") }}" class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">İptal</a>
 								</div>
                                 <div class="col-12 col-md-auto ms-md-auto mt-3 mt-md-0 ms-auto">
                                     <button type="button" class="btn btn-success btn-px-4 py-3  d-flex align-items-center font-weight-semibold line-height-1">Ürünlere Dön</button>

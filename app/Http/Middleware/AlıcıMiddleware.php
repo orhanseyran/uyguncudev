@@ -15,7 +15,7 @@ class AlıcıMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check()&& auth()->user()->role == "Alıcı") {
+        if (auth()->check()&& auth()->user()->role == "Alici") {
             return $next($request);
         }
         return redirect("/");

@@ -30,7 +30,7 @@ class LoginAndRegisterController extends Controller
                 return redirect(route("homeadmin"));
 
             }
-            elseif(Auth()->user()->role == "Alıcı"){
+            elseif(Auth()->user()->role == "Alici"){
 
                 return redirect(route("myaccount"));
 

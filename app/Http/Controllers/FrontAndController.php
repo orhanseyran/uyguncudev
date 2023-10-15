@@ -45,7 +45,7 @@ class FrontAndController extends Controller
         $orders = orderdetail::AktifSipariş()->latest()->get();
         $user = User::user()->get();
 
-        return view("my-account",compact("yeni","orders",""));
+        return view("my-account",compact("yeni","orders","user"));
 
     }
     public function shop(Request $request){
@@ -68,14 +68,6 @@ class FrontAndController extends Controller
         }
 
         $filteredProducts = $products->get();
-
-
-
-
-
-
-
-
         // Sıralama
 
 

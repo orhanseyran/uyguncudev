@@ -14,7 +14,7 @@ class orderdetail extends Model
         return $this->belongsTo(user::class);
     }
     public function scopeAktifSipariş($query){
-        return $query->where("user_id",auth()->user()->id);
+        return $query->where("user_id", auth()->user()->id);
     }
     public function order()
     {

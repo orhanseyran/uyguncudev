@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\blog;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\product;
@@ -89,6 +90,22 @@ class AdminContoller extends Controller
         $getir = User::findorfail($id);
         $getir->delete();
         return redirect()->back();
+    }
+    public function blogs(){
+       $getir = blog::latest()->get();
+       return view("admin.blogs",compact("getir"));
+    }
+    public function blogekle(){
+        return view("admin.blogadd");
+    }
+    public function blogedit($id){
+        $getir = blog::findorfail($id);
+        return view("admin.blogedit",compact("getir"));
+    }
+    public function blogsil($id){
+        $getir = blog::findorfail($id);
+        $getir->delete();
+        return view("admin.blogedit",compact("getir"));
     }
 
 }

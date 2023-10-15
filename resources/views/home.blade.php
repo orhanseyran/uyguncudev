@@ -34,10 +34,12 @@
     <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
 <![endif]-->
+
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
 
 
 @include('header')
+
 
     <main class="main-wrapper">
         <div class="axil-main-slider-area main-slider-style-1">
@@ -868,23 +870,26 @@
         <!-- End Axil Product Poster Area  -->
 
         <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
-            <div class="container">
-                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                    <div class="newsletter-content">
-                        <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
-                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-                        <div class="input-group newsletter-form">
-                            <div class="position-relative newsletter-inner mb--15">
-                                <input placeholder="example@gmail.com" type="text">
+        <form action="{{ route("subscribe") }}" method="POST">
+            @csrf
+            <div class="axil-newsletter-area axil-section-gap pt--0">
+                <div class="container">
+                    <div class="etrade-newsletter-wrapper bg_image bg_image--5">
+                        <div class="newsletter-content">
+                            <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Abone Ol</span>
+                            <h2 class="title mb--40 mb_sm--30">Güncellemeleri Takip Etmek İçin</h2>
+                            <div class="input-group newsletter-form">
+                                <div class="position-relative newsletter-inner mb--15">
+                                    <input placeholder="" name="email" type="text">
+                                </div>
+                                <button type="submit" class="axil-btn mb--15">Abone Ol</button>
                             </div>
-                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
                         </div>
                     </div>
                 </div>
+                <!-- End .container -->
             </div>
-            <!-- End .container -->
-        </div>
+        </form>
         <!-- End Axil Newsletter Area  -->
 
     </main>

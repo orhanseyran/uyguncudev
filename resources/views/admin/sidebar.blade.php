@@ -101,11 +101,11 @@
                             <span>Web Site Sayfalar</span>
                         </a>
                         <ul class="nav nav-children">
-                            {{-- <li>
-                                <a class="nav-link" href="{{ route("bloglar") }}">
+                            <li>
+                                <a class="nav-link" href="{{ route("blogs") }}">
                                     - Bloglar
                                 </a>
-                            </li> --}}
+                            </li>
                             {{-- <li>
                                 <a class="nav-link" href="{{ route("blogekle") }}">
                                     - Blog Ekle

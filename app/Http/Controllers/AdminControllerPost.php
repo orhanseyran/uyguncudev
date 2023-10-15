@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\blog;
 use App\Models\Kategori;
 use App\Models\product;
 use App\Models\UrunResim;
@@ -208,6 +209,63 @@ class AdminControllerPost extends Controller
         $coloradd->delete();
 
         return redirect()->back();
+
+    }
+
+    public function blogaddpost(Request $request){
+        $username = auth()->user()->name;
+        $blogadd = new blog();
+        $blogadd->baslik = $request->baslik;
+        $blogadd->icerik = $request->icerik;
+        $blogadd->user_name = $username;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+         {
+            $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+            $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+            $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+            $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+            // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+            // İlgili ürünün resim sütununu güncelle
+            $blogadd->resim = $resimAdi;
+        }
+
+        $blogadd->save();
+
+        session()->flash("basarı", "Blog Ekleme İşlemi Başarılı");
+        return redirect()->back();
+
+
+    }
+
+    public function blogaddedit(Request $request,$id){
+        $username = auth()->user()->name;
+        $blogadd = blog::findorfail($id);
+        $blogadd->baslik = $request->baslik;
+        $blogadd->icerik = $request->icerikk;
+        $blogadd->user_name = $username;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+         {
+            $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+            $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+            $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+            $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+            // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+            $this->resizeAndSaveImages($resimYolu, $resimAdi);
+
+            // İlgili ürünün resim sütununu güncelle
+            $blogadd->resim = $resimAdi;
+        }
+
+        $blogadd->save();
+
+        session()->flash("basarı", "Blog Düzenleme başarılı");
+        return redirect()->back();
+
 
     }
 

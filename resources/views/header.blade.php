@@ -2,7 +2,7 @@
     <div class="header-top-campaign">
         <div class="container position-relative">
             <div class="campaign-content">
-                <p>Open Doors To A World Of Fashion <a href="#">Discover More</a></p>
+                <p>Muhteşem İndirimli Ürünler <a href="{{ route("shop") }}">Şimdi Mağazamızda</a></p>
             </div>
         </div>
         <button class="remove-campaign"><i class="fal fa-times"></i></button>
@@ -78,9 +78,9 @@
                         </div>
                         <ul class="mainmenu">
                             <li><a href="/">Ana Sayfa</a></li>
-                            <li><a href="/shop">Ürünler</a></li>
+                            <li><a href="{{ route("shop") }}">Ürünler</a></li>
                             <li><a href="#">Biz Kimiz</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ route("blog") }}">Blog</a></li>
                             <li><a href="#">İletişim</a></li>
                         </ul>
                     </nav>
@@ -156,6 +156,7 @@
                             </button>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </div>
