@@ -81,7 +81,7 @@
                             <li><a href="{{ route("shop") }}">Ürünler</a></li>
                             <li><a href="#">Biz Kimiz</a></li>
                             <li><a href="{{ route("blog") }}">Blog</a></li>
-                            <li><a href="#">İletişim</a></li>
+                            <li><a href="{{ route("contact") }}">İletişim</a></li>
                         </ul>
                     </nav>
                     <!-- End Mainmanu Nav -->

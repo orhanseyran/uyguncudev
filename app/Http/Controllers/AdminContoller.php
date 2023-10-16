@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\blog;
 use App\Models\Kategori;
+
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\ürünboyut;
 use App\Models\ürünrenk;
 use App\Models\User;
-
+use App\Models\orderdetail;
 
 class AdminContoller extends Controller
 {
@@ -107,5 +108,15 @@ class AdminContoller extends Controller
         $getir->delete();
         return view("admin.blogedit",compact("getir"));
     }
+    public function orders(){
+        $getir = orderdetail::latest()->get();
+
+        return view("admin.orders",compact("getir"));
+    }
+    public function ordersid($id){
+        $getir = orderdetail::findorfail($id);
+        return view("admin.orderdetail",compact("getir"));
+    }
+
 
 }

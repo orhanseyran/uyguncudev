@@ -63,11 +63,11 @@
                                     - Kupon Ekle
                                 </a>
                             </li> --}}
-                            {{-- <li>
-                                <a class="nav-link" href="{{ route("siparişler") }}">
+                            <li>
+                                <a class="nav-link" href="{{ route("orders") }}">
                                     - Siparişler
                                 </a>
-                            </li> --}}
+                            </li>
                             {{-- <li>
                                 <a class="nav-link" href="{{ route("siparişlerdetay") }}">
                                     - Sipariş Detay

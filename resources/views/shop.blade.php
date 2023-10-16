@@ -183,7 +183,7 @@
                  <div class="col-xl-3 col-lg-4 col-sm-6">
                      <div class="axil-product product-style-one has-color-pick mt--40">
                          <div class="thumbnail">
-                             <a href="single-product.html">
+                             <a href="{{ route("productid",$pr->id) }}">
                                  @if ($pr->resim == null)
                                  <img src="resimler/resimYok.png" alt="Product Images">
                                  @else
@@ -193,18 +193,37 @@
                              </a>
                              <div class="product-hover-action">
                                  <ul class="cart-action">
-                                     <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                     <li class="select-option"><a href="cart.html">Add to Cart</a></li>
+                                    <li class="wishlist">
+                                        <!-- Form -->
+                                        <form method="post" action="{{ route("wishlistadd", $pr->id) }}" id="wishlistForm_{{ $pr->id }}">
+                                            @csrf
+                                            <input type="submit" id="wishlistSubmit_{{ $pr->id }}" name="wish" style="display: none;">
+                                        </form>
+
+                                        <!-- <a> etiketini kullanarak formu programatik olarak gönder -->
+                                        <a href="#" onclick="submitForm('{{ $pr->id }}'); return false;">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+
+                                        <!-- JavaScript Kodu -->
+
+                                    </li>
+                                     <li class="select-option"><a href="cart.html">Sepete Ekle</a></li>
                                      <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                  </ul>
                              </div>
                          </div>
                          <div class="product-content">
                              <div class="inner">
-                                 <h5 class="title"><a href="single-product.html">Level 20 RGB Cherry</a></h5>
+                                 <h5 class="title"><a href="{{ route("productid",$pr->id) }}">{{ $pr->baslik }}</a></h5>
                                  <div class="product-price-variant">
-                                     <span class="price current-price">$25</span>
-                                     <span class="price old-price">$40</span>
+                                    @if ($pr->fiyat == null)
+                                    <span class="price current-price">Fiyatı Belirlenmemiş Ürün</span>
+                                    @else
+                                    <span class="price current-price">{{ $pr->fiyat }} TL</span>
+                                    @endif
+
+
                                  </div>
                                  <div class="color-variant-wrapper">
                                      <ul class="color-variant">
@@ -631,6 +650,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- JS
@@ -657,7 +677,12 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-
+    <script>
+        function submitForm(productId) {
+            // Formu gönder
+            document.getElementById('wishlistSubmit_' + productId).click();
+        }
+    </script>
 </body>
 
 </html>

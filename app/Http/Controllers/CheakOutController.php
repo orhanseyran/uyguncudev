@@ -35,8 +35,13 @@ class CheakOutController extends Controller
 
         if ($request->input("shopier")) {
             $order = new orders();
-            $order->user_id= auth()->user()->id ?  auth()->user()->id : 0 ;
-
+            if ($order->user_id == null) {
+                //kullanıcı giriş yapmamiş ise
+                $order->user_id = 0;
+            } else {
+                //giriş yapmiş ise
+                $order->user_id= auth()->user()->id;
+            }
             $order->total_price = ShoppingCart::totalPrice();
 
             $order->payment_method="shopier";
@@ -115,11 +120,7 @@ class CheakOutController extends Controller
         }
 
     }
-    public function orderdetail(){
-        $order = orderdetail::get();
-        dd($order);
 
-    }
     //Geri Dönüş Url Shopier
     public function shopierödeme()
     {

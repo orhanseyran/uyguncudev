@@ -15,6 +15,7 @@
     ============================================ -->
 
     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset("assets/css/vendor/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/vendor/font-awesome.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/vendor/flaticon/flaticon.css") }}">
@@ -84,11 +85,11 @@
                                     </div>
                                     <div class="post-meta-content">
                                         <h6 class="author-title">
-                                            <a href="#">Theresa Underwood</a>
+                                            <a href="#">{{ $getir->user_name}}</a>
                                         </h6>
                                         <ul class="post-meta-list">
-                                            <li>Mar 20, 2022</li>
-                                            <li>300k Views</li>
+                                            <li>{{ $getir->created_at}}</li>
+                                            {{-- <li>300k Views</li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -97,12 +98,13 @@
                             {!! $getir->icerik !!}
 
 
-                            <div class="axil-comment-area">
-                                <h4 class="title">2 comments</h4>
+                            <div class="axil-comment-area mt-5">
+                                <h4 class="title">{{ $comments->count() }} Yorum</h4>
                                 <ul class="comment-list">
                                     <!-- Start Single Comment  -->
                                     <li class="comment">
                                         <div class="comment-body">
+                                            @foreach ($comments  as $com )
                                             <div class="single-comment">
                                                 <div class="comment-img">
                                                     <img src="{{ asset("./assets/images/blog/author-image-4.png") }}" alt="Author Images">
@@ -111,33 +113,33 @@
                                                     <h6 class="commenter">
                                                         <a class="hover-flip-item-wrapper" href="#">
                                                             <span class="hover-flip-item">
-                                                                <span data-text="Cameron Williamson">Cameron Williamson</span>
+                                                                <span data-text="Cameron Williamson">{{ $com->ad }}</span>
                                                             </span>
                                                         </a>
                                                     </h6>
                                                     <div class="comment-meta">
                                                         <div class="time-spent">Nov 23, 2018 at 12:23 pm</div>
-                                                        <div class="reply-edit">
+                                                        <br>
+                                                        {{-- <div class="reply-edit">
                                                             <div class="reply">
-                                                                <a class="comment-reply-link hover-flip-item-wrapper" href="#">
-                                                                    <span class="hover-flip-item">
-                                                                        <span data-text="Reply">Reply</span>
-                                                                    </span>
-                                                                </a>
+
+                                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Yanıt ver</button>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div class="comment-text">
-                                                        <p>Duis hendrerit velit scelerisque felis tempus, id porta libero venenatis. Nulla facilisi. Phasellus viverra magna commodo dui lacinia tempus. Donec malesuada nunc non dui posuere, fringilla vestibulum
-                                                            urna mollis. Integer condimentum ac sapien quis maximus. </p>
+                                                        <p>{{ $com->ad }} </p>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
+
                                         </div>
                                         <ul class="children">
                                             <!-- Start Single Comment  -->
                                             <li class="comment">
                                                 <div class="comment-body">
+
                                                     <div class="single-comment">
                                                         <div class="comment-img">
                                                             <img src="{{ asset("./assets/images/blog/author-image-4.png") }}" alt="Author Images">
@@ -153,15 +155,11 @@
                                                             <div class="comment-meta">
                                                                 <div class="time-spent">Nov 23, 2018 at 12:23 pm
                                                                 </div>
-                                                                <div class="reply-edit">
+                                                                {{-- <div class="reply-edit">
                                                                     <div class="reply">
-                                                                        <a class="comment-reply-link hover-flip-item-wrapper" href="#">
-                                                                            <span class="hover-flip-item">
-                                                                                <span data-text="Reply">Reply</span>
-                                                                            </span>
-                                                                        </a>
+                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Yanıt ver @getbootstrap</button>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <div class="comment-text">
                                                                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse lobortis cursus lacinia. Vestibulum vitae leo id diam pellentesque ornare.</p>
@@ -182,33 +180,63 @@
                             </div>
                             <!-- End .axil-commnet-area -->
 
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    {{-- <h1 class="modal-title fs-5" id="exampleModalLabel">Yoruma Yanıt Ver</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                    <div class="mb-3">
+                                        <label  for="recipient-name" class="col-form-label">Mesaj:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Mesaj:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                    <button style="font-size:18px;"  type="button" class="btn btn-primary">Yanıt Ver</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                             <!-- Start Comment Respond  -->
                             <div class="comment-respond">
-                                <h4 class="title">Leave a Reply</h4>
-                                <form action="#">
+                                <h4 id="yanıt" class="title">Yorum Yap</h4>
+                                <form method="POST" action="{{ route("commentblogadd",$getir->id) }}">
+                                    @csrf
                                     <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span></p>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div  class="col-12">
                                             <div class="form-group">
                                                 <label>Leave a Reply</label>
-                                                <textarea name="message" placeholder="Your Comment"></textarea>
+                                                <textarea name="yorum" placeholder="Your Comment"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <div class="form-group">
                                                 <label>Name <span>*</span></label>
-                                                <input id="name" type="text">
+                                                <input id="name" name="ad" type="text">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <div class="form-group">
                                                 <label>Email <span>*</span> </label>
-                                                <input id="email" type="email">
+                                                <input id="email" name="email" type="email">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-submit">
-                                                <button name="submit" type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Send Message</button>
+                                                <button name="yanitla" type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Yanıtla</button>
+                                                <button name="submit" type="submit" id="submit" class="axil-btn btn-bg-primary w-auto">Yorum Yap</button>
                                             </div>
                                         </div>
                                     </div>
@@ -223,17 +251,17 @@
 
                                 <!-- Start Single Widget  -->
                                 <div class="axil-single-widget mt--40">
-                                    <h6 class="widget-title">Latest Posts</h6>
+                                    <h6 class="widget-title">En Son Yayınlanan İçerikler</h6>
 
-                                    <!-- Start Single Post List  -->
+                                    @foreach ($latest as $get )
                                     <div class="content-blog post-list-view mb--20">
                                         <div class="thumbnail">
-                                            <a href="blog-details.html">
-                                                <img src="{{ asset("assets/images/blog/blog-04.png") }}" alt="Blog Images">
+                                            <a href="{{ route("blogdetail",$get->id) }}">
+                                                <img src="{{ asset("resimler/".$get->resim) }}" alt="Blog Images">
                                             </a>
                                         </div>
                                         <div class="content">
-                                            <h6 class="title"><a href="blog-details.html">Dubai’s FRAME Offers its Take on the</a></h6>
+                                            <h6 class="title"><a href="{{ route("blogdetail",$get->id) }}">{{ $get->baslik }}</a></h6>
                                             <div class="axil-post-meta">
                                                 <div class="post-meta-content">
                                                     <ul class="post-meta-list">
@@ -244,6 +272,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
+
+                                    <!-- Start Single Post List  -->
+
                                     <!-- End Single Post List  -->
 
                                     <!-- Start Single Post List  -->
@@ -258,17 +290,18 @@
                                 <!-- End Single Widget  -->
                                 <!-- Start Single Widget  -->
                                 <div class="axil-single-widget mt--40">
-                                    <h6 class="widget-title">Recent Viewed Products</h6>
+                                    <h6 class="widget-title">Önerilen İçerikler</h6>
                                     <ul class="product_list_widget recent-viewed-product">
                                         <!-- Start Single product_list  -->
+                                        @foreach ($random as $rnd )
                                         <li>
                                             <div class="thumbnail">
-                                                <a href="blog-details.html">
-                                                    <img src="{{ asset("assets/images/product/product-12.jpg") }}" alt="Blog Images">
+                                                <a href="{{ route("blogdetail",$rnd->id) }}">
+                                                    <img src="{{ asset("resimler/".$rnd->resim) }}" alt="Blog Images">
                                                 </a>
                                             </div>
                                             <div class="content">
-                                                <h6 class="title"><a href="blog-details.html">Men's Fashion Tshirt</a></h6>
+                                                <h6 class="title"><a href="{{ route("blogdetail",$rnd->id) }}">{{ $rnd->baslik }}</a></h6>
                                                 <div class="product-meta-content">
                                                     <span class="woocommerce-Price-amount amount">
                                                 <del>$30</del>
@@ -277,6 +310,9 @@
                                                 </div>
                                             </div>
                                         </li>
+
+                                        @endforeach
+
                                         <!-- End Single product_list  -->
                                         <!-- Start Single product_list  -->
 
@@ -290,7 +326,7 @@
                                 <!-- End Single Widget  -->
 
                                 <!-- Start Single Widget  -->
-                                <div class="axil-single-widget mt--40 widget_search">
+                                {{-- <div class="axil-single-widget mt--40 widget_search">
                                     <h6 class="widget-title">Search</h6>
                                     <form class="blog-search" action="#">
                                         <button class="search-button"><i class="fal fa-search"></i></button>
@@ -337,7 +373,7 @@
                                         <a href="#">CSS</a>
                                         <a href="#">JS</a>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Single Widget  -->
 
                             </aside>
@@ -463,6 +499,8 @@
     <script src="{{ asset("assets/js/vendor/isotope.pkgd.min.js") }}"></script>
     <script src="{{ asset("assets/js/vendor/counterup.js") }}"></script>
     <script src="{{ asset("assets/js/vendor/waypoints.min.js") }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>

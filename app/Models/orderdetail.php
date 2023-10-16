@@ -16,9 +16,5 @@ class orderdetail extends Model
     public function scopeAktifSipariş($query){
         return $query->where("user_id", auth()->user()->id);
     }
-    public function order()
-    {
-        return $this->belongsTo(orders::class); //verileri göndermek istedin tablo
-    }
 
 }

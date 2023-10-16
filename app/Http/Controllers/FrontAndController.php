@@ -82,18 +82,24 @@ class FrontAndController extends Controller
         if ($temizle) {
             return redirect()->route('shop');
         }
-        // arama işlemleri
-
-
+        // arama işlemler
 
         return view('shop', compact('filteredProducts',"search","yeni"));
     }
     public function wishlist(){
 
-        $yeni=ShoppingCart::all();
-        $wihslist = wishlist::list()->latest()->get();
+        if (!auth()->check()) {
+            session()->flash("Hata","İstek Listenizi Görebilmek İçin Giriş Yapınız");
+            return redirect(route("loginkullanıcı"));
+        } else {
+            $yeni=ShoppingCart::all();
+            $wihslist = wishlist::list()->latest()->get();
 
-        return view("wishlist",compact("wihslist","yeni"));
+            return view("wishlist",compact("wihslist","yeni"));
+        }
+
+
+
     }
 
     public function wishlistadd(Request $request,$id){
@@ -107,14 +113,20 @@ class FrontAndController extends Controller
             $product = product::FindOrFail($id);
             $wishlist = new wishlist();
             $user = auth()->user()->name;
-                    $wishlist->wish_resim = $product->resim;
+            $wishlist->wish_resim = $product->resim;
+            $wishlist->urun_id =  $product->id;
+            $wishlist->user_name = $user;
+            $wishlist->product_name	= $product->baslik;
 
-                    $wishlist->urun_id =  $product->id;
-                    $wishlist->price = $product->fiyat;
-                    $wishlist->user_name = $user;
-                    $wishlist->product_name	= $product->baslik;
+            if ($product->fiyat == null) {
+                $wishlist->price = 0;
+            } else {
+                $wishlist->price = $product->fiyat;
+            }
 
-                    $wishlist->save();
+
+
+            $wishlist->save();
         }
         return redirect(route("wishlist"));
     }

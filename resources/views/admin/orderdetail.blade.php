@@ -59,7 +59,8 @@
 					</header>
 
 					<!-- start: page -->
-					<form class="order-details action-buttons-fixed" method="post">
+					<form action="{{ route("ordersidpost",$getir->id) }}" class="order-details action-buttons-fixed" method="post">
+                        @csrf
 						<div class="row">
 							<div class="col-xl-4 mb-4 mb-xl-0">
 
@@ -70,19 +71,19 @@
 									<div class="card-body">
 										<div class="form-row">
 											<div class="form-group col mb-3">
-												<label>Status</label>
-												<select class="form-control form-control-modern" name="orderStatus" required>
-													<option value="on-hold" selected>On Hold</option>
-													<option value="pending">Pending Payment</option>
-													<option value="processing">Processing</option>
-													<option value="completed">Completed</option>
-													<option value="cancelled">Cancelled</option>
-													<option value="refunded">Refunded</option>
-													<option value="failed">Failed</option>
+												<label>Siparişi Güncelle</label>
+												<select class="form-control form-control-modern" name="status" required>
+													<option value="{{ $getir->status }}" selected>{{ $getir->status }}</option>
+													<option value="Ödeme Bekleniyor">Ödeme Bekleniyor</option>
+													<option value="İşleniyor">İşleniyor</option>
+													<option value="Tamamlandı">Tamamlandı</option>
+													<option value="İptal Edildi">İptal Edildi</option>
+													<option value="İade">İade</option>
+													<option value="Başarısız">Başarısız</option>
 												</select>
 											</div>
 										</div>
-										<div class="form-row">
+										{{-- <div class="form-row">
 											<div class="form-group col mb-3">
 												<label>Date Created</label>
 												<div class="date-time-field">
@@ -97,15 +98,15 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										</div> --}}
 										<div class="form-row">
 											<div class="form-group col mb-3">
 												<label>Customer</label>
 												<select class="form-control form-control-modern" name="orderCustomer" required data-plugin-selectTwo>
-													<option value="21" selected>John Doe</option>
-													<option value="33">Monica Doe</option>
+													<option value="{{ $getir->name }}{{ $getir->surname }}" selected>{{ $getir->name }}{{ $getir->surname }}</option>
+													{{-- <option value="33">Monica Doe</option>
 													<option value="55">Robert Doe</option>
-													<option value="60">Tim Doe</option>
+													<option value="60">Tim Doe</option> --}}
 												</select>
 											</div>
 										</div>
@@ -117,39 +118,31 @@
 
 								<div class="card card-modern">
 									<div class="card-header">
-										<h2 class="card-title">Addresses</h2>
+										<h2 class="card-title">Adresler</h2>
 									</div>
 									<div class="card-body">
 										<div class="row">
 											<div class="col-xl-auto me-xl-5 pe-xl-5 mb-4 mb-xl-0">
-												<h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3">BILLING</h3>
+												<h3 class="text-color-dark font-weight-bold text-4 line-height-1 mt-0 mb-3">Fatura Adresi</h3>
 												<ul class="list list-unstyled list-item-bottom-space-0">
-													<li>Street Name Example</li>
-													<li>1234</li>
-													<li>Detroit</li>
-													<li>Michigan</li>
-													<li>93218</li>
-													<li>USA</li>
+													<li>{{ $getir->adress }}</li>
+
 												</ul>
-												<strong class="d-block text-color-dark">Email address:</strong>
-												<a href="mailto:johndoe@domain.com">johndoe@domain.com</a>
-												<strong class="d-block text-color-dark mt-3">Phone:</strong>
-												<a href="tel:+5551234" class="text-color-dark">555-1234</a>
+												<strong class="d-block text-color-dark">Email:</strong>
+												<a href="{{ $getir->email }}">{{ $getir->email }}</a>
+												<strong class="d-block text-color-dark mt-3">Telefon:</strong>
+												<a href="tel:+5551234" class="text-color-dark">{{ $getir->phone }}</a>
 											</div>
 											<div class="col-xl-auto ps-xl-5">
-												<h3 class="font-weight-bold text-color-dark text-4 line-height-1 mt-0 mb-3">SHIPPING</h3>
+												<h3 class="font-weight-bold text-color-dark text-4 line-height-1 mt-0 mb-3">Gönderim Adresi</h3>
 												<ul class="list list-unstyled list-item-bottom-space-0">
-													<li>Street Name Example</li>
-													<li>1234</li>
-													<li>Detroit</li>
-													<li>Michigan</li>
-													<li>93218</li>
-													<li>USA</li>
+													<li>{{ $getir->adress }}</li>
+
 												</ul>
-												<strong class="d-block text-color-dark">Email address:</strong>
-												<a href="mailto:johndoe@domain.com">johndoe@domain.com</a>
-												<strong class="d-block text-color-dark mt-3">Phone:</strong>
-												<a href="tel:+5551234" class="text-color-dark">555-1234</a>
+												<strong class="d-block text-color-dark">Email adres:</strong>
+												<a href="{{ $getir->email }}">{{ $getir->email }}</a>
+												<strong class="d-block text-color-dark mt-3">Telefon:</strong>
+												<a href="tel:+5551234" class="text-color-dark">{{ $getir->phone }}</a>
 											</div>
 										</div>
 									</div>
@@ -170,59 +163,46 @@
 												<thead>
 													<tr>
 														<th width="8%" class="ps-4">ID</th>
-														<th width="65%">Name</th>
-														<th width="5%" class="text-end">Cost</th>
-														<th width="7%" class="text-end">Qty</th>
-														<th width="5%" class="text-end">Total</th>
+														<th width="65%">Ad</th>
+														<th width="5%" class="text-end">Tutar</th>
+														<th width="7%" class="text-end">Adet</th>
+														<th width="5%" class="text-end">Toplam Tutar</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
-														<td class="ps-4"><a href="ecommerce-products-form.html"><strong>191</strong></a></td>
-														<td><a href="ecommerce-products-form.html"><strong>Product Name Example</strong></a></td>
-														<td class="text-end">$99</td>
-														<td class="text-end">1</td>
-														<td class="text-end">$99</td>
+														<td class="ps-4"><a href="ecommerce-products-form.html"><strong>{{ $getir->id }}</strong></a></td>
+														<td><a href="ecommerce-products-form.html"><strong>{{ $getir->urun_adı }}</strong></a></td>
+														<td class="text-end">{{ $getir->per_price }}</td>
+														<td class="text-end">{{ $getir->qty }}</td>
+														<td class="text-end">{{ $getir->sub_total }}</td>
 													</tr>
-													<tr>
-														<td class="ps-4"><a href="ecommerce-products-form.html"><strong>192</strong></a></td>
-														<td><a href="ecommerce-products-form.html"><strong>Product Name Example 2</strong></a></td>
-														<td class="text-end">$50</td>
-														<td class="text-end">1</td>
-														<td class="text-end">$50</td>
-													</tr>
-													<tr>
-														<td class="ps-4"><a href="ecommerce-products-form.html"><strong>193</strong></a></td>
-														<td><a href="ecommerce-products-form.html"><strong>Product Name Example 3</strong></a></td>
-														<td class="text-end">$132</td>
-														<td class="text-end">1</td>
-														<td class="text-end">$132</td>
-													</tr>
+
 												</tbody>
 											</table>
 										</div>
 
 										<div class="row justify-content-end flex-column flex-lg-row my-3">
 											<div class="col-auto me-5">
-												<h3 class="font-weight-bold text-color-dark text-4 mb-3">Items Subtotal</h3>
+												<h3 class="font-weight-bold text-color-dark text-4 mb-3">Ürün  Fiyatı </h3>
 												<span class="d-flex align-items-center">
-													3 Items
+													{{ $getir->qty }} Adet
 													<i class="fas fa-chevron-right text-color-primary px-3"></i>
-													<b class="text-color-dark text-xxs">$298.00</b>
+													<b class="text-color-dark text-xxs">{{ $getir->per_price }}</b>
 												</span>
 											</div>
-											<div class="col-auto me-5">
+											{{-- <div class="col-auto me-5">
 												<h3 class="font-weight-bold text-color-dark text-4 mb-3">Shipping</h3>
 												<span class="d-flex align-items-center">
 													Flat Rate
 													<i class="fas fa-chevron-right text-color-primary px-3"></i>
 													<b class="text-color-dark text-xxs">$20.00</b>
 												</span>
-											</div>
+											</div> --}}
 											<div class="col-auto">
-												<h3 class="font-weight-bold text-color-dark text-4 mb-3">Order Total</h3>
+												<h3 class="font-weight-bold text-color-dark text-4 mb-3">Toplam Tutar</h3>
 												<span class="d-flex align-items-center justify-content-lg-end">
-													<strong class="text-color-dark text-5">$318.00</strong>
+													<strong class="text-color-dark text-5">{{ $getir->sub_total }}</strong>
 												</span>
 											</div>
 										</div>
@@ -240,20 +220,26 @@
 									</div>
 									<div class="card-body">
 										<div class="ecommerce-timeline mb-3">
-											<div class="ecommerce-timeline-items-wrapper">
+
+                                            @if ($getir->ordernote == null)
+                                            <div class="ecommerce-timeline-items-wrapper">
 												<div class="ecommerce-timeline-item">
-													<small>added on June 26, 2020 at 4:01 pm by admin - <a href="#" class="text-color-danger">Delete note</a></small>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit augue at leo viverra, aliquam egestas lectus laoreet. Donec vehicula vestibulum ipsum, tincidunt ultrices elit suscipit ac. Sed eget risus laoreet, varius nibh id, luctus ligula. Nulla facilisi</p>
+													<small>Müşteri Notu</small>
+													<p>Sipariş Notu Yok</p>
 												</div>
-												<div class="ecommerce-timeline-item">
-													<small>added on June 26, 2020 at 4:01 pm by admin - <a href="#" class="text-color-danger">Delete note</a></small>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit augue at leo viverra, aliquam egestas lectus laoreet. Donec vehicula vestibulum ipsum, tincidunt ultrices elit suscipit ac. Sed eget risus laoreet, varius nibh id, luctus ligula. Nulla facilisi</p>
-												</div>
-												<div class="ecommerce-timeline-item">
-													<small>added on June 26, 2020 at 4:01 pm by admin - <a href="#" class="text-color-danger">Delete note</a></small>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit augue at leo viverra, aliquam egestas lectus laoreet. Donec vehicula vestibulum ipsum, tincidunt ultrices elit suscipit ac. Sed eget risus laoreet, varius nibh id, luctus ligula. Nulla facilisi</p>
-												</div>
+
 											</div>
+
+                                            @else
+                                            <div class="ecommerce-timeline-items-wrapper">
+												<div class="ecommerce-timeline-item">
+													<small>Müşteri Notu</small>
+													<p>{{ $getir->ordernote }}</p>
+												</div>
+
+											</div>
+                                            @endif
+
 										</div>
 										<div class="form-row">
 											<div class="form-group col pb-1 mb-3">
@@ -274,7 +260,7 @@
 						<div class="row action-buttons">
 							<div class="col-12 col-md-auto">
 								<button type="submit" class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1" data-loading-text="Loading...">
-									<i class="bx bx-save text-4 me-2"></i> Save Order
+									<i class="bx bx-save text-4 me-2"></i> Siparişi Kaydet
 								</button>
 							</div>
 							<div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\orderdetail;
 use App\Models\blog;
 use App\Models\Kategori;
 use App\Models\product;
@@ -268,7 +268,12 @@ class AdminControllerPost extends Controller
 
 
     }
-
+    public function ordersidpost(Request $request ,$id){
+        $getir = orderdetail::findorfail($id);
+        $getir->status = $request->status;
+        $getir->update();
+        return view("admin.orderdetail",compact("getir"));
+    }
 
 
     }

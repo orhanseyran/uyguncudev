@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\blog;
+use App\Models\CommentsBlog;
 use Illuminate\Http\Request;
 use ShoppingCart;
 class BlogFrontEndController extends Controller
@@ -16,7 +17,12 @@ class BlogFrontEndController extends Controller
 
         $yeni = ShoppingCart::all();
         $getir = blog::findorfail($id);
+        $latest = Blog::latest()->limit(5)->get();
+        $random = Blog::inRandomOrder()->limit(5)->get();
 
-        return view("blog-details",compact("yeni","getir"));
+        $comments = $getir->yorumlar()->latest()->get();
+        $yanıt = $getir->reply()->get();
+
+        return view("blog-details",compact("yeni","getir","latest","random","comments"));
     }
 }

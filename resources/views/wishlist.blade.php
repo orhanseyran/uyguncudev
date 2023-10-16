@@ -72,11 +72,21 @@
                                 @endif
 
                                 <td class="product-title"><a href="{{ route("productid",$w->urun_id) }}">{{ $w->product_name }}</a></td>
+                                @if ( $w->price == null )
+                                <td class="product-price" data-title="Price"><span class="currency-symbol"></span>Fiyatu Belirlenmemiş</td>
+                                @else
                                 <td class="product-price" data-title="Price"><span class="currency-symbol">TL</span>{{ $w->price }}</td>
+                                @endif
+
                                 @if ($w->urun_id == null)
                                 <td class="product-add-cart"><a href="#" class="axil-btn btn-outline">Ürün Satişta Değil</a></td>
                                 @else
+                                @if ($w->price == null)
+                                <td class="product-add-cart"><a href="" class="axil-btn btn-outline">Fiyatı Yok</a></td>
+                                @else
                                 <td class="product-add-cart"><a href="{{ route("addtocart",$w->urun_id) }}" class="axil-btn btn-outline">Sepete Ekle</a></td>
+                                @endif
+
                                 @endif
 
                             </tr>

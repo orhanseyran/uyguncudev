@@ -6,6 +6,7 @@ use App\Http\Controllers\ArrayOparationController;
 use App\Http\Controllers\BlogFrontEndController;
 use App\Http\Controllers\CheakOutController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontAndController;
 use App\Http\Controllers\LoginAndRegisterController;
 use App\Http\Controllers\UserController;
@@ -93,7 +94,9 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/blog-ekle",[AdminContoller::class,"blogekle"])->name("blogekle");
     Route::get("/blog-düzenle/{id}",[AdminContoller::class,"blogedit"])->name("blogedit");
     Route::get("/blog-sil/{id}",[AdminContoller::class,"blogsil"])->name("blogesil");
-
+    Route::get("/siparişler",[AdminContoller::class,"orders"])->name("orders");
+    Route::get("/sipariş-detay/{id}",[AdminContoller::class,"ordersid"])->name("ordersid");
+    Route::post("/sipariş-detay-post{id}",[AdminControllerPost::class,"ordersidpost"])->name("ordersidpost");
     Route::post("/blog-ekle",[AdminControllerPost::class,"blogaddpost"])->name("blogaddpost");
     Route::post("/blog-düzenle/{id}",[AdminControllerPost::class,"blogaddedit"])->name("blogaddedit");
 
@@ -127,6 +130,7 @@ Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::get("/mağaza",[FrontAndController::class,"shop"])->name("shop");
 Route::get("/search",[FrontAndController::class,"search"])->name("search");
 Route::post("/yorum-yap/{id}",[CommentsController::class,"commentadd"])->name("commentadd");
+Route::post("/yorum-yap-blog/{id}",[CommentsController::class,"commentblogadd"])->name("commentblogadd");
 
 Route::post("/beğendiklerim/{id}",[FrontAndController::class,"wishlistadd"])->name("wishlistadd");
 Route::get("/İstek-Listem",[FrontAndController::class,"wishlist"])->name("wishlist");
@@ -135,3 +139,5 @@ Route::get("/wishlist-sil/{id}",[FrontAndController::class,"wishlistdelete"])->n
 Route::post("/Kullanıcı-güncelle",[UserController::class,"updateDetails"])->name("updateDetails");
 
 Route::post("Abone-Ol",[SubscribeController::class,"subscribe"])->name("subscribe");
+Route::get("/iletişim",[ContactController::class,"contact"])->name("contact");
+Route::post("/iletişim-post",[ContactController::class,"contactpost"])->name("contactpost");

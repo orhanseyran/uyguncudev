@@ -116,9 +116,9 @@
 												<tr>
 													<th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th>
 													<th width="8%">ID</th>
-													<th width="28%">Toplam Tutar</th>
+
 													<th width="18%">Ürün Adı</th>
-													<th width="18%">Sipariş Detay</th>
+													<th width="18%">Toplam Tutar</th>
 
 												</tr>
 											</thead>
@@ -128,9 +128,10 @@
 													<td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
 													<td><a href="ecommerce-orders-detail.html"><strong>{{ $get->id }} </strong></a></td>
 
-													<td><a href="ecommerce-orders-detail.html"><strong>{{ number_format( $get->sub_total / 100, 2, ',', '.') }} TL</strong></a></td>
-													<td>{{ $get->urun_adı }}</td>
-													<td><a href=""><button type="button" class="btn btn-danger">Düzenle</button></a></td>
+													<td><a href="ecommerce-orders-detail.html"><strong></strong>{{ $get->urun_adı }}</a></td>
+													<td>{{ number_format( $get->per_price ) }} TL</td>
+
+													<td><a href="{{ route("ordersid",$get->id) }}"><button type="button" class="btn btn-danger">İncele</button></a></td>
 													<td><span class="ecommerce-status on-hold">On Hold</span></td>
 												</tr>
 

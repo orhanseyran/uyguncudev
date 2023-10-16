@@ -104,7 +104,6 @@
                                     @else
                                         <li><a class="page-numbers" href="{{ $getir->previousPageUrl() }}">Önceki</a></li>
                                     @endif
-
                                     {{-- Diğer sayfalar --}}
                                     @foreach ($getir->getUrlRange(1, $getir->lastPage()) as $page => $url)
                                         @if ($page == $getir->currentPage())
