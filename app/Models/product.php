@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     protected $table = "urunler";
-    protected $fillable = ["id","baslik","aciklama","resim","kategori","active","color"];
+    protected $fillable = ["id","baslik","aciklama","resim","kategori","active","color","order_count"];
     use HasFactory;
 
     public function user(){

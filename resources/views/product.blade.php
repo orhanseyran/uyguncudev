@@ -104,7 +104,22 @@
                                 <form method="GET" action="{{ route("addtocart",$product ->id) }}">
                                     <div class="inner">
                                     <h2 class="product-title">{{ $product ->baslik }}</h2>
+                                    @if(session('basarı'))
+                                        <div class="alert alert-success">
+                                            {{ session('basarı') }}
+                                        </div>
+                                        @elseif(session('hata'))
+                                        <div class="alert alert-danger">
+                                            {{ session('hata') }}
+                                        </div>
+
+                                    @endif
+                                    @if ($product->fiyat == null)
+                                    <span class="price-amount">Fiyat Yok</span>
+                                    @else
                                     <span class="price-amount">{{  $product->fiyat   }}  TL</span>
+                                    @endif
+
                                     <div class="product-rating">
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -120,7 +135,7 @@
                                     <div class="product-variations-wrapper">
 
                                         <!-- Start Product Variation  -->
-                                        <div class="product-variation product-size-variation">
+                                        {{-- <div class="product-variation product-size-variation">
                                             <h6 class="title">Size:</h6>
                                             <ul class="range-variant">
                                                 <li class="active">xs</li>
@@ -146,8 +161,11 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <!-- End Product Variation  -->
+                                        @if (  $product->fiyat == null)
+
+                                        @else
                                         <div class="product-variation quantity-variant-wrapper">
                                             <h6 class="title">Adet</h6>
                                             <form method="get" action="{{ route("addtocart",$product ->id) }}">
@@ -158,9 +176,14 @@
 
                                                     <!-- Start Product Action  -->
                                                     <ul class="product-action d-flex-center mb--0">
-                                                        <form method="GET" action="">
-                                                            <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Hızlı Satın Al">
+
+                                                        <form action="{{ route("checkout",$product ->id) }}" method="get">
+                                                            <input type="text">
+                                                            <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="hızlı"  value="Hızlı Satın Al">
                                                         </form>
+
+
+
 
                                                         <input style="background-color: rgb(0, 132, 255); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Sepete Ekle">
 
@@ -171,6 +194,8 @@
                                             </form>
 
                                         </div>
+                                        @endif
+
 
                                     </div>
 

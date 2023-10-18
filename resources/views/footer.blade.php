@@ -290,54 +290,83 @@
 <!-- Header Search Modal End -->
 
 
-<div class="cart-dropdown" id="cart-dropdown">
+    <div class="cart-dropdown" id="cart-dropdown">
 
-    <div class="cart-content-wrap">
-        <div class="cart-header">
-            <h2 class="header-title">Cart review</h2>
-            <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-body">
-            <ul class="cart-item-list">
-
-                <li class="cart-item">
-                    @foreach ( $yeni as $get )
-                    <div class="item-img">
-                        <a href="{{ route("removecart",$get->__raw_id) }}"><img src="resimler/resimYok.png" alt="Commodo Blown Lamp"></a>
-                        <button class="close-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="item-content">
-                        <div class="product-rating">
-                            <span class="icon">
-                            <i class="fas fa-star"></i>
-
-                        </span>
-                            <span class="rating-number">(64)</span>
-                        </div>
-                        <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
-                        <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
-                        <div class="pro-qty item-quantity">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                    </div>
-                    @endforeach
-                </li>
-
-
-            </ul>
-        </div>
-        <div class="cart-footer">
-            <h3 class="cart-subtotal">
-                <span class="subtotal-title">Subtotal:</span>
-                <span class="subtotal-amount">$610.00</span>
-            </h3>
-            <div class="group-btn">
-                <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-                <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+        <div class="cart-content-wrap">
+            <div class="cart-header">
+                <h2 class="header-title">Sepetim</h2>
+                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
             </div>
+            <div class="cart-body">
+                <ul class="cart-item-list">
+                    @foreach ( $yeni as $get )
+                    <form action="{{ route("addtocart",$get->id) }}" method="get">
+                    <li class="cart-item">
+
+                        <div class="item-img">
+                            <a href="{{ route("removecart",$get->__raw_id) }}"><img src="resimler/resimYok.png" alt="Commodo Blown Lamp"></a>
+                            <button class="close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="item-content">
+                            <div class="product-rating">
+                                <span class="icon">
+                                <i class="fas fa-star"></i>
+
+                            </span>
+                                <span class="rating-number">(64)</span>
+                            </div>
+                            <h3 class="item-title"><a href="single-product-3.html"></a>{{ $get->name }}</a></h3>
+                            <div class="item-price"><span class="currency-symbol"></span>{{ $get->fiyat }}</div>
+                            <div class="pro-qty item-quantity">
+                                <input type="number" name="qty" class="quantity-input" value="{{ $get->qty }}">
+                            </div>
+                        </div>
+
+                    </li>
+                    @endforeach
+                    <div class="cart-footer">
+                        <h3 class="cart-subtotal">
+                            <span class="subtotal-title">Toplam Tutar</span>
+                            <span class="subtotal-amount">{{ ShoppingCart::total()}}</span>
+                        </h3>
+                        @if (ShoppingCart::total() == null )
+                        <div class="group-btn">
+
+                            <input style="background-color: rgb(0, 132, 255); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit"  value="Sepetiniz Boş">
+
+                        </div>
+
+                        @else
+                        <div class="group-btn">
+                            <form method="GET" action="{{ route("checkout") }}">
+                                <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit"  value="Hızlı Satın Al">
+                            </form>
+
+                            <input style="background-color: rgb(0, 132, 255); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Sepete Ekle">
+                        </div>
+
+                        @endif
+
+                    </div>
+                </form>
+
+
+                </ul>
+            </div>
+            {{-- <div class="cart-footer">
+                <h3 class="cart-subtotal">
+                    <span class="subtotal-title">Subtotal:</span>
+                    <span class="subtotal-amount">$610.00</span>
+                </h3>
+                <div class="group-btn">
+                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+                </div>
+            </div> --}}
         </div>
     </div>
-</div>
+
+
 
 <!-- Offer Modal Start -->
 <div class="offer-popup-modal" id="offer-popup-modal">

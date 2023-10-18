@@ -27,6 +27,17 @@ class UserController extends Controller
         'email' => $request->input('email'),
     ]);
 
+    // Resim güncelleme
+    if ($request->hasFile('resim')) {
+        $image = $request->file('resim');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads'), $imageName);
+
+        $user->update([
+            'resim' =>  $imageName,
+        ]);
+    }
+
     // Şifreyi güncelle
     if ($request->filled('current_password') && $request->filled('new_password')) {
         $request->validate([
@@ -43,8 +54,7 @@ class UserController extends Controller
         $user->update([
             'password' => bcrypt($request->new_password),
         ]);
-    }
-    elseif($request->input("new_password") !== $request->input("confirm_password")) {
+    } elseif ($request->input("new_password") !== $request->input("confirm_password")) {
         session()->flash("hata", "Şifreler Hatalı");
         return redirect()->back()->withInput();
     }

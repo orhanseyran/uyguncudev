@@ -72,7 +72,7 @@
                     <div class="axil-dashboard-author">
                         <div class="media">
                             <div class="thumbnail">
-                                <img src="./assets/images/product/author1.png" alt="{{ auth()->user()->name }}">
+                                <img  width="120px" src="uploads/{{ auth()->user()->resim }}" alt="{{ auth()->user()->name }}">
                             </div>
                             <div class="media-body">
                                 <h5 class="title mb-0">{{ auth()->user()->name }}</h5>
@@ -132,7 +132,7 @@
                                                     <tr>
                                                         <th scope="row">#{{ $order->id }}</th>
                                                         <td>{{ $order->created_at }}</td>
-                                                        <td>Processing</td>
+                                                        <td>{{ $order->status }}</td>
                                                         <td>{{ $order->per_price}}TL için {{ $order->qty}} ürün</td>
 
                                                     </tr>
@@ -160,7 +160,7 @@
                                                         <a href="" data-bs-toggle="modal" data-bs-target="#adres" class="address-edit" ><i class="far fa-edit"></i></a>
                                                     </div>
                                                     <ul class="address-details">
-                                                        <li>Name: Annie Mario</li>
+                                                        <li>Ad: {{ auth()->user()->name }}</li>
                                                         <li>Email: annie@example.com</li>
                                                         <li>Phone: 1234 567890</li>
                                                         <li class="mt--30">7398 Smoke Ranch Road <br>
@@ -288,7 +288,7 @@
                                 <div class="tab-pane fade" id="nav-account" role="tabpanel">
                                     <div class="col-lg-9">
                                         <div class="axil-dashboard-account">
-                                            <form method="POST" action="{{ route("updateDetails") }}" class="account-details-form">
+                                            <form method="POST" action="{{ route("updateDetails") }}" class="account-details-form" enctype="multipart/form-data" >
                                                 @csrf
                                                 @foreach ($user as $u )
 
@@ -300,12 +300,20 @@
                                                             <input type="text" name="name" class="form-control" value="{{ $u->name }}">
                                                         </div>
                                                     </div>
+
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Email</label>
                                                             <input type="email" name="email" class="form-control" value="{{ $u->email }}">
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Profil Resmi Yükle</label>
+                                                            <input type="file" name="resim" class="form-control p-4">
+                                                        </div>
+                                                    </div>
+
                                                     {{-- <div class="col-12">
                                                         <div class="form-group mb--40">
                                                             <label>Country/ Region</label>
@@ -322,17 +330,17 @@
                                                         <h5 class="title">Şifre Değiştir</h5>
                                                         <div class="form-group">
                                                             <label>Eski Şifre</label>
-                                                            <input type="password" class="form-control" name="current_password" required>
+                                                            <input type="password" class="form-control" name="current_password" >
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Yeni Şifre</label>
-                                                            <input type="password" class="form-control" name="new_password" required>
+                                                            <input type="password" class="form-control" name="new_password" >
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Yeni Şifreyi Tekrar Yaz</label>
-                                                            <input type="password" class="form-control" name="confirm_password" required>
+                                                            <input type="password" class="form-control" name="confirm_password" >
                                                         </div>
 
                                                         <div class="form-group mb--0">

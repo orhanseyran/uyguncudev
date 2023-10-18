@@ -21,16 +21,30 @@ class ShoppingCartController extends Controller
     {
         $yeni = product::FindOrFail($id);
 
-        if ($request->input("qty") == null) {
-            ShoppingCart::add($yeni->id,$yeni->baslik,1,$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]); //direk ödeme
+        if ($request->input("fast")) {
+            if ($request->input("qty") == 0) {
+                session()->flash("hata","Geçerli Ürün Mikatı Giriniz");
+                return redirect()->back();
+            } else {
+                ShoppingCart::add($yeni->id,$yeni->baslik, $request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]); //direk ödeme
+                return redirect(route("cart"));
+            }
+        }
+        if ($request->input("hızlı")) {
+            if ($request->input("qty") == 0) {
+                session()->flash("hata","Geçerli Ürün Mikatı Giriniz");
+                return redirect()->back();
+            }
+            else{
+                ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+                return redirect(route("checkout"));
+            }
+
         } else {
-            ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]); //sepete eklemek için
+            session()->flash("hata","Geçerli Ürün Mikatı Giriniz");
+            return redirect()->back();
         }
 
-
-
-
-        return redirect(route("cart"));
     }
     public function checkout($id)
     {

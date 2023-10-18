@@ -14,14 +14,20 @@ use ShoppingCart;
 
 class FrontAndController extends Controller
 {
-    public function home(){
+    public function home(Request $request){
         $yeni= ShoppingCart::all();
         $slider = slider::latest()->limit(5)->get();
         $product =product::latest()->limit(10)->get();
         $comments = Comments::latest()->limit(5)->get();
+        $productscount = Product::orderBy('order_count', 'desc')->take(10)->get();
         $rndproduct = product::inRandomOrder()->latest()->limit(8);
         $rndone = product::inRandomOrder()->limit(1)->get();
-        return view("home",compact("product","yeni","rndproduct","rndone","comments","slider"));
+        if ($request->input("fast")) {
+            $yeni= ShoppingCart::all();
+            ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
+            return view("checkout",compact("yeni"));
+        }
+        return view("home",compact("product","yeni","rndproduct","rndone","comments","slider","productscount"));
     }
     public function product(Request $request,$id)
     {
@@ -48,6 +54,7 @@ class FrontAndController extends Controller
         return view("my-account",compact("yeni","orders","user"));
 
     }
+
     public function shop(Request $request){
         $yeni=ShoppingCart::all();
         $products = Product::query();

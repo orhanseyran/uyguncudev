@@ -6,7 +6,7 @@ use App\Mail\OrderMail;
 use App\Models\orderdetail;
 use App\Models\orders;
 use App\Models\pay;
-
+use App\Models\product;
 use App\Models\shopier as ModelsShopier;
 use phpDocumentor\Reflection\Types\Array_;
 use Shopier\Enums\ProductType;
@@ -63,6 +63,17 @@ class CheakOutController extends Controller
                 $orderdetail->user_id = auth()->check() ?  auth()->user()->id : 0 ;
                 $orderdetail->qty = $al->qty;
                 $orderdetail->sub_total = $al->price * $al->qty ;
+
+
+                //sipariş sayısına göre ürüne sipariş sayısı ekleme
+
+                $product = product::find($al->id);
+
+                if($product){
+                    $product->order_count = $product->order_count +1;
+                    $product->update();
+                }
+
                 $orderdetail->save();
 
 
