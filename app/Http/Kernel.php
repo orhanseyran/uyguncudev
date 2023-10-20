@@ -4,7 +4,11 @@ namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AlıcıMiddleware;
+use App\Http\Middleware\GoldMiddleware;
 use App\Http\Middleware\GuestMiddleware;
+use App\Http\Middleware\PremiumMiddleware;
+use App\Http\Middleware\SaticiMiddleware;
+use App\Http\Middleware\SilverMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -72,6 +76,10 @@ class Kernel extends HttpKernel
     protected $routeMiddleware=[
         'Admin' => AdminMiddleware::class,
         'Alici' => AlıcıMiddleware::class,
+        'Satici' => SaticiMiddleware::class,
+        'PremiumÜye' => PremiumMiddleware::class,
+        'GoldÜye' => GoldMiddleware::class,
+        'SilverÜye' => SilverMiddleware::class,
         'Guest' => GuestMiddleware::class,
 
     ];

@@ -5,6 +5,9 @@ use App\Models\orderdetail;
 use App\Models\blog;
 use App\Models\Kategori;
 use App\Models\product;
+use App\Models\aboutus;
+use App\Models\services;
+use App\Models\portfolyo;
 use App\Models\UrunResim;
 use App\Models\ürünboyut;
 use App\Models\ürünrenk;
@@ -274,7 +277,157 @@ class AdminControllerPost extends Controller
         $getir->update();
         return view("admin.orderdetail",compact("getir"));
     }
+    public function bizkimizpost(Request $request){
+        $tekAbout = new aboutus();
+        $tekAbout->baslik = $request->baslik;
+        $tekAbout->icerik = $request->icerik;
+        $tekAbout->meta = $request->meta;
+        $tekAbout->meta_aciklama = $request->meta_aciklama;
 
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $tekAbout->resim = $resimAdi;
+       }
+       $tekAbout->save();
+       session()->flash("basarı", "Biz Kimiz Sayfası Başarı İle Eklendi");
+       return redirect()->back();
+
+    }
+    public function servicespost(Request $request){
+        $services = new services();
+        $services->baslik = $request->baslik;
+        $services->icerik = $request->icerik;
+        $services->meta = $request->meta;
+        $services->meta_aciklama = $request->meta_aciklama;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $services->resim = $resimAdi;
+       }
+       $services->save();
+       session()->flash("basarı", "Biz Kimiz Sayfası Başarı İle Eklendi");
+       return redirect()->back();
+
+    }
+    public function servicesedit(Request $request , $id){
+        $services = services::findorfail($id);
+        $services->baslik = $request->baslik;
+        $services->icerik = $request->icerik;
+        $services->meta = $request->meta;
+        $services->meta_aciklama = $request->meta_aciklama;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $services->resim = $resimAdi;
+       }
+       $services->update();
+       session()->flash("basarı", "Biz Kimiz Sayfası Başarı İle Eklendi");
+       return redirect()->back();
+
+    }
+    public function portfolyopost(Request $request){
+        $portfolyo = new portfolyo();
+        $portfolyo->baslik = $request->baslik;
+        $portfolyo->icerik = $request->icerik;
+        $portfolyo->meta = $request->meta;
+        $portfolyo->meta_aciklama = $request->meta_aciklama;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $portfolyo->resim = $resimAdi;
+       }
+       if ($request->hasFile("resimler")) {
+        foreach ($request->file('resimler') as $resim) {
+            $resimAdi = time() . '_' . $resim->getClientOriginalName(); // Her resim için benzersiz bir isim oluşturabilirsiniz.
+            $resimYolu = public_path('resimler/' . $resimAdi);
+            $resim->move(public_path('resimler'), $resimAdi); // Resmi klasöre taşı
+            $urunResim = new UrunResim();
+            $urunResim->urun_id = $portfolyo->id; // İlgili ürünün ID'sini ata
+            $urunResim->resim_adi = $resimAdi;
+
+            $urunResim->save();
+        }
+        # code...
+    }
+       $portfolyo->save();
+       session()->flash("basarı", "Portfolyo Eklendi");
+       return redirect()->back();
+
+    }
+    public function portfolyosedit(Request $request , $id){
+        $portfolyo = portfolyo::findorfail($id);
+        $portfolyo->baslik = $request->baslik;
+        $portfolyo->icerik = $request->icerik;
+        $portfolyo->meta = $request->meta;
+        $portfolyo->meta_aciklama = $request->meta_aciklama;
+
+        if ($request->hasFile('resim'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('resim'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $portfolyo->resim = $resimAdi;
+       }
+       if ($request->hasFile("resimler")) {
+        foreach ($request->file('resimler') as $resim) {
+            $resimAdi = time() . '_' . $resim->getClientOriginalName(); // Her resim için benzersiz bir isim oluşturabilirsiniz.
+            $resimYolu = public_path('resimler/' . $resimAdi);
+            $resim->move(public_path('resimler'), $resimAdi); // Resmi klasöre taşı
+            $urunResim = new UrunResim();
+            $urunResim->urun_id = $portfolyo->id; // İlgili ürünün ID'sini ata
+            $urunResim->resim_adi = $resimAdi;
+
+            $urunResim->save();
+        }
+        # code...
+    }
+       $portfolyo->update();
+       session()->flash("basarı", "Portfolyo Güncellendi");
+       return redirect()->back();
+
+    }
 
     }
 

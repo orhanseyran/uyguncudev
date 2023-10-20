@@ -12,7 +12,7 @@
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+
 
 		<!-- Web Fonts  -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Sayfa Adı</h2>
+						<h2 class="font-weight-bold text-6">Seo Ekleme</h2>
 						<div class="right-wrapper">
 
 
@@ -68,7 +68,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("bizkimizpost") }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("seoadd") }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">
@@ -77,105 +77,78 @@
 											<div class="row">
 												<div class="col-lg-2-5 col-xl-1-5">
 													<i class="card-big-info-icon bx bx-box"></i>
-													<h2 class="card-big-info-title">Genel Sayfa Bilgileri</h2>
-													<p class="card-big-info-desc">Bu Kısımda Sayfa Başlık Ve Açıklamaları Yazmanız Gerekiyor</p>
+													<h2 class="card-big-info-title">Genel Seo Bilgileri</h2>
+													<p class="card-big-info-desc">Bu Kısımda İlgili Sayfanın Seo Bilgilerini Girmeniz Gerekiyor</p>
 												</div>
 												<div class="col-lg-3-5 col-xl-4-5">
 													<div class="form-group row align-items-center pb-3">
-														<h4>Sayfa Adı</h4>
+														<h4>Sayfa Başlığı</h4>
 														<div class="">
-															<input type="text" class="form-control form-control-modern" name="baslik" value="" required />
+															<input type="text" class="form-control form-control-modern" name="sayfa" value="" required />
 														</div>
 													</div>
-                                                    <div style="width: 100%" class="form-group row">
 
-                                                        <div class="">
-                                                            <h4>İçerik</h4>
-                                                            <div id="">
-                                                                <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required> </textarea>
-                                                            </div>
-
-
-
-                                                        </div>
-
-                                                    </div>
                                                     <div class="form-group row pb-3">
 
                                                         <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Anahtar Kelimeler</label>
                                                         <div class="col-lg-7 col-xl-6">
-                                                            <input id="tags" name='meta'  value='' class="form-control" autofocus>
+                                                            <input id="tags" name='anahtar_kelime'  value='' class="form-control" autofocus >
 
 
                                                           </div>
 
 
 
+                                                    </div>
+                                                    <div class="form-group row align-items-center mb-3">
+                                                        <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Sayfa Adı </label>
+                                                        <div class="col-lg-7 col-xl-6">
+                                                            <select style="width: 180px; height:60px; text-align: center; font-size:14px;" id="boyut" name="BladeAdı">
+                                                                <option value="AnaSayfa">Ana Sayfa</option>
+                                                                <option value="İletişim">İletişim</option>
+                                                                <option value="Blog">Blog</option>
+                                                                <option value="Sepet">Sepet</option>
+                                                                <option value="Ödeme">Ödeme</option>
+                                                                <option value="Hesabım">Hesabım</option>
+                                                                <option value="Mağaza">Mağaza</option>
+                                                                <option value="GirişYap">Giriş YAP</option>
+                                                                <option value="ÜyeOl">Üye Ol</option>
+                                                                <!-- Diğer boyutları ekleyebilirsiniz -->
+                                                            </select>
+
+                                                        </div>
                                                     </div>
                                                     <div class="form-group row pb-3">
 
                                                         <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Meta Açıklama</label>
                                                         <div class="col-lg-7 col-xl-6">
-                                                            <textarea name="meta_aciklama" id="" cols="30" rows="10"></textarea><br>
-                                                            <h4>Resim</h4>
-                                                            <input type="file" class="form-control form-control-modern"  name="resim" multiple />
+
+                                                            <textarea style="width: 100%" name="meta_açıklama" id="" cols="30" rows="10"  ></textarea>
+
+
 
                                                           </div>
 
 
 
                                                     </div>
-                                                    <div class="col-lg7 col-xl-6">
 
 
 
-                                                    </div>
-
-{{--
-                                                    <div class="form-group row pb-3">
-
-                                                        <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Sayfa  Ana Resim</label>
-
-                                                        <div class="col-lg7 col-xl-6">
-
-                                                            <input type="file" class="form-control form-control-modern"  name="resim" multiple />
-
-                                                        </div>
-
-
-                                                    </div> --}}
-
-
-                                                    <div class="form-group row pb-3">
-
-
-
-
-
-
-                                                    </div>
-
-
-
-
-
-													</div>
-
-											</div>
-										</div>
 									</section>
 								</div>
 							</div>
-
-
 							<div class="row action-buttons">
 								<div class="col-12 col-md-auto">
                                     <input type="submit" value="Yayınla" class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
 								</div>
                                 <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
-									<a href="" class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">İptal</a>
+									<a href="{{ route("seo") }}" class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">İptal</a>
 								</div>
+                                <div class="col-12 col-md-auto ms-md-auto mt-3 mt-md-0 ms-auto">
+                                   <a href="{{ route("seo") }}"><button type="button" class="btn btn-success btn-px-4 py-3  d-flex align-items-center font-weight-semibold line-height-1">Ürünlere Dön</button></a>
 
+								</div>
 
 
 
@@ -209,12 +182,10 @@
 		<script src="admin/js/theme.init.js"></script>
 		<script src="admin/js/examples/examples.header.menu.js"></script>
         <script src="vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
-        <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
-        <script>
-      var editor = new FroalaEditor('#example');
-        </script>
 
 
 <script>

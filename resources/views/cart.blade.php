@@ -1,32 +1,4 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Cart</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
-
-    <!-- CSS
-    ============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/vendor/flaticon/flaticon.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/sal.css">
-    <link rel="stylesheet" href="assets/css/vendor/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/vendor/base.css">
-    <link rel="stylesheet" href="assets/css/style.min.css">
-
-</head>
+@include('seo')
 
 
 <body class="sticky-header">
@@ -58,11 +30,11 @@
                             </div>
                             @endif
                                     <th scope="col" class="product-remove"></th>
-                                    <th scope="col" class="product-thumbnail">Product</th>
+                                    <th scope="col" class="product-thumbnail">Ürün</th>
                                     <th scope="col" class="product-title"></th>
-                                    <th scope="col" class="product-price">Price</th>
-                                    <th scope="col" class="product-quantity">Quantity</th>
-                                    <th scope="col" class="product-subtotal">Subtotal</th>
+                                    <th scope="col" class="product-price">Fiyat</th>
+                                    <th scope="col" class="product-quantity">Ader</th>
+                                    <th scope="col" class="product-subtotal">Toplam Tutar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,56 +132,7 @@
     </main>
 
 
-    <div class="service-area">
-        <div class="container">
-            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service1.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service2.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service3.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service4.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {{-- </div> merhaba --}}
-    </div>
+
     <!-- Start Footer Area  -->
     @include('footer');
 

@@ -101,11 +101,7 @@
                             <span>Web Site Sayfalar</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
-                                <a class="nav-link" href="{{ route("blogs") }}">
-                                    - Bloglar
-                                </a>
-                            </li>
+
                             {{-- <li>
                                 <a class="nav-link" href="{{ route("blogekle") }}">
                                     - Blog Ekle
@@ -123,18 +119,13 @@
                                     <span>Kullanıcı Ekle</span>
                                 </a>
                             </li> --}}
+
                             <li>
-                                <a class="nav-link" href="{{ route("sliderlar") }}">
-                                    <i class="bx bx-loader-circle" aria-hidden="true"></i>
-                                    <span>Slider</span>
-                                </a>
-                            </li>
-                            {{-- <li>
-                                <a class="nav-link" href="{{ route("kimiz") }}">
+                                <a class="nav-link" href="{{ route("bizkimiz") }}">
                                     <i class="bx bx-window-alt" aria-hidden="true"></i>
                                     <span>Biz Kimiz Sayfası <em class="not-included"></em></span>
                                 </a>
-                            </li> --}}
+                            </li>
 
                         </ul>
                     </li>
@@ -171,8 +162,37 @@
                             <span>İletisim Mailleri</span>
                         </a>
                     </li> --}}
+                    <li>
+                        <a class="nav-link" href="{{ route("blogs") }}">
+                            <i class="bx bx-book" aria-hidden="true"></i>
+                            - Bloglar
+                        </a>
+                    </li>
 
-
+                    <li>
+                        <a class="nav-link" href="{{ route("seo") }}">
+                            <i class="bx bx-cast" aria-hidden="true"></i>
+                            <span>Seo Ayaları <em class="not-included"></em></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route("portfolyoliste") }}">
+                            <i class="bx bx-image-add" aria-hidden="true"></i>
+                            <span>Portfolyo <em class="not-included"></em></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route("sliderlar") }}">
+                            <i class="bx bx-loader-circle" aria-hidden="true"></i>
+                            <span>Sliderlar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route("hizmetlerliste") }}">
+                            <i class="bx bx-beer" aria-hidden="true"></i>
+                            <span>Hizmetlerimiz <em class="not-included"></em></span>
+                        </a>
+                    </li>
 
                     <li>
                         <a class="nav-link" href="/">

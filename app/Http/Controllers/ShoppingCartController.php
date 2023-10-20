@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\seo;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 use ShoppingCart;
@@ -12,8 +13,20 @@ class ShoppingCartController extends Controller
     public function cart()//Sepet Sayfası
     {
         $yeni = ShoppingCart::all();
+        $seo = seo::where("BladeAdı", "Sepet" )->first();
 
-        return view("cart",compact("yeni"));
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
+
+        return view("cart",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
 
     }
 

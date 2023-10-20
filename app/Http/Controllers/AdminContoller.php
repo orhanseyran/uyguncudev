@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\ürünboyut;
 use App\Models\ürünrenk;
+use App\Models\portfolyo;
 use App\Models\User;
 use App\Models\orderdetail;
+use App\Models\services;
 
 class AdminContoller extends Controller
 {
@@ -117,6 +119,49 @@ class AdminContoller extends Controller
         $getir = orderdetail::findorfail($id);
         return view("admin.orderdetail",compact("getir"));
     }
+    public function bizkimiz(){
+        return view("admin.about");
+
+    }
+    public function hizmetlerimiz(){
+        $services = services::latest()->get();
+        return view("admin.services",compact("services"));
+
+    }
+    public function hizmetadd(){
+        return view("admin.servicesadd");
+
+    }
+    public function hizmetedit($id){
+        $services = services::findorfail($id);
+        return view("admin.servicesedit",compact("services"));
+
+    }
+    public function hizmetdel($id){
+        $services = services::findorfail($id);
+        $services->delete();
+        return redirect()->back();
+    }
+    public function portfolyo(){
+        $portfolyo = services::latest()->get();
+        return view("admin.portfolyo",compact("portfolyo"));
+
+    }
+    public function portfolyoadd(){
+        return view("admin.portfolyoadd");
+
+    }
+    public function portfolyoedit($id){
+        $portfolyo = portfolyo::findorfail($id);
+        return view("admin.portfolyosedit",compact("portfolyo"));
+
+    }
+    public function portfolyodel($id){
+        $portfolyo = portfolyo::findorfail($id);
+        $portfolyo->delete();
+        return redirect()->back();
+    }
+
 
 
 }

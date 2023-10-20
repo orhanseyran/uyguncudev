@@ -8,6 +8,7 @@ use App\Models\orders;
 use App\Models\product;
 use App\Models\Slider;
 use App\Models\User;
+use App\Models\seo;
 use App\Models\wishlist;
 use Illuminate\Http\Request;
 use ShoppingCart;
@@ -22,12 +23,27 @@ class FrontAndController extends Controller
         $productscount = Product::orderBy('order_count', 'desc')->take(10)->get();
         $rndproduct = product::inRandomOrder()->latest()->limit(8);
         $rndone = product::inRandomOrder()->limit(1)->get();
+
+        $seo = seo::where("BladeAdı", "AnaSayfa" )->first();
+
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
+
+
         if ($request->input("fast")) {
             $yeni= ShoppingCart::all();
             ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
             return view("checkout",compact("yeni"));
         }
-        return view("home",compact("product","yeni","rndproduct","rndone","comments","slider","productscount"));
+        return view("home",compact("product","yeni","rndproduct","rndone","comments","slider","productscount","sayfa","anahtar_kelime","meta_açıklama"));
     }
     public function product(Request $request,$id)
     {
@@ -47,17 +63,31 @@ class FrontAndController extends Controller
         return view("sign-in");
     }
     public function hesabım(){
+        $seo = seo::find(2);
         $yeni=ShoppingCart::all();
         $orders = orderdetail::AktifSipariş()->latest()->get();
         $user = User::user()->get();
 
-        return view("my-account",compact("yeni","orders","user"));
+        return view("my-account",compact("yeni","orders","user","seo"));
 
     }
 
     public function shop(Request $request){
+        $seo = seo::find(3);
         $yeni=ShoppingCart::all();
         $products = Product::query();
+        $seo = seo::where("BladeAdı", "Mağaza" )->first();
+
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
 
         $kategori = $request->input("kategori");
         $color = $request->input("color");
@@ -91,7 +121,7 @@ class FrontAndController extends Controller
         }
         // arama işlemler
 
-        return view('shop', compact('filteredProducts',"search","yeni"));
+        return view('shop', compact('filteredProducts',"search","yeni","sayfa","anahtar_kelime","meta_açıklama"));
     }
     public function wishlist(){
 
@@ -101,8 +131,20 @@ class FrontAndController extends Controller
         } else {
             $yeni=ShoppingCart::all();
             $wihslist = wishlist::list()->latest()->get();
+            $seo = seo::where("BladeAdı", "Beğeniler" )->first();
 
-            return view("wishlist",compact("wihslist","yeni"));
+            if($seo){
+                $sayfa = $seo->sayfa;
+                $anahtar_kelime = $seo->anahtar_kelime;
+                $meta_açıklama = $seo->meta_açıklama;
+            }
+            else{
+                $sayfa = " ";
+                $anahtar_kelime = " ";
+                $meta_açıklama = " ";
+            }
+
+            return view("wishlist",compact("wihslist","yeni","sayfa","anahtar_kelime","meta_açıklama"));
         }
 
 
@@ -143,6 +185,10 @@ class FrontAndController extends Controller
         $wihslist->delete();
 
         return redirect()->back();
+    }
+    public function about(){
+        $yeni= ShoppingCart::all();
+        return view("about-us",compact("yeni"));
     }
 
 

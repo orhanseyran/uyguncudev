@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 
 use App\Models\Contact;
+use App\Models\seo;
 use ShoppingCart;
 use Illuminate\Http\Request;
 use App\Mail\contacts;
@@ -13,7 +14,19 @@ class ContactController extends Controller
     public function contact(){
 
         $yeni = ShoppingCart::all();
-        return view("contact",compact("yeni"));
+        $seo = seo::where("BladeAdı", "Blog" )->first();
+
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
+        return view("contact",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
     }
     public function contactpost(Request $request){
 

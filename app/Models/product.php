@@ -24,6 +24,9 @@ class product extends Model
     {
         return $this->hasMany(UrunResim::class, 'urun_id'); //alıancak ürünresimleri
     }
+    public function portfolyoresimler(){
+        return $this->hasMany(Portfolyoresimler::class,"resim_id");
+    }
 
     public function comments (){
         return $this->hasMany(Comments::class,"urun_id");

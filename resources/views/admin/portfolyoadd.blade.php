@@ -59,7 +59,7 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Sayfa Adı</h2>
+						<h2 class="font-weight-bold text-6">Portfolyo Adı</h2>
 						<div class="right-wrapper">
 
 
@@ -68,7 +68,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("bizkimizpost") }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("portfolyopost") }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">
@@ -77,12 +77,12 @@
 											<div class="row">
 												<div class="col-lg-2-5 col-xl-1-5">
 													<i class="card-big-info-icon bx bx-box"></i>
-													<h2 class="card-big-info-title">Genel Sayfa Bilgileri</h2>
-													<p class="card-big-info-desc">Bu Kısımda Sayfa Başlık Ve Açıklamaları Yazmanız Gerekiyor</p>
+													<h2 class="card-big-info-title">Genel Portfolyo Bilgileri</h2>
+													<p class="card-big-info-desc">Bu Kısımda Portfolyo Resmini eklemeniz Beşlık ve Açıklamaları Yazmanız Gerekiyor</p>
 												</div>
 												<div class="col-lg-3-5 col-xl-4-5">
 													<div class="form-group row align-items-center pb-3">
-														<h4>Sayfa Adı</h4>
+														<h4>Portfolyo Adı</h4>
 														<div class="">
 															<input type="text" class="form-control form-control-modern" name="baslik" value="" required />
 														</div>
@@ -90,7 +90,7 @@
                                                     <div style="width: 100%" class="form-group row">
 
                                                         <div class="">
-                                                            <h4>İçerik</h4>
+                                                            <h4>Açıklama</h4>
                                                             <div id="">
                                                                 <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required> </textarea>
                                                             </div>
@@ -117,10 +117,25 @@
                                                         <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Meta Açıklama</label>
                                                         <div class="col-lg-7 col-xl-6">
                                                             <textarea name="meta_aciklama" id="" cols="30" rows="10"></textarea><br>
-                                                            <h4>Resim</h4>
+                                                            <h4>Ana Resim</h4>
                                                             <input type="file" class="form-control form-control-modern"  name="resim" multiple />
+                                                            <h4>Portfolyo Resimler</h4>
+                                                            <input type="file" class="form-control form-control-modern"  name="resimler" multiple />
+                                                            <h4> Lütfen Katagori Seçiniz</h4>
+                                                            <select style="width: 220px;" class="form-select form-select-sm" name="katagori" id="role">
+                                                                {{-- @foreach ($getir as $get )
+                                                                 <option value="{{ $get->katagoriname }}">{{ $get->katagoriname }}</option>
 
-                                                          </div>
+                                                                @endforeach --}}
+
+                                                              <!-- Diğer rol seçenekleri... -->
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="col-lg-7 col-xl-6">
+
+
+                                                        </div>
 
 
 

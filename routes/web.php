@@ -11,6 +11,7 @@ use App\Http\Controllers\FrontAndController;
 use App\Http\Controllers\LoginAndRegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SeoController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubscribeController;
@@ -99,9 +100,25 @@ Route::middleware(["Admin"])->group(function(){
     Route::post("/sipariş-detay-post{id}",[AdminControllerPost::class,"ordersidpost"])->name("ordersidpost");
     Route::post("/blog-ekle",[AdminControllerPost::class,"blogaddpost"])->name("blogaddpost");
     Route::post("/blog-düzenle/{id}",[AdminControllerPost::class,"blogaddedit"])->name("blogaddedit");
-
-
-
+    Route::get("/seo-ayarları",[SeoController::class,"seo"])->name("seo");
+    Route::get("/seo-ekle",[SeoController::class,"seoaddpage"])->name("seoaddpage");
+    Route::post("/seo-ekle-post",[SeoController::class,"seoadd"])->name("seoadd");
+    Route::post("/seo-ekle-update/{id}",[SeoController::class,"seoupdate"])->name("seoupdate");
+    Route::get("/seo-güncelle/{id}",[SeoController::class,"seoedit"])->name("seoedit");
+    Route::get("/seo-sil/{id}",[SeoController::class,"seodelete"])->name("seodelete");
+    Route::get("/bizkimiz",[AdminContoller::class,"bizkimiz"])->name("bizkimiz");
+    Route::post("/bizkimizpost",[AdminControllerPost::class,"bizkimizpost"])->name("bizkimizpost");
+    Route::get("/Hizmetler",[AdminContoller::class,"hizmetlerimiz"])->name("hizmetlerliste");
+    Route::get("/Hizmet-Ekle",[AdminContoller::class,"hizmetadd"])->name("hizmetadd");
+    Route::get("/Hizmet-Düzenle/{id}",[AdminContoller::class,"hizmetedit"])->name("hizmetedit");
+    Route::get("/Hizmet-Sil/{id}",[AdminContoller::class,"hizmetdel"])->name("hizmetdel");
+    Route::post("/servicespost",[AdminControllerPost::class,"servicespost"])->name("servicespost");
+    Route::post("/servicesedit/{id}",[AdminControllerPost::class,"servicesedit"])->name("servicesedit");
+    Route::get("/Portfolyo",[AdminContoller::class,"portfolyo"])->name("portfolyoliste");
+    Route::get("/Portfolyo-Ekle",[AdminContoller::class,"portfolyoadd"])->name("portfolyoadd");
+    Route::get("/Portfolyo-Düzenle/{id}",[AdminContoller::class,"portfolyoedit"])->name("portfolyoedit");
+    Route::post("/portfolyopost",[AdminControllerPost::class,"portfolyopost"])->name("portfolyopost");
+    Route::post("/portfolyoedit/{id}",[AdminControllerPost::class,"portfolyosedit"])->name("portfolyoedit");
 });
 
 Route::middleware(["Alici"])->group(function(){
@@ -135,6 +152,7 @@ Route::post("/yorum-yap-blog/{id}",[CommentsController::class,"commentblogadd"])
 Route::post("/beğendiklerim/{id}",[FrontAndController::class,"wishlistadd"])->name("wishlistadd");
 Route::get("/İstek-Listem",[FrontAndController::class,"wishlist"])->name("wishlist");
 Route::get("/wishlist-sil/{id}",[FrontAndController::class,"wishlistdelete"])->name("wishlistdelete");
+Route::get("/Biz-Kimiz",[FrontAndController::class,"about"])->name("about");
 
 Route::post("/Kullanıcı-güncelle",[UserController::class,"updateDetails"])->name("updateDetails");
 

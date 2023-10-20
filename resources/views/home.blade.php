@@ -1,33 +1,5 @@
-<!doctype html>
-<html class="no-js" lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Home-01</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
-
-    <!-- CSS
-    ============================================ -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/vendor/flaticon/flaticon.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="assets/css/vendor/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/sal.css">
-    <link rel="stylesheet" href="assets/css/vendor/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/vendor/base.css">
-    <link rel="stylesheet" href="assets/css/style.min.css">
-    <!-- Bootstrap CSS -->
-
-
-</head>
-
+@include('seo')
 
 <body class="sticky-header newsletter-popup-modal">
 
@@ -676,81 +648,7 @@
         <!-- End Axil Product Poster Area  -->
 
         <!-- Start Axil Newsletter Area  -->
-        <form action="{{ route("subscribe") }}" method="POST">
-            @csrf
-            <div class="axil-newsletter-area axil-section-gap pt--0">
-                <div class="container">
-                    <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                        <div class="newsletter-content">
-                            <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Abone Ol</span>
-                            <h2 class="title mb--40 mb_sm--30">Güncellemeleri Takip Etmek İçin</h2>
-                            <div class="input-group newsletter-form">
-                                <div class="position-relative newsletter-inner mb--15">
-                                    <input placeholder="" name="email" type="text">
-                                </div>
-                                <button type="submit" class="axil-btn mb--15">Abone Ol</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .container -->
-            </div>
-        </form>
-        <!-- End Axil Newsletter Area  -->
 
-    </main>
-
-
-    <div class="service-area">
-        <div class="container">
-            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service1.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service2.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service3.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service4.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Start Footer Area  -->
 @include('footer');
     <div class="closeMask"></div>

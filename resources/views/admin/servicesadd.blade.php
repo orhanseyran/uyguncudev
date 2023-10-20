@@ -59,7 +59,7 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Sayfa Adı</h2>
+						<h2 class="font-weight-bold text-6">Hizmet Adı</h2>
 						<div class="right-wrapper">
 
 
@@ -68,7 +68,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("bizkimizpost") }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("servicespost") }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">
@@ -77,12 +77,12 @@
 											<div class="row">
 												<div class="col-lg-2-5 col-xl-1-5">
 													<i class="card-big-info-icon bx bx-box"></i>
-													<h2 class="card-big-info-title">Genel Sayfa Bilgileri</h2>
-													<p class="card-big-info-desc">Bu Kısımda Sayfa Başlık Ve Açıklamaları Yazmanız Gerekiyor</p>
+													<h2 class="card-big-info-title">Genel Hizmet Bilgileri</h2>
+													<p class="card-big-info-desc">Bu Kısımda Hizmet Adu Ve Açıklamaları Yazmanız Gerekiyor</p>
 												</div>
 												<div class="col-lg-3-5 col-xl-4-5">
 													<div class="form-group row align-items-center pb-3">
-														<h4>Sayfa Adı</h4>
+														<h4>Hizmet Adı</h4>
 														<div class="">
 															<input type="text" class="form-control form-control-modern" name="baslik" value="" required />
 														</div>

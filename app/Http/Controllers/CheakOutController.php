@@ -6,6 +6,7 @@ use App\Mail\OrderMail;
 use App\Models\orderdetail;
 use App\Models\orders;
 use App\Models\pay;
+use App\Models\seo;
 use App\Models\product;
 use App\Models\shopier as ModelsShopier;
 use phpDocumentor\Reflection\Types\Array_;
@@ -28,7 +29,19 @@ class CheakOutController extends Controller
     public function checkout()
     {
         $yeni = ShoppingCart::all();
-        return view("checkout",compact("yeni"));
+        $seo = seo::where("BladeAdı", "Ödeme" )->first();
+
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
+        return view("checkout",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
 
     }
     public function store(Request $request){

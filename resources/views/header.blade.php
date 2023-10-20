@@ -79,7 +79,7 @@
                         <ul class="mainmenu">
                             <li><a href="/">Ana Sayfa</a></li>
                             <li><a href="{{ route("shop") }}">Ürünler</a></li>
-                            <li><a href="#">Biz Kimiz</a></li>
+                            <li><a href="{{ route("about") }}">Biz Kimiz</a></li>
                             <li><a href="{{ route("blog") }}">Blog</a></li>
                             <li><a href="{{ route("contact") }}">İletişim</a></li>
                         </ul>

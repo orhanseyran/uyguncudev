@@ -25,23 +25,23 @@
 
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="admin/vendor/animate/animate.compat.css">
-		<link rel="stylesheet" href="admin/vendor/font-awesome/css/all.min.css" />
-		<link rel="stylesheet" href="admin/vendor/boxicons/css/boxicons.min.css" />
-		<link rel="stylesheet" href="admin/vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-		<link rel="stylesheet" href="admin/vendor/select2/css/select2.css" />
-		<link rel="stylesheet" href="admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
-		<link rel="stylesheet" href="admin/vendor/dropzone/basic.css" />
-		<link rel="stylesheet" href="admin/vendor/dropzone/dropzone.css" />
-        <link rel="stylesheet" href="vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-		<link rel="stylesheet" href="admin/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
-		<link rel="stylesheet" href="admin/vendor/pnotify/pnotify.custom.css" />
-		<link rel="stylesheet" href="admin/css/theme.css" />
-		<link rel="stylesheet" href="admin/css/layouts/modern.css" />
-		<link rel="stylesheet" href="admin/css/skins/default.css" />
-		<link rel="stylesheet" href="admin/css/custom.css">
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap/css/bootstrap.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/animate/animate.compat.css") }}">
+		<link rel="stylesheet" href="{{ asset("admin/vendor/font-awesome/css/all.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/boxicons/css/boxicons.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/magnific-popup/magnific-popup.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/select2/css/select2.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/dropzone/basic.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/dropzone/dropzone.css") }}" />
+        <link rel="stylesheet" href="{{ asset("vendor/bootstrap-tagsinput/bootstrap-tagsinput.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/pnotify/pnotify.custom.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/theme.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/layouts/modern.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/skins/default.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/custom.css") }}">
 
 		<script src="admin/vendor/modernizr/modernizr.js"></script>
 
@@ -59,7 +59,7 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Sayfa Adı</h2>
+						<h2 class="font-weight-bold text-6">Hizmet Adı</h2>
 						<div class="right-wrapper">
 
 
@@ -68,7 +68,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("bizkimizpost") }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("portfolyoedit",$services->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">
@@ -77,14 +77,14 @@
 											<div class="row">
 												<div class="col-lg-2-5 col-xl-1-5">
 													<i class="card-big-info-icon bx bx-box"></i>
-													<h2 class="card-big-info-title">Genel Sayfa Bilgileri</h2>
-													<p class="card-big-info-desc">Bu Kısımda Sayfa Başlık Ve Açıklamaları Yazmanız Gerekiyor</p>
+													<h2 class="card-big-info-title">Genel Hizmet Bilgileri</h2>
+													<p class="card-big-info-desc">Bu Kısımda Hizmet Adu Ve Açıklamaları Yazmanız Gerekiyor</p>
 												</div>
 												<div class="col-lg-3-5 col-xl-4-5">
 													<div class="form-group row align-items-center pb-3">
-														<h4>Sayfa Adı</h4>
+														<h4>Hizmet Adı</h4>
 														<div class="">
-															<input type="text" class="form-control form-control-modern" name="baslik" value="" required />
+															<input type="text" class="form-control form-control-modern" name="baslik" value="{{ $services->baslik }}" required />
 														</div>
 													</div>
                                                     <div style="width: 100%" class="form-group row">
@@ -92,7 +92,7 @@
                                                         <div class="">
                                                             <h4>İçerik</h4>
                                                             <div id="">
-                                                                <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required> </textarea>
+                                                                <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required> {!! $services->icerik !!} </textarea>
                                                             </div>
 
 
@@ -104,7 +104,7 @@
 
                                                         <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Anahtar Kelimeler</label>
                                                         <div class="col-lg-7 col-xl-6">
-                                                            <input id="tags" name='meta'  value='' class="form-control" autofocus>
+                                                            <input id="tags" name='meta'  value='{{ $services->meta }}' class="form-control" autofocus>
 
 
                                                           </div>
@@ -116,18 +116,31 @@
 
                                                         <label for="tags-input" class="col-lg-3 control-label text-lg-end pt-2">Meta Açıklama</label>
                                                         <div class="col-lg-7 col-xl-6">
-                                                            <textarea name="meta_aciklama" id="" cols="30" rows="10"></textarea><br>
+                                                            <textarea name="meta_aciklama" id="" cols="30" rows="10">{{ $services->meta_aciklama}}</textarea><br>
                                                             <h4>Resim</h4>
-                                                            <input type="file" class="form-control form-control-modern"  name="resim" multiple />
+                                                            <input type="file" class="form-control form-control-modern"  name="resim" />
+                                                            <input type="file" class="form-control form-control-modern"  name="resimler" multiple />
 
                                                           </div>
 
 
 
+
                                                     </div>
-                                                    <div class="col-lg7 col-xl-6">
+                                                    <div class="form-group row pb-3">
 
+                                                        <div class="col-lg-7 col-xl-6">
+                                                            <h4> Lütfen Katagori Seçiniz</h4>
+                                                            <select style="width: 220px;" class="form-select form-select-sm" name="katagori" id="role">
+                                                                {{-- @foreach ($getir as $get )
+                                                                 <option value="{{ $get->katagoriname }}">{{ $get->katagoriname }}</option>
 
+                                                                @endforeach --}}
+
+                                                              <!-- Diğer rol seçenekleri... -->
+                                                            </select>
+
+                                                            </div>
 
                                                     </div>
 
@@ -191,24 +204,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/@yaireo/tagify"></script>
         <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
-		<script src="admin/vendor/jquery/jquery.js"></script>
-		<script src="admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-		<script src="admin/vendor/popper/umd/popper.min.js"></script>
-		<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="admin/vendor/common/common.js"></script>
-		<script src="admin/vendor/nanoscroller/nanoscroller.js"></script>
-		<script src="admin/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-		<script src="admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-		<script src="admin/vendor/jquery-validation/jquery.validate.js"></script>
-		<script src="admin/vendor/select2/js/select2.js"></script>
-		<script src="admin/vendor/dropzone/dropzone.js"></script>
-		<script src="admin/vendor/pnotify/pnotify.custom.js"></script>
-		<script src="admin/js/theme.js"></script>
-		<script src="admin/js/custom.js"></script>
-		<script src="admin/js/theme.init.js"></script>
-		<script src="admin/js/examples/examples.header.menu.js"></script>
-        <script src="vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+		<script src="{{ asset("admin/vendor/jquery/jquery.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js") }}"></script>
+		<script src="{{ asset("admin/vendor/popper/umd/popper.min.js") }}"></script>
+		<script src="{{ asset("admin/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+		<script src="{{ asset("admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js") }}"></script>
+		<script src="{{ asset("admin/vendor/common/common.js") }}"></script>
+		<script src="{{ asset("admin/vendor/nanoscroller/nanoscroller.js") }}"></script>
+		<script src="{{ asset("admin/vendor/magnific-popup/jquery.magnific-popup.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-placeholder/jquery.placeholder.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-validation/jquery.validate.js") }}"></script>
+		<script src="{{ asset("admin/vendor/select2/js/select2.js") }}"></script>
+		<script src="{{ asset("admin/vendor/dropzone/dropzone.js") }}"></script>
+		<script src="{{ asset("admin/vendor/pnotify/pnotify.custom.js") }}"></script>
+		<script src="{{ asset("admin/js/theme.js") }}"></script>
+		<script src="{{ asset("admin/js/custom.js") }}"></script>
+		<script src="{{ asset("admin/js/theme.init.js") }}"></script>
+		<script src="{{ asset("admin/js/examples/examples.header.menu.js") }}"></script>
+        <script src="{{ asset("vendor/bootstrap-tagsinput/bootstrap-tagsinput.js") }}"></script>
 
 
         <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>

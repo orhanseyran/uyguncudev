@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eTrade || Single Product Style 8</title>
+    <title>{{ $product ->baslik }} - Uyguncu</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -176,15 +176,7 @@
 
                                                     <!-- Start Product Action  -->
                                                     <ul class="product-action d-flex-center mb--0">
-
-                                                        <form action="{{ route("checkout",$product ->id) }}" method="get">
-                                                            <input type="text">
-                                                            <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="hızlı"  value="Hızlı Satın Al">
-                                                        </form>
-
-
-
-
+                                                       <input style="background-color: rgb(185, 135, 88); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="hızlı"  value="Hızlı Satın Al">
                                                         <input style="background-color: rgb(0, 132, 255); width:250px; color:white; border:none; font-size:16px; height:51px; text-align: center; " type="submit" name="fast"  value="Sepete Ekle">
 
                                                     </ul>
@@ -611,67 +603,7 @@
             </div>
         </div>
         <!-- End Expolre Product Area  -->
-        <div class="sale-banner-area">
-            <div class="container">
-                <div class="sale-banner-thumb">
-                    <a href="shop.html"><img src="assets/images/banner/sale_banner.png" alt="Sale Banner"></a>
-                </div>
-            </div>
-        </div>
-        <div class="service-area axil-section-gapcommon">
-            <div class="container">
-                <div class="section-title-wrapper section-title-border">
-                    <h2 class="title">Our Service 💥</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="service-box service-style-3">
-                            <div class="icon">
-                                <i class="far fa-truck"></i>
-                            </div>
-                            <div class="content">
-                                <h6 class="title">Fast &amp; Secure Delivery</h6>
-                                <p>Tell about your service.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="service-box service-style-3">
-                            <div class="icon">
-                                <i class="fal fa-badge-check"></i>
-                            </div>
-                            <div class="content">
-                                <h6 class="title">Money Back Guarantee</h6>
-                                <p>Within 10 days.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="service-box service-style-3">
-                            <div class="icon">
-                                <i class="far fa-hand-holding-box"></i>
-                            </div>
-                            <div class="content">
-                                <h6 class="title">24 Hour Return Policy</h6>
-                                <p>No question ask.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="service-box service-style-3">
-                            <div class="icon">
-                                <i class="far fa-headset"></i>
-                            </div>
-                            <div class="content">
-                                <h6 class="title">Pro Quality Support</h6>
-                                <p>24/7 Live support.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+
 
 
     <!-- Start Footer Area  -->
