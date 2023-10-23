@@ -1,19 +1,36 @@
+<style>
+    .etrade-newsletter-wrapper {
+        background-image: url('resimler/UYGUN.png');
+        height: 500px;
+        width: 100%;
+        background-size: cover; /* Arka plan resminin boyutunu kaplamasını sağlar */
+        background-position: center; /* Arka plan resminin ortalanmasını sağlar */
+        background-repeat: no-repeat; /* Arka plan resminin tekrar etmemesini sağlar */
+        padding: 20px; /* Gerekirse içeriğin arka plan resminin kenarlarına olan uzaklığını ayarlar */
+    }
+
+    /* Aşağıdaki stil kodları, içeriğin görünümünü düzenlemek için örnektir. */
+
+</style>
 <form action="{{ route("subscribe") }}" method="POST">
     @csrf
     <div class="axil-newsletter-area axil-section-gap pt--0">
         <div class="container">
-            <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                <div class="newsletter-content">
-                    <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Abone Ol</span>
-                    <h2 class="title mb--40 mb_sm--30">Güncellemeleri Takip Etmek İçin</h2>
-                    <div class="input-group newsletter-form">
-                        <div class="position-relative newsletter-inner mb--15">
-                            <input placeholder="" name="email" type="text">
+            <div class="col-12">
+                <div class="etrade-newsletter-wrapper">
+                    <div class="newsletter-content">
+                        <span   class="title-highlighter highlighter-primary2"><i style="text-align: center" class="fas fa-envelope-open"></i>Abone Ol</span>
+                        {{-- <h2 class="title mb--40 mb_sm--30">Güncellemeleri Takip Etmek İçin</h2> --}}
+                        <div class="input-group newsletter-form">
+                            <div   class="position-relative newsletter-inner mb--10">
+                                <input s  placeholder="" name="email" type="text">
+                            </div>
+                            <button type="submit" class="axil-btn mb--15">Abone Ol</button>
                         </div>
-                        <button type="submit" class="axil-btn mb--15">Abone Ol</button>
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- End .container -->
     </div>
@@ -26,7 +43,7 @@
 <div class="service-area">
 <div class="container">
     <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-        <div class="col">
+        {{-- <div class="col">
             <div class="service-box service-style-2">
                 <div class="icon">
                     <img src="./assets/images/icons/service1.png" alt="Service">
@@ -58,8 +75,8 @@
                     <p>No question ask.</p>
                 </div>
             </div>
-        </div>
-        <div class="col">
+        </div> --}}
+        {{-- <div class="col">
             <div class="service-box service-style-2">
                 <div class="icon">
                     <img src="./assets/images/icons/service4.png" alt="Service">
@@ -69,7 +86,7 @@
                     <p>24/7 Live support.</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 </div>
@@ -81,7 +98,7 @@ class="axil-footer-area footer-style-2">
         <div class="container">
             <div class="row">
                 <!-- Start Single Widget  -->
-                <div class="col-lg-3 col-sm-6">
+                {{-- <div class="col-lg-3 col-sm-6">
                     <div class="axil-footer-widget">
                         <h5 class="widget-title">Support</h5>
                         <!-- <div class="logo mb--30">
@@ -156,7 +173,7 @@ class="axil-footer-area footer-style-2">
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- End Single Widget  -->
             </div>
         </div>
@@ -178,11 +195,11 @@ class="axil-footer-area footer-style-2">
                 <div class="col-xl-4 col-lg-12">
                     <div class="copyright-left d-flex flex-wrap justify-content-center">
                         <ul class="quick-link">
-                            <li>© 2023. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
+                            <li>© 2023. All rights reserved by <a target="_blank" href="">185 Dijital</a>.</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-12">
+                {{-- <div class="col-xl-4 col-lg-12">
                     <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
                         <span class="card-text">Accept For</span>
                         <ul class="payment-icons-bottom quick-link">
@@ -191,7 +208,7 @@ class="axil-footer-area footer-style-2">
                             <li><img src="assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

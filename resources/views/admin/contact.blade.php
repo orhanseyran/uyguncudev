@@ -45,7 +45,7 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Gelen Mesajlar</h2>
+						<h2 class="font-weight-bold text-6">Mailler</h2>
 						{{-- <div class="right-wrapper">
 
 
@@ -97,6 +97,9 @@
 													<th width="14%">Ad Soyad</th>
 													<th width="35%">Email</th>
 													<th width="10%">Oku</th>
+													<th width="10%">Sil</th>
+													<th width="10%">Tarih</th>
+
 												</tr>
 											</thead>
 											<tbody>
@@ -123,21 +126,22 @@
 
 
 
-                                                @foreach ($iletisim as $mail )
+                                                @foreach ($contact as $mail )
 												<tr>
 
 
 
-													<td><a href="#"><strong>{{ $mail->adsoyad}}</strong></a></td>
-													<td>{{ $mail->email}}</td>
+													<td><a href="#"><strong>{{ $mail->ad}}</strong></a></td>
+													<td>{{ $mail->mail}}</td>
                                                     @if ($mail->okundu == 0)
-                                                    <td><a href=" {{ route("iletisimid",$mail->id) }}"><button type="button" class="btn btn-success">Okunmadı</button></a></td>
+                                                    <td><a href=" {{ route("contactid",$mail->id) }}"><button type="button" class="btn btn-success">Okunmadı</button></a></td>
                                                     @else
-                                                    <td><a href=" {{ route("iletisimid",$mail->id) }}"><button type="button" class="btn btn-danger">Okundu</button></a></td>
+                                                    <td><a href=" {{ route("contactid",$mail->id) }}"><button type="button" class="btn btn-danger">Okundu</button></a></td>
                                                     @endif
 
 
-                                                    <td><a href="{{ route("silmesaj",$mail->id) }}"><button type="button" class="btn btn-warning">Sil</button></a></td>
+                                                    <td><a href="{{ route("contactdel",$mail->id) }}"><button type="button" class="btn btn-warning">Sil</button></a></td>
+                                                    <td>{{ $mail->created_at }}</td>
 
 
 

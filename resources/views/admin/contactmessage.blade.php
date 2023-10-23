@@ -17,22 +17,22 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,600,700,800,900" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="admin/vendor/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="admin/vendor/animate/animate.compat.css">
-		<link rel="stylesheet" href="admin/vendor/font-awesome/css/all.min.css" />
-		<link rel="stylesheet" href="admin/vendor/boxicons/css/boxicons.min.css" />
-		<link rel="stylesheet" href="admin/vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-		<link rel="stylesheet" href="admin/vendor/select2/css/select2.css" />
-		<link rel="stylesheet" href="admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css" />
-		<link rel="stylesheet" href="admin/vendor/dropzone/basic.css" />
-		<link rel="stylesheet" href="admin/vendor/dropzone/dropzone.css" />
-		<link rel="stylesheet" href="admin/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
-		<link rel="stylesheet" href="admin/vendor/pnotify/pnotify.custom.css" />
-		<link rel="stylesheet" href="admin/css/theme.css" />
-		<link rel="stylesheet" href="admin/css/layouts/modern.css" />
-		<link rel="stylesheet" href="admin/css/skins/default.css" />
-		<link rel="stylesheet" href="admin/css/custom.css">
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap/css/bootstrap.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/animate/animate.compat.css") }}">
+		<link rel="stylesheet" href="{{ asset("admin/vendor/font-awesome/css/all.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/boxicons/css/boxicons.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/magnific-popup/magnific-popup.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/select2/css/select2.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/select2-bootstrap-theme/select2-bootstrap.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/dropzone/basic.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/dropzone/dropzone.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/vendor/pnotify/pnotify.custom.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/theme.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/layouts/modern.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/skins/default.css") }}" />
+		<link rel="stylesheet" href="{{ asset("admin/css/custom.css") }}">
 		<script src="admin/vendor/modernizr/modernizr.js"></script>
 
 	</head>
@@ -68,21 +68,27 @@
 														<div class="form-group row align-items-center pb-3">
 															<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ad - Soyad</label>
 															<div class="col-lg-7 col-xl-6">
-																<input type="text" class="form-control form-control-modern" name="couponName" value="{{ $ilet->adsoyad }}" required />
+																<input type="text" class="form-control form-control-modern" name="couponName" value="{{ $contact->ad }}" required />
 															</div>
 														</div>
 
 														<div class="form-group row align-items-center pb-3">
 															<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">email</label>
 															<div class="col-lg-7 col-xl-6">
-																<input type="text" class="form-control form-control-modern" name="couponAmount" value="{{ $ilet->email }}" required />
+																<input type="text" class="form-control form-control-modern" name="couponAmount" value="{{ $contact->mail }}" required />
+															</div>
+														</div>
+                                                        <div class="form-group row align-items-center pb-3">
+															<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Telefon</label>
+															<div class="col-lg-7 col-xl-6">
+																<input type="text" class="form-control form-control-modern" name="couponAmount" value="{{ $contact->telefon }}" required />
 															</div>
 														</div>
 														<div class="form-group row">
 															<label class="col-lg-5 col-xl-3 control-label text-lg-end pt-2 mt-1 mb-0">Mesaj</label>
 															<div class="col-lg-7 col-xl-6">
 																<textarea class="form-control form-control-modern" name="couponDescription" rows="6">
-                                                                    {{ $ilet->mesaj }}
+                                                                    {{ $contact->mesaj }}
 
                                                                 </textarea>
 															</div>
@@ -203,7 +209,7 @@
 						</div>
 						<div class="row action-buttons">
 							<div class="col-12 col-md-auto">
-                                <a class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1" href="{{ route("iletisimadmin") }}">
+                                <a class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1" href="{{ route("contactadmin") }}">
                                     <i class="bx bx-save text-4 me-2"></i> Mesaj Sayfasına Dön
                                     {{-- <button  class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
 
@@ -213,7 +219,7 @@
 							</div>
 
 							<div class="col-12 col-md-auto ms-md-auto mt-3 mt-md-0 ms-auto">
-								<a href="{{ route("silmesaj",$ilet->id) }}" class="delete-button btn btn-danger btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
+								<a href="{{ route("contactdel",$contact->id) }}" class="delete-button btn btn-danger btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
 									<i class="bx bx-trash text-4 me-2"></i> Gelen Mesajı Sil
 								</a>
 							</div>
@@ -294,24 +300,24 @@
 		</section>
 
 		<!-- Vendor -->
-		<script src="admin/vendor/jquery/jquery.js"></script>
-		<script src="admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-		<script src="admin/vendor/popper/umd/popper.min.js"></script>
-		<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-		<script src="admin/vendor/common/common.js"></script>
-		<script src="admin/vendor/nanoscroller/nanoscroller.js"></script>
-		<script src="admin/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-		<script src="admin/vendor/jquery-placeholder/jquery.placeholder.js"></script>
-		<script src="admin/vendor/jquery-validation/jquery.validate.js"></script>
-		<script src="admin/vendor/select2/js/select2.js"></script>
-		<script src="admin/vendor/dropzone/dropzone.js"></script>
-		<script src="admin/vendor/pnotify/pnotify.custom.js"></script>
-		<script src="admin/js/theme.js"></script>
-		<script src="admin/js/custom.js"></script>
-		<script src="admin/js/theme.init.js"></script>
-		<script src="admin/js/examples/examples.header.menu.js"></script>
-		<script src="admin/js/examples/examples.ecommerce.form.js"></script>
+		<script src="{{ asset("admin/vendor/jquery/jquery.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-browser-mobile/jquery.browser.mobile.js") }}"></script>
+		<script src="{{ asset("admin/vendor/popper/umd/popper.min.js") }}"></script>
+		<script src="{{ asset("admin/vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+		<script src="{{ asset("admin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js") }}"></script>
+		<script src="{{ asset("admin/vendor/common/common.js") }}"></script>
+		<script src="{{ asset("admin/vendor/nanoscroller/nanoscroller.js") }}"></script>
+		<script src="{{ asset("admin/vendor/magnific-popup/jquery.magnific-popup.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-placeholder/jquery.placeholder.js") }}"></script>
+		<script src="{{ asset("admin/vendor/jquery-validation/jquery.validate.js") }}"></script>
+		<script src="{{ asset("admin/vendor/select2/js/select2.js") }}"></script>
+		<script src="{{ asset("admin/vendor/dropzone/dropzone.js") }}"></script>
+		<script src="{{ asset("admin/vendor/pnotify/pnotify.custom.js") }}"></script>
+		<script src="{{ asset("admin/js/theme.js") }}"></script>
+		<script src="{{ asset("admin/js/custom.js") }}"></script>
+		<script src="{{ asset("admin/js/theme.init.js") }}"></script>
+		<script src="{{ asset("admin/js/examples/examples.header.menu.js") }}"></script>
+		<script src="{{ asset("admin/js/examples/examples.ecommerce.form.js") }}"></script>
 
 	</body>
 </html>

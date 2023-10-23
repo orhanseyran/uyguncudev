@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\orderdetail;
 use App\Models\User;
+use App\Models\header;
 use ShoppingCart;
 use Illuminate\Http\Request;
 
@@ -11,10 +12,11 @@ class UserController extends Controller
 {
     public function myaccount()
     {
+        $header = header::latest()->first();
         $yeni=ShoppingCart::all();
         $orders = orderdetail::AktifSipariş()->latest()->get();
         $user = User::user()->get();
-        return view("my-account",compact("yeni","orders","user"));
+        return view("my-account",compact("yeni","orders","user","header"));
 
     }
     public function updateDetails(Request $request)

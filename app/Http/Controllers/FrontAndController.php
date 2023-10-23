@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments;
+use App\Models\header;
+use App\Models\Kategori;
 use App\Models\orderdetail;
 use App\Models\orders;
 use App\Models\product;
@@ -15,6 +17,7 @@ use ShoppingCart;
 
 class FrontAndController extends Controller
 {
+
     public function home(Request $request){
         $yeni= ShoppingCart::all();
         $slider = slider::latest()->limit(5)->get();
@@ -23,7 +26,7 @@ class FrontAndController extends Controller
         $productscount = Product::orderBy('order_count', 'desc')->take(10)->get();
         $rndproduct = product::inRandomOrder()->latest()->limit(8);
         $rndone = product::inRandomOrder()->limit(1)->get();
-
+        $header = header::latest()->first();
         $seo = seo::where("BladeAdı", "AnaSayfa" )->first();
 
         if($seo){
@@ -43,12 +46,15 @@ class FrontAndController extends Controller
             ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
             return view("checkout",compact("yeni"));
         }
-        return view("home",compact("product","yeni","rndproduct","rndone","comments","slider","productscount","sayfa","anahtar_kelime","meta_açıklama"));
+        return view("home",compact("header","product","yeni","rndproduct","rndone","comments","slider","productscount","sayfa","anahtar_kelime","meta_açıklama"));
     }
+
+
     public function product(Request $request,$id)
     {
         $yeni= ShoppingCart::all();
         $product = product::FindOrFail($id);
+        $header = header::latest()->first();
 
         if ($request->input("fast")) {
             $yeni= ShoppingCart::all();
@@ -57,25 +63,28 @@ class FrontAndController extends Controller
         }
         // $comments = $product->comments()->AktifYorum()->latest()->get();
         $comments = $product->comments()->latest()->get();
-        return view("product",compact("product","yeni","comments"));
+        return view("product",compact("product","yeni","comments","header"));
     }
     public function loginform(){
         return view("sign-in");
     }
     public function hesabım(){
+        $header = header::latest()->first();
         $seo = seo::find(2);
         $yeni=ShoppingCart::all();
         $orders = orderdetail::AktifSipariş()->latest()->get();
         $user = User::user()->get();
 
-        return view("my-account",compact("yeni","orders","user","seo"));
+        return view("my-account",compact("yeni","orders","user","seo","header"));
 
     }
 
     public function shop(Request $request){
         $seo = seo::find(3);
+        $getir = Kategori::latest()->get();
         $yeni=ShoppingCart::all();
         $products = Product::query();
+        $header = header::latest()->first();
         $seo = seo::where("BladeAdı", "Mağaza" )->first();
 
         if($seo){
@@ -121,10 +130,10 @@ class FrontAndController extends Controller
         }
         // arama işlemler
 
-        return view('shop', compact('filteredProducts',"search","yeni","sayfa","anahtar_kelime","meta_açıklama"));
+        return view('shop', compact('filteredProducts',"search","yeni","sayfa","anahtar_kelime","meta_açıklama","header","getir"));
     }
     public function wishlist(){
-
+        $header = header::latest()->first();
         if (!auth()->check()) {
             session()->flash("Hata","İstek Listenizi Görebilmek İçin Giriş Yapınız");
             return redirect(route("loginkullanıcı"));
@@ -144,7 +153,7 @@ class FrontAndController extends Controller
                 $meta_açıklama = " ";
             }
 
-            return view("wishlist",compact("wihslist","yeni","sayfa","anahtar_kelime","meta_açıklama"));
+            return view("wishlist",compact("wihslist","yeni","sayfa","anahtar_kelime","meta_açıklama","header"));
         }
 
 
@@ -187,8 +196,9 @@ class FrontAndController extends Controller
         return redirect()->back();
     }
     public function about(){
+        $header = header::latest()->first();
         $yeni= ShoppingCart::all();
-        return view("about-us",compact("yeni"));
+        return view("about-us",compact("yeni","header"));
     }
 
 

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class CommentsController extends Controller
 {
     public function commentadd(Request $request,$id){
+        $picture = auth()->user()->resim;
         $product =product::FindOrFail($id);
         $comment = new Comments();
         $comment->ad = $request->ad;
@@ -21,7 +22,11 @@ class CommentsController extends Controller
         $comment->puan = $request->puan;
         $comment->urun_id = $product->id;
         $comment->urun = $product->baslik;
-
+        if (!auth()->check()) {
+            $comment->resim = "resimYok.png";
+        } else {
+            $comment->resim = $picture;
+        }
         $comment->save();
         session()->flash("basarı","Yorumunuz Başarıyla Eklendi");
         return redirect()->back();

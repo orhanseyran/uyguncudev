@@ -152,7 +152,7 @@
 
                                                             <div class="col-lg-7 col-xl-6">
                                                                 <h4> Lütfen Katagori Seçiniz</h4>
-                                                                <select style="width: 220px;" class="form-select form-select-sm" name="katagori" id="role">
+                                                                <select style="width: 220px;" class="form-select form-select-sm" name="kategori" id="role">
                                                                     @foreach ($getir as $get )
                                                                      <option value="{{ $get->katagoriname }}">{{ $get->katagoriname }}</option>
 

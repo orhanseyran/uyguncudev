@@ -109,6 +109,7 @@
                                                                 <option value="Blog">Blog</option>
                                                                 <option value="Sepet">Sepet</option>
                                                                 <option value="Ödeme">Ödeme</option>
+                                                                <option value="Register">Üye Ol</option>
                                                                 <option value="Hesabım">Hesabım</option>
                                                                 <option value="Mağaza">Mağaza</option>
                                                                 <option value="GirişYap">Giriş YAP</option>

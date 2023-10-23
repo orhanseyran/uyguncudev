@@ -7,6 +7,8 @@ use App\Models\Kategori;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\header;
+use App\Models\Contact;
 use App\Models\ürünboyut;
 use App\Models\ürünrenk;
 use App\Models\portfolyo;
@@ -161,6 +163,46 @@ class AdminContoller extends Controller
         $portfolyo->delete();
         return redirect()->back();
     }
+    public function header(){
+        $header = header::latest()->get();
+        return view("admin.menu",compact("header"));
+    }
+    public function headeradd(){
+        return view("admin.menuadd");
+
+    }
+    public function headereditget($id){
+        $header = header::findorfail($id);
+        return view("admin.menuedit",compact("header"));
+    }
+    public function headerdel($id){
+        $header = header::findorfail($id);
+        $header->delete();
+        return redirect()->back();
+    }
+    public function footer(){
+        return view("admin.footeredit");
+    }
+    public function contact(){
+        $contact = contact::latest()->get();
+        return view("admin.contact",compact("contact"));
+    }
+    public function contactid($id){
+        $contact = contact::findorfail($id);
+        $contact->okundu = 1;
+        $contact->save();
+        return view("admin.contactmessage",compact("contact"));
+    }
+    public function contactdel($id){
+        $contact = contact::findorfail($id);
+        $contact->delete();
+        return redirect(route("contactadmin"));
+    }
+    public function galery(){
+        return view("admin.galery");
+    }
+
+
 
 
 

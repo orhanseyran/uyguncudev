@@ -61,10 +61,10 @@
             <div class="header-navbar">
                 <div class="header-brand">
                     <a href="/" class="logo logo-dark">
-                        <img  style="height: 80px;" src="{{ asset("resimler/logo.png") }}" alt="Site Logo">
+                        <img  style="height: 80px;" src="{{ asset("resimler/$header->logoimg") }}" alt="Site Logo">
                     </a>
                     <a href="/" class="logo logo-light">
-                        <img src="{{ asset("resimler/logo.png") }}" alt="Site Logo">
+                        <img src="{{ asset("resimler/$header->logoimg") }}" alt="Site Logo">
                     </a>
                 </div>
                 <div class="header-main-nav">
@@ -73,15 +73,16 @@
                         <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                         <div class="mobile-nav-brand">
                             <a href="/" class="logo">
-                                <img src="resimler/logo.png" alt="Site Logo">
+                                <img src="resimler/{{ $header->logoimg }}" alt="Site Logo">
                             </a>
                         </div>
+
                         <ul class="mainmenu">
-                            <li><a href="/">Ana Sayfa</a></li>
-                            <li><a href="{{ route("shop") }}">Ürünler</a></li>
-                            <li><a href="{{ route("about") }}">Biz Kimiz</a></li>
-                            <li><a href="{{ route("blog") }}">Blog</a></li>
-                            <li><a href="{{ route("contact") }}">İletişim</a></li>
+                            <li><a href="/">{{ $header->menu1 }}</a></li>
+                            <li><a href="{{ route("shop") }}">{{ $header->menu2 }}</a></li>
+                            <li><a href="{{ route("about") }}">{{ $header->menu3}}</a></li>
+                            <li><a href="{{ route("blog") }}">{{ $header->menu4}}</a></li>
+                            <li><a href="{{ route("contact") }}">{{ $header->menu5}}</a></li>
                         </ul>
                     </nav>
                     <!-- End Mainmanu Nav -->

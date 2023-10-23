@@ -6,6 +6,7 @@ use App\Mail\OrderMail;
 use App\Models\orderdetail;
 use App\Models\orders;
 use App\Models\pay;
+use App\Models\header;
 use App\Models\seo;
 use App\Models\product;
 use App\Models\shopier as ModelsShopier;
@@ -28,6 +29,7 @@ class CheakOutController extends Controller
 {
     public function checkout()
     {
+        $header = header::latest()->first();
         $yeni = ShoppingCart::all();
         $seo = seo::where("BladeAdı", "Ödeme" )->first();
 
@@ -41,7 +43,7 @@ class CheakOutController extends Controller
             $anahtar_kelime = " ";
             $meta_açıklama = " ";
         }
-        return view("checkout",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
+        return view("checkout",compact("yeni","sayfa","anahtar_kelime","meta_açıklama","header"));
 
     }
     public function store(Request $request){

@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\footer;
 use App\Models\orderdetail;
 use App\Models\blog;
 use App\Models\Kategori;
 use App\Models\product;
 use App\Models\aboutus;
 use App\Models\services;
+use App\Models\header;
 use App\Models\portfolyo;
 use App\Models\UrunResim;
 use App\Models\ürünboyut;
@@ -130,7 +132,7 @@ class AdminControllerPost extends Controller
             # code...
         }
 
-        $orderadd->save();
+        $orderadd->update();
 
         return redirect()->back();
 
@@ -302,6 +304,7 @@ class AdminControllerPost extends Controller
        return redirect()->back();
 
     }
+
     public function servicespost(Request $request){
         $services = new services();
         $services->baslik = $request->baslik;
@@ -428,6 +431,55 @@ class AdminControllerPost extends Controller
        return redirect()->back();
 
     }
+    public function headerpost(Request $request){
+        $menu = new header();
+        $menu->menu1 = $request->menu1;
+        $menu->menu2 = $request->menu2;
+        $menu->menu3 = $request->menu3;
+        $menu->menu4 = $request->menu4;
+        $menu->menu5 = $request->menu5;
+        if ($request->hasFile('logoimg'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('logoimg'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $menu->logoimg = $resimAdi;
+       }
+       $menu->save();
+       session()->flash("basarı", "Header Sayfası Başarı İle Eklendi");
+       return redirect()->back();
+    }
+    public function headeredit(Request $request,$id){
+        $menu = header::findorfail($id);
+        $menu->menu1 = $request->menu1;
+        $menu->menu2 = $request->menu2;
+        $menu->menu3 = $request->menu3;
+        $menu->menu4 = $request->menu4;
+        $menu->menu5 = $request->menu5;
+        if ($request->hasFile('logoimg'))//eğer formdan resim adında bir sorgu varsa
+        {
+           $resim = $request->file('logoimg'); //resimi $request den gelen resime eşitle
+           $resimAdi = time() . '.' . $resim->getClientOriginalExtension(); //her resim için farklı bir ad oluştur
+           $resimYolu = public_path('resimler/' . $resimAdi);//resmi kaydetmek için public de bulunan resimler klasör yolunu kullan
+           $resim->move(public_path('resimler'), $resimAdi);//resmi resimler klasörüne kaydet
+
+           // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+
+           // İlgili ürünün resim sütununu güncelle
+           $menu->logoimg = $resimAdi;
+       }
+       $menu->update();
+       session()->flash("basarı", "Header Sayfası Başarı İle Eklendi");
+       return redirect()->back();
+    }
+
 
     }
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kupon;
 use App\Models\product;
 use App\Models\seo;
+use App\Models\header;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 use ShoppingCart;
@@ -12,8 +14,13 @@ class ShoppingCartController extends Controller
 {
     public function cart()//Sepet Sayfası
     {
+        $header = header::latest()->first();
         $yeni = ShoppingCart::all();
         $seo = seo::where("BladeAdı", "Sepet" )->first();
+
+        if(ShoppingCart::total() == null){
+            session()->forget('coupon_applied');
+        }
 
         if($seo){
             $sayfa = $seo->sayfa;
@@ -26,8 +33,37 @@ class ShoppingCartController extends Controller
             $meta_açıklama = " ";
         }
 
-        return view("cart",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
+        return view("cart",compact("yeni","sayfa","anahtar_kelime","meta_açıklama","header"));
 
+    }
+    public function cupon(Request $request) {
+        $couponCode = $request->input('coupon_code');
+        $coupon = kupon::where('code', $couponCode)->first();
+
+        if ($coupon) {
+            $yeni = ShoppingCart::all();
+            $indirim = $coupon->discount_percentage;
+
+            $couponAlreadyApplied = session()->get('coupon_applied', false);
+
+            if (!$couponAlreadyApplied) {
+                foreach ($yeni as $key) {
+                    $discountAmount = ($key->price * $indirim) / 100;
+                    $tutar = $key->price - $discountAmount;
+                    $key->price = $tutar;
+                }
+
+                session(['coupon_applied' => true]);
+                session()->flash('basarı', 'Kupon Başarıyla Uygulandı');
+            } else {
+                session()->flash('basarı', 'Kupon zaten kullanılmış.');
+            }
+        }
+
+
+
+
+        return redirect()->back();
     }
 
     public function addtocart(Request $request, $id)
@@ -61,6 +97,7 @@ class ShoppingCartController extends Controller
     }
     public function checkout($id)
     {
+
         $yeni = product::FindOrFail($id);
 
         ShoppingCart::add($yeni->id,$yeni->baslik,1,$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
@@ -102,6 +139,7 @@ class ShoppingCartController extends Controller
     {
         ShoppingCart::remove($rawId);
         session()->flash("basarı","Ürün Başarıyla Sepetten Silindi");
+
         return redirect()->back();
     }
 }

@@ -73,6 +73,13 @@
 
 													</div>
 												</div>
+                                                <div class="form-group row align-items-center mb-3">
+													<label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Katagori İcon Giriniz</label>
+													<div class="col-lg-7 col-xl-6">
+														<input type="file" class="form-control form-control-modern" name="katagoriicon" value="" required />
+
+													</div>
+												</div>
 
 											</div>
 										</div>

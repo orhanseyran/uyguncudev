@@ -45,21 +45,21 @@
 
                                             <select name="kategori" class="single-select">
                                                 <option value="" {{ request('kategori') === '' ? 'selected' : '' }}>Kategoriler</option>
-                                                <option value="Fashion" {{ request('kategori') === 'Fashion' ? 'selected' : '' }}>Fashion</option>
-                                                <option value="Electronics" {{ request('kategori') === 'Electronics' ? 'selected' : '' }}>Electronics</option>
-                                                <option value="Furniture" {{ request('kategori') === 'Furniture' ? 'selected' : '' }}>Furniture</option>
-                                                <option value="Beauty" {{ request('kategori') === 'Beauty' ? 'selected' : '' }}>Beauty</option>
+                                                @foreach ( $getir as $g )
+                                                <option value="{{ $g->katagoriname }}" {{ request('kategori') === $g->katagoriname ? 'selected' : '' }}>{{ $g->katagoriname }}</option>
+                                                @endforeach
+
                                             </select>
                                             <!-- End Single Select  -->
 
                                             <!-- Start Single Select  -->
-                                            <select name="color"  class="single-select">
+                                            {{-- <select name="color"  class="single-select">
                                                 <option value="" {{ request('color') === '' ? 'selected' : '' }}>Renk</option>
                                                 <option value="Red" {{ request('color') === 'Red' ? 'selected' : '' }}>Red</option>
                                                 <option value="Blue" {{ request('color') === 'Blue' ? 'selected' : '' }}>Blue</option>
                                                 <option value="Green" {{ request('color') === 'Green' ? 'selected' : '' }}>Green</option>
                                                 <option value="Pink" {{ request('color') === 'Pink' ? 'selected' : '' }}>Pink</option>
-                                            </select>
+                                            </select> --}}
                                             <!-- End Single Select  -->
 
                                             <!-- Start Single Select  -->
@@ -224,84 +224,19 @@
                     <!-- End Single Product  -->
                 </div>
                 <div class="text-center pt--30">
-                    <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Load more</a>
+                    <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Daha Fazla Göster</a>
                 </div>
             </div>
             <!-- End .container -->
         </div>
         <!-- End Shop Area  -->
         <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
-            <div class="container">
-                <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                    <div class="newsletter-content">
-                        <span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
-                        <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-                        <div class="input-group newsletter-form">
-                            <div class="position-relative newsletter-inner mb--15">
-                                <input placeholder="example@gmail.com" type="text">
-                            </div>
-                            <button type="submit" class="axil-btn mb--15">Subscribe</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End .container -->
-        </div>
+
         <!-- End Axil Newsletter Area  -->
     </main>
 
 
-    <div class="service-area">
-        <div class="container">
-            <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service1.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service2.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service3.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="service-box service-style-2">
-                        <div class="icon">
-                            <img src="./assets/images/icons/service4.png" alt="Service">
-                        </div>
-                        <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Start Footer Area  -->
 @include('footer');
     <!-- End Footer Area  -->

@@ -49,9 +49,7 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/Kullanıcı-sil/{id}",[AdminContoller::class,"usersdelete"])->name("usersdelete");
     Route::get("/register",[LoginAndRegisterController::class,"register"])->name("register");
     Route::post("/register",[LoginAndRegisterController::class,"registerpost"])->name("registerpost");
-
     Route::post("/useredit/{id}",[LoginAndRegisterController::class,"useredit"])->name("useredit");
-
     Route::get("/Kullanıcı-düzenle/{id}",[LoginAndRegisterController::class,"store"])->name("store");
     Route::get("/panelim",[AdminContoller::class,"homeadmin"])->name("homeadmin");
     Route::get("/logout-admin",[LoginAndRegisterController::class,"logout"])->name("logout");
@@ -61,7 +59,6 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/ürün-düzenle/{id}",[AdminContoller::class,"productedit"])->name("productedit");
     Route::post("/ürün-düzenle/{id}",[AdminControllerPost::class,"productedit"])->name("producteditpost");
     Route::get("/ürün-sil/{id}",[AdminControllerPost::class,"delete"])->name("delete");
-
     //ürün renk ekle düzenleme başlangıc
     Route::post("/Ürün-renk-ekle",[AdminControllerPost::class,"coloraddpost"])->name("coloraddpost");
     Route::post("/Ürün-renk-düzenle/{id}",[AdminControllerPost::class,"coloreditpost"])->name("coloreditpost");
@@ -78,7 +75,6 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("ürün-renkleri-ekle",[AdminContoller::class,"ürünrenkadd"])->name("ürünrenkadd");
     Route::get("ürün-renkleri-düzenle/{id}",[AdminContoller::class,"ürünrenkedit"])->name("ürünrenkedit");
     Route::get("ürün-renk-sil/{id}",[AdminControllerPost::class,"colordeletepost"])->name("colordeletepost");
-
     Route::get("/kategoriler",[AdminContoller::class,"kategorigetir"])->name("kategori");
     Route::get("/katagori-ekle",[AdminContoller::class,"kategoriekleme"])->name("katagoriekle");
     Route::post("/kategori-ekle",[AdminControllerPost::class,"kategoriekle"])->name("kategoriekle");
@@ -119,6 +115,16 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/Portfolyo-Düzenle/{id}",[AdminContoller::class,"portfolyoedit"])->name("portfolyoedit");
     Route::post("/portfolyopost",[AdminControllerPost::class,"portfolyopost"])->name("portfolyopost");
     Route::post("/portfolyoedit/{id}",[AdminControllerPost::class,"portfolyosedit"])->name("portfolyoedit");
+    Route::get("/Menu",[AdminContoller::class,"header"])->name("header");
+    Route::get("/Menu-Ekle",[AdminContoller::class,"headeradd"])->name("headeradd");
+    Route::get("/headereditget/{id}",[AdminContoller::class,"headereditget"])->name("headereditget");
+    Route::get("/header-del/{id}",[AdminContoller::class,"headerdel"])->name("headerdel");
+    Route::post("/Menu-Ekle-post",[AdminControllerPost::class,"headerpost"])->name("headerpost");
+    Route::post("/Menuedit/{id}",[AdminControllerPost::class,"headeredit"])->name("headeredit");
+    Route::get("/Gelen-Mailler",[AdminContoller::class,"contact"])->name("contactadmin");
+    Route::get("/Mail-Oku/{id}",[AdminContoller::class,"contactid"])->name("contactid");
+    Route::get("/Mail-Sil/{id}",[AdminContoller::class,"contactdel"])->name("contactdel");
+    Route::get("/Galeri",[AdminContoller::class,"galery"])->name("galery");
 });
 
 Route::middleware(["Alici"])->group(function(){
@@ -159,3 +165,5 @@ Route::post("/Kullanıcı-güncelle",[UserController::class,"updateDetails"])->n
 Route::post("Abone-Ol",[SubscribeController::class,"subscribe"])->name("subscribe");
 Route::get("/iletişim",[ContactController::class,"contact"])->name("contact");
 Route::post("/iletişim-post",[ContactController::class,"contactpost"])->name("contactpost");
+Route::get("/cupon-indirim",[ShoppingCartController::class,"cupon"])->name("cupon");
+

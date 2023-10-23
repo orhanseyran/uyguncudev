@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\seo;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
@@ -82,7 +83,20 @@ class LoginAndRegisterController extends Controller
         return redirect('/'); // Kullanıcıyı anasayfaya yönlendir
     }
     public function registerget(){
-        return view("sign-up");
+         $seo = seo::where("BladeAdı", "Register" )->first();
+
+        if($seo){
+            $sayfa = $seo->sayfa;
+            $anahtar_kelime = $seo->anahtar_kelime;
+            $meta_açıklama = $seo->meta_açıklama;
+        }
+        else{
+            $sayfa = " ";
+            $anahtar_kelime = " ";
+            $meta_açıklama = " ";
+        }
+
+        return view("sign-up",compact("sayfa","anahtar_kelime","meta_açıklama"));
 
     }
     public function registeruser(Request $request)

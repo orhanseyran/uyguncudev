@@ -66,12 +66,15 @@
                         </table>
                     </div>
                     <div class="cart-update-btn-area">
-                        <div class="input-group product-cupon">
-                            <input placeholder="Enter coupon code" type="text">
-                            <div class="product-cupon-btn">
-                                <button type="submit" class="axil-btn btn-outline">Apply</button>
+                        <form action="{{ route("cupon") }}" method="get">
+                            <div class="input-group product-cupon">
+                                <input placeholder="Enter coupon code" name="coupon_code" type="text">
+                                <div class="product-cupon-btn">
+                                    <button type="submit" class="axil-btn btn-outline">Apply</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                         <div class="update-btn">
                             <a href="#" class="axil-btn btn-outline">Update Cart</a>
                         </div>

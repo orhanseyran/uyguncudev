@@ -88,129 +88,21 @@
         <div class="axil-categorie-area bg-color-white axil-section-gapcommon">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> Categories</span>
-                    <h2 class="title">Browse by Category</h2>
+                    <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> Kategoriler</span>
+                    <h2 class="title">Öne Çıkan Kategoriler</h2>
                 </div>
                 <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
                     <div class="slick-single-layout">
                         <div class="categrie-product" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
                             <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-4.png" alt="product categorie">
+                                <img width="64" height="64" class="img-fluid" src="./assets/images/product/categories/elec-4.png" alt="product categorie">
                                 <h6 class="cat-title">Phones</h6>
                             </a>
                         </div>
                         <!-- End .categrie-product -->
                     </div>
                     <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="300" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-5.png" alt="product categorie">
-                                <h6 class="cat-title">Computers</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="400" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-11.png" alt="product categorie">
-                                <h6 class="cat-title">Accessories</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-6.png" alt="product categorie">
-                                <h6 class="cat-title">Laptops</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="600" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-2.png" alt="product categorie">
-                                <h6 class="cat-title">Monitors</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="700" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-7.png" alt="product categorie">
-                                <h6 class="cat-title">Networking</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product" data-sal="zoom-out" data-sal-delay="800" data-sal-duration="500">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-8.png" alt="product categorie">
-                                <h6 class="cat-title">PC Gaming</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-1.png" alt="product categorie">
-                                <h6 class="cat-title">Smartwatches</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-9.png" alt="product categorie">
-                                <h6 class="cat-title">Headphones</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-10.png" alt="product categorie">
-                                <h6 class="cat-title">Camera & Photo</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-8.png" alt="product categorie">
-                                <h6 class="cat-title">Video Games</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
-                    <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
-                        <div class="categrie-product">
-                            <a href="#">
-                                <img class="img-fluid" src="./assets/images/product/categories/elec-1.png" alt="product categorie">
-                                <h6 class="cat-title">Sports</h6>
-                            </a>
-                        </div>
-                        <!-- End .categrie-product -->
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -263,8 +155,8 @@
         <div class="axil-product-area bg-color-white axil-section-gap">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> Our Products</span>
-                    <h2 class="title">Explore our Products</h2>
+                    <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> Ürünlerimiz</span>
+                    <h2 class="title">Ürünlerimizi Keşfedin</h2>
                 </div>
                 <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
                     <div class="slick-single-layout">
@@ -424,7 +316,7 @@
                 <div class="product-area pb--50">
                     <div class="section-title-wrapper">
                         <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i>This Week’s</span>
-                        <h2 class="title">New Arrivals</h2>
+                        <h2 class="title">Yeni Ürünler</h2>
                     </div>
                     <div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
 
@@ -436,7 +328,7 @@
                                         @if ($urun->resim == null)
                                         <img data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500" src="resimler/resimYok.png" alt="Product Images">
                                         @else
-                                        <img data-sal="zoom-out" data-sal-delay="500" data-sal-duration="500" src="resimler/{{ $urun->resim }}" alt="Product Images">
+                                        <img style="height: 300px;" data-sal="zoom-out" data-sal-delay="500" data-sal-duration="1000" src="resimler/{{ $urun->resim }}" alt="Product Images">
                                         @endif
 
                                     </a>
@@ -558,8 +450,8 @@
         <div class="axil-why-choose-area pb--50 pb_sm--30">
             <div class="container">
                 <div class="section-title-wrapper section-title-center">
-                    <span class="title-highlighter highlighter-secondary"><i class="fal fa-thumbs-up"></i>Why Us</span>
-                    <h2 class="title">Why People Choose Us</h2>
+                    <span class="title-highlighter highlighter-secondary"><i class="fal fa-thumbs-up"></i>Neden Biz</span>
+                    <h2 class="title">Bizi Neden Tercih Etmelisiniz</h2>
                 </div>
                 <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 row--20">
                     <div class="col">
@@ -567,7 +459,7 @@
                             <div class="icon">
                                 <img src="./assets/images/icons/service6.png" alt="Service">
                             </div>
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
+                            <h6 class="title">Hızlı &amp; Teslimat</h6>
                         </div>
                     </div>
                     <div class="col">
@@ -575,7 +467,7 @@
                             <div class="icon">
                                 <img src="./assets/images/icons/service7.png" alt="Service">
                             </div>
-                            <h6 class="title">100% Guarantee On Product</h6>
+                            <h6 class="title">100% Güvenli ödeme Yöntemi</h6>
                         </div>
                     </div>
                     <div class="col">
@@ -583,7 +475,7 @@
                             <div class="icon">
                                 <img src="./assets/images/icons/service8.png" alt="Service">
                             </div>
-                            <h6 class="title">24 Hour Return Policy</h6>
+                            <h6 class="title">Güncel Ürünler</h6>
                         </div>
                     </div>
                     <div class="col">
@@ -591,7 +483,7 @@
                             <div class="icon">
                                 <img src="./assets/images/icons/service9.png" alt="Service">
                             </div>
-                            <h6 class="title">24 Hour Return Policy</h6>
+                            <h6 class="title">24 Saat içinde Para İadesi</h6>
                         </div>
                     </div>
                     <div class="col">
@@ -599,7 +491,7 @@
                             <div class="icon">
                                 <img src="./assets/images/icons/service10.png" alt="Service">
                             </div>
-                            <h6 class="title">Next Level Pro Quality</h6>
+                            <h6 class="title">Profesyonel Teknik Destek</h6>
                         </div>
                     </div>
                 </div>
@@ -615,12 +507,12 @@
                     <div class="col-lg-6 mb--30">
                         <div class="single-poster">
                             <a href="shop.html">
-                                <img src="./assets/images/product/poster/poster-01.png" alt="eTrade promotion poster">
+                                <img src="resimler/1.png" alt="">
                                 <div class="poster-content">
-                                    <div class="inner">
-                                        <h3 class="title">Rich sound, <br> for less.</h3>
-                                        <span class="sub-title">Collections <i class="fal fa-long-arrow-right"></i></span>
-                                    </div>
+                                    {{-- <div class="inner">
+                                        <h3 class="title">En Uygun Fiyatlı </h3>
+                                        <span class="sub-title">Ürünler <i class="fal fa-long-arrow-right"></i></span>
+                                    </div> --}}
                                 </div>
                                 <!-- End .poster-content -->
                             </a>
@@ -630,12 +522,12 @@
                     <div class="col-lg-6 mb--30">
                         <div class="single-poster">
                             <a href="shop-sidebar.html">
-                                <img src="./assets/images/product/poster/poster-02.png" alt="eTrade promotion poster">
+                                <img src="resimler/2.png" alt="">
                                 <div class="poster-content content-left">
-                                    <div class="inner">
-                                        <span class="sub-title">50% Offer In Winter</span>
-                                        <h3 class="title">Get VR <br> Reality Glass</h3>
-                                    </div>
+                                    {{-- <div class="inner">
+                                        <span class="sub-title">50% İndirime Varan Ürünler</span>
+                                        <h3 class="title">Şimdi <br> Satın Al</h3>
+                                    </div> --}}
                                 </div>
                                 <!-- End .poster-content -->
                             </a>

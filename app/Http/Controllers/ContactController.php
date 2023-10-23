@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Models\Contact;
 use App\Models\seo;
+use App\Models\header;
 use ShoppingCart;
 use Illuminate\Http\Request;
 use App\Mail\contacts;
@@ -15,7 +16,7 @@ class ContactController extends Controller
 
         $yeni = ShoppingCart::all();
         $seo = seo::where("BladeAdı", "Blog" )->first();
-
+        $header = header::latest()->first();
         if($seo){
             $sayfa = $seo->sayfa;
             $anahtar_kelime = $seo->anahtar_kelime;
@@ -26,7 +27,7 @@ class ContactController extends Controller
             $anahtar_kelime = " ";
             $meta_açıklama = " ";
         }
-        return view("contact",compact("yeni","sayfa","anahtar_kelime","meta_açıklama"));
+        return view("contact",compact("yeni","sayfa","anahtar_kelime","meta_açıklama","header"));
     }
     public function contactpost(Request $request){
 

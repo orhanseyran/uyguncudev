@@ -97,7 +97,7 @@
                     </li>
                     <li class="nav-parent ">
                         <a class="nav-link" href="#">
-                            <i class="bx bx-about" aria-hidden="true"></i>
+                            <i class="bx bx-planet" aria-hidden="true"></i>
                             <span>Web Site Sayfalar</span>
                         </a>
                         <ul class="nav nav-children">
@@ -106,19 +106,8 @@
                                 <a class="nav-link" href="{{ route("blogekle") }}">
                                     - Blog Ekle
                                 </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="{{ route("yorumlar") }}">
-                                    - Yorumlar
-                                </a>
                             </li> --}}
 
-                            {{-- <li>
-                                <a class="nav-link" href="{{ route("register") }}">
-                                    <i class="bx bx-detail" aria-hidden="true"></i>
-                                    <span>Kullanıcı Ekle</span>
-                                </a>
-                            </li> --}}
 
                             <li>
                                 <a class="nav-link" href="{{ route("bizkimiz") }}">
@@ -162,10 +151,40 @@
                             <span>İletisim Mailleri</span>
                         </a>
                     </li> --}}
+                    {{-- <li>
+                        <a class="nav-link" href="{{ route("galery") }}">
+                            <i class="bx bx-photo-album" aria-hidden="true"></i>
+                            - Galeri
+                        </a>
+                    </li> --}}
+                    {{-- <li>
+                        <a class="nav-link" href="">
+                            <i class="bx bx-food-menu" aria-hidden="true"></i>
+                            - Footer Düzenle
+                        </a>
+                    </li> --}}
+                    <li>
+                        <a class="nav-link" href="{{ route("header") }}">
+                            <i class="bx bx-food-menu" aria-hidden="true"></i>
+                            - Header Düzenle
+                        </a>
+                    </li>
                     <li>
                         <a class="nav-link" href="{{ route("blogs") }}">
                             <i class="bx bx-book" aria-hidden="true"></i>
                             - Bloglar
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="">
+                            <i class="bx bx-comment" aria-hidden="true"></i>
+                            - Yorumlar
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ route("contactadmin") }}">
+                            <i class="bx bx-mail-send" aria-hidden="true"></i>
+                            - Mailler
                         </a>
                     </li>
 
@@ -212,9 +231,9 @@
                 </div>
                 <div class="widget-content">
                     <ul class="list-unstyled m-0">
-                        <li><a href="#">Orhan Seyran </a></li>
-                        <li><a href="#">E-Ticaret 0.5 BETA</a></li>
-                        <li><a href="#">Seyran Ajans Admin Panel</a></li>
+                        {{-- <li><a href="#">Orhan Seyran </a></li> --}}
+                        <li><a href="#">E-Ticaret v1</a></li>
+                        <li><a href="#">185 Dijital Admin Panel</a></li>
                     </ul>
                 </div>
             </div>
