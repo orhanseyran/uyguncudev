@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 
 		<meta name="keywords" content="HTML5 Admin Template" />
-		<meta name="description" content="{{ $title = "Seyran Ajans Admin Panel" }}">
+		<title>{{ $title = "185 Dijital Admin Panel" }}</title>
 		<meta name="author" content="okler.net">
 
 		<!-- Mobile Metas -->
