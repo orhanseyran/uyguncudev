@@ -24,9 +24,10 @@ class BlogFrontEndController extends Controller
         }
 
         $yeni = ShoppingCart::all();
-        $getir = Blog::latest()->paginate(10); // Sayfa başına 10 blog göster
+        $getir = Blog::latest()->paginate(10);// Sayfa başına 10 blog göster
+        $latest = blog::latest()->limit(5)->get();
 
-        return view("blog-grid", compact("yeni", "getir","sayfa","anahtar_kelime","meta_açıklama","header"));
+        return view("blog-grid", compact("yeni", "getir","sayfa","anahtar_kelime","meta_açıklama","header","latest"));
     }
     public function blogdetail($id){
         $header = header::latest()->first();

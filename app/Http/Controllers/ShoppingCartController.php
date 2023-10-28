@@ -75,7 +75,7 @@ class ShoppingCartController extends Controller
                 session()->flash("hata","Geçerli Ürün Mikatı Giriniz");
                 return redirect()->back();
             } else {
-                ShoppingCart::add($yeni->id,$yeni->baslik, $request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]); //direk ödeme
+                ShoppingCart::add($yeni->id,$yeni->baslik, $request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id"=>$yeni->user->id]); //direk ödeme
                 return redirect(route("cart"));
             }
         }
@@ -85,7 +85,7 @@ class ShoppingCartController extends Controller
                 return redirect()->back();
             }
             else{
-                ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+                ShoppingCart::add($yeni->id,$yeni->baslik,$request->input("qty"),$yeni->fiyat,["image"=>$yeni->resim,"user_id"=>$yeni->user->id]);
                 return redirect(route("checkout"));
             }
 
@@ -94,6 +94,11 @@ class ShoppingCartController extends Controller
             return redirect()->back();
         }
 
+    }
+    public function addtocartnormal($id){
+        $yeni = product::findorfail($id);
+        ShoppingCart::add($yeni->id,$yeni->baslik, 1,$yeni->fiyat,["image"=>$yeni->resim,"user_id",$yeni->user->id]);
+        return redirect(route("cart"));
     }
     public function checkout($id)
     {
@@ -139,7 +144,11 @@ class ShoppingCartController extends Controller
     {
         ShoppingCart::remove($rawId);
         session()->flash("basarı","Ürün Başarıyla Sepetten Silindi");
+        return redirect()->back();
 
+    }
+    public function destroycart(){
+        ShoppingCart::destroy();
         return redirect()->back();
     }
 }

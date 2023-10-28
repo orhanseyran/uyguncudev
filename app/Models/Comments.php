@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comments extends Model
 {
     protected $table = "comments";
-    protected $fillable = ["urun_id","urun","ad","soyad","email","puan","yorum","active"];
+    protected $fillable = ["urun_id","urun","ad","soyad","email","puan","yorum","active","resim"];
     use HasFactory;
 
     public function yorum(){

@@ -17,8 +17,8 @@
             <div class="container">
                 <div class="axil-product-cart-wrap">
                     <div class="product-table-heading">
-                        <h4 class="title">Your Cart</h4>
-                        <a href="#" class="cart-clear">Clear Shoping Cart</a>
+                        <h4 class="title">Sepetim</h4>
+                        <a href="{{ route("destroycart") }}" class="cart-clear">Sepeti Temizle</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table axil-product-table axil-cart-table mb--40">
@@ -41,8 +41,8 @@
                                 @foreach ($yeni as $get )
                                 <tr>
                                     <td class="product-remove"><a href="{{ route("removecart",$get->__raw_id) }}" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
-                                    <td class="product-thumbnail"><a href="{{ route("removecart",$get->__raw_id) }}"><img src="resimler/{{  $get->image }}" alt="Digital Product"></a></td>
-                                    <td class="product-title"><a href="{{ route("removecart",$get->__raw_id) }}">{{  $get->name }}</a></td>
+                                    <td class="product-thumbnail"><a href=""><img src="resimler/{{  $get->image }}" alt="Digital Product"></a></td>
+                                    <td class="product-title"><a href="">{{  $get->name }}</a></td>
                                     <td class="product-price" data-title="Price"><span class="currency-symbol">TL</span>{{ $get->price }}</td>
                                     <td class="product-quantity" data-title="Qty">
 
@@ -55,7 +55,7 @@
 
 
                                     </td>
-                                    <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">TL</span>{{ $get->total }}</td>
+                                    <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">TL</span>{{ ShoppingCart::total() }}</td>
                                 </tr>
 
                                 @endforeach
@@ -68,29 +68,29 @@
                     <div class="cart-update-btn-area">
                         <form action="{{ route("cupon") }}" method="get">
                             <div class="input-group product-cupon">
-                                <input placeholder="Enter coupon code" name="coupon_code" type="text">
+                                <input placeholder="İndirim Kuponu" name="coupon_code" type="text">
                                 <div class="product-cupon-btn">
-                                    <button type="submit" class="axil-btn btn-outline">Apply</button>
+                                    <button type="submit" class="axil-btn btn-outline">Uygula</button>
                                 </div>
                             </div>
                         </form>
 
-                        <div class="update-btn">
+                        {{-- <div class="update-btn">
                             <a href="#" class="axil-btn btn-outline">Update Cart</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
                             <div class="axil-order-summery mt--80">
-                                <h5 class="title mb--20">Order Summary</h5>
+                                <h5 class="title mb--20">Sipariş Özeti</h5>
                                 <div class="summery-table-wrap">
                                     <table class="table summery-table mb--30">
                                         <tbody>
                                             <tr class="order-subtotal">
-                                                <td>Subtotal</td>
-                                                <td>$117.00</td>
+                                                <td>Toplam Tutar</td>
+                                                <td>{{ ShoppingCart::total() }} TL</td>
                                             </tr>
-                                            <tr class="order-shipping">
+                                            {{-- <tr class="order-shipping">
                                                 <td>Shipping</td>
                                                 <td>
                                                     <div class="input-group">
@@ -106,14 +106,18 @@
                                                         <label for="radio3">Flat rate: $12.00</label>
                                                     </div>
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
+                                            @foreach ($yeni as $get  )
                                             <tr class="order-tax">
-                                                <td>State Tax</td>
-                                                <td>$8.00</td>
+                                                <td>{{  $get->name }}</td>
+                                                <td>{{ $get->price }} TL</td>
                                             </tr>
+
+                                            @endforeach
+
                                             <tr class="order-total">
-                                                <td>Total</td>
-                                                <td class="order-total-amount">$125.00</td>
+                                                <td>Toplam Tutar</td>
+                                                <td class="order-total-amount">{{ ShoppingCart::total() }} TL</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -121,7 +125,7 @@
                                 @if ( ShoppingCart::totalPrice() == null )
                                 <a href="#" class="axil-btn btn-bg-primary checkout-btn">Sepetiniz Boş</a>
                                 @else
-                                <a href="{{ route("checkout") }}" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
+                                <a href="{{ route("checkout") }}" class="axil-btn btn-bg-primary checkout-btn">Ödeme Yap</a>
                                 @endif
 
                             </div>

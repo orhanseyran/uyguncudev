@@ -22,8 +22,8 @@ class CommentsController extends Controller
         $comment->puan = $request->puan;
         $comment->urun_id = $product->id;
         $comment->urun = $product->baslik;
-        if (!auth()->check()) {
-            $comment->resim = "resimYok.png";
+        if (auth()->user()->resim = null) {
+            $comment->resim = "user.png";
         } else {
             $comment->resim = $picture;
         }

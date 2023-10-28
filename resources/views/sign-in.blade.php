@@ -27,7 +27,12 @@
     <link rel="stylesheet" href="assets/css/style.min.css">
 
 </head>
-
+<style>
+    .axil-signin-banner{
+        background-image: url("resimler/gırıs.png");
+        background-size: cover;
+    }
+</style>
 
 <body>
     <div class="axil-signin-area">
@@ -36,14 +41,16 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a  href="/" class="site-logo"><img style="height: 90px;" src="{{ asset("resimler/logo.png") }}" alt="logo"></a>
+                    {{-- <a  href="/" class="site-logo"><img style="height: 90px;" src="{{ asset("resimler/logo.png") }}" alt="logo"></a> --}}
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
                         <p>Üye Değilmisiniz?</p>
+                        <a href="{{ route("registerget") }}" class="axil-btn btn-bg-secondary sign-up-btn">Üye Ol</a>
+                        <a href="/" class="axil-btn btn-bg-primary sign-up-btn ">Ana Sayfa Dön</a>
 
                     </div>
-                    <a href="{{ route("registerget") }}" class="axil-btn btn-bg-secondary sign-up-btn">Üye Ol</a>
+
                 </div>
             </div>
         </div>
@@ -52,8 +59,8 @@
 
         <div class="row">
             <div class="col-xl-4 col-lg-6">
-                <div class="axil-signin-banner bg_image bg_image--9">
-                    <h3 class="title">En İyi Ürünleri Sunuyoruz</h3>
+                <div class="axil-signin-banner">
+                    {{-- <h3 class="title">En İyi Ürünleri Sunuyoruz</h3> --}}
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">

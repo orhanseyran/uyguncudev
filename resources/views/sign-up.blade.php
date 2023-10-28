@@ -1,5 +1,11 @@
 @include('seo')
 
+<style>
+    .axil-signin-banner{
+        background-image: url("resimler/gırıs.png");
+        background-size: cover;
+    }
+</style>
 
 <body>
     <div class="axil-signin-area">
@@ -8,12 +14,13 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <a  href="/" class="site-logo"><img style="height: 90px;" src="{{ asset("resimler/logo.png") }}" alt="logo"></a>
+                    {{-- <a  href="/" class="site-logo"><img style="height: 90px;" src="{{ asset("resimler/logo.png") }}" alt="logo"></a> --}}
                 </div>
                 <div class="col-md-6">
                     <div class="singin-header-btn">
                         <p>Zaten Üyemisiniz ?</p>
                         <a href="{{ route("loginkullanıcı") }}" class="axil-btn btn-bg-secondary sign-up-btn">Giriş Yap</a>
+                        <a href="/" class="axil-btn btn-bg-primary sign-up-btn">Ana Sayfaya Dön</a>
                     </div>
                 </div>
             </div>
@@ -22,8 +29,8 @@
 
         <div class="row">
             <div class="col-xl-4 col-lg-6">
-                <div class="axil-signin-banner bg_image bg_image--10">
-                    <h3 class="title">En İyi Ürünleri Sunuyoruz</h3>
+                <div class="axil-signin-banner">
+                    {{-- <h3 class="title">En İyi Ürünleri Sunuyoruz</h3> --}}
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">

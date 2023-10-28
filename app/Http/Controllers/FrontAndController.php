@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\aboutus;
 use App\Models\Comments;
+use App\Models\component;
 use App\Models\header;
 use App\Models\Kategori;
 use App\Models\orderdetail;
@@ -27,6 +29,7 @@ class FrontAndController extends Controller
         $rndproduct = product::inRandomOrder()->latest()->limit(8);
         $rndone = product::inRandomOrder()->limit(1)->get();
         $header = header::latest()->first();
+        $kategori = kategori::latest()->get();
         $seo = seo::where("BladeAdı", "AnaSayfa" )->first();
 
         if($seo){
@@ -46,7 +49,10 @@ class FrontAndController extends Controller
             ShoppingCart::add($product->id,$product->baslik,1,$product->fiyat,["image"=>$product->resim,"user_id",$product->user->id]);
             return view("checkout",compact("yeni"));
         }
-        return view("home",compact("header","product","yeni","rndproduct","rndone","comments","slider","productscount","sayfa","anahtar_kelime","meta_açıklama"));
+        $componentkategori = component::where("kategori","KategoriAlanı")->latest()->first();
+        $firsaturun = component::where("kategori","FırsatUrun")->latest()->first();
+        $GelenYorumlar = component::where("kategori","GelenYorumlar")->latest()->first();
+        return view("home",compact("header","product","yeni","rndproduct","rndone","comments","slider","productscount","sayfa","anahtar_kelime","meta_açıklama","kategori","componentkategori","firsaturun","GelenYorumlar"));
     }
 
 
@@ -54,6 +60,7 @@ class FrontAndController extends Controller
     {
         $yeni= ShoppingCart::all();
         $product = product::FindOrFail($id);
+        $random = product::inRandomOrder()->limit(10)->get();
         $header = header::latest()->first();
 
         if ($request->input("fast")) {
@@ -63,7 +70,7 @@ class FrontAndController extends Controller
         }
         // $comments = $product->comments()->AktifYorum()->latest()->get();
         $comments = $product->comments()->latest()->get();
-        return view("product",compact("product","yeni","comments","header"));
+        return view("product",compact("product","yeni","comments","header","random"));
     }
     public function loginform(){
         return view("sign-in");
@@ -80,7 +87,6 @@ class FrontAndController extends Controller
     }
 
     public function shop(Request $request){
-        $seo = seo::find(3);
         $getir = Kategori::latest()->get();
         $yeni=ShoppingCart::all();
         $products = Product::query();
@@ -198,7 +204,8 @@ class FrontAndController extends Controller
     public function about(){
         $header = header::latest()->first();
         $yeni= ShoppingCart::all();
-        return view("about-us",compact("yeni","header"));
+        $about = aboutus::first();
+        return view("about-us",compact("yeni","header","about"));
     }
 
 

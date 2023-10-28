@@ -17,20 +17,30 @@
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="axil-breadcrumb-item"><a href="/">Ana SAYFA</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">Blogs</li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">Bloglar</li>
                             </ul>
-                            <h1 class="title">Blog Grid</h1>
+                            <h1 class="title">Blog Sayfası</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    {{-- <div class="col-lg-6 col-md-4">
+                        @if (auth()->user()->resim == null)
                         <div class="inner">
                             <div class="bradcrumb-thumb">
-                                <img src="assets/images/product/product-45.png" alt="Image">
+                                <img style="width: 120px;" src="/uploads/user.png" alt="Image">
                             </div>
                         </div>
-                    </div>
+                        @else
+                        <div class="inner">
+                            <div class="bradcrumb-thumb">
+                                <img style="width: 120px;" src="/uploads/{{ auth()->user()->resim }}" alt="Image">
+                            </div>
+                        </div>
+
+                        @endif
+
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -99,70 +109,30 @@
 
                             <!-- Start Single Widget  -->
                             <div class="axil-single-widget mt--40">
-                                <h6 class="widget-title">Latest Posts</h6>
+                                <h6 class="widget-title">En Son Yayınlananlar</h6>
 
                                 <!-- Start Single Post List  -->
+                                @foreach ($latest as $last )
                                 <div class="content-blog post-list-view mb--20">
                                     <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-04.png" alt="Blog Images">
+                                        <a href="{{ route("blogdetail",$last->id) }}">
+                                            <img src="resimler/{{ $last->resim }}" alt="Blog Images">
                                         </a>
                                     </div>
                                     <div class="content">
-                                        <h6 class="title"><a href="blog-details.html">Dubai’s FRAME Offers its Take on the</a></h6>
+                                        <h6 class="title"><a href="{{ route("blogdetail",$last->id) }}">{{ $last->baslik }}</a></h6>
                                         <div class="axil-post-meta">
                                             <div class="post-meta-content">
                                                 <ul class="post-meta-list">
-                                                    <li>Mar 27, 2022</li>
-                                                    <li>300k Views</li>
+                                                    {{-- <li>Mar 27, 2022</li> --}}
+                                                    {{-- <li>300k Views</li> --}}
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End Single Post List  -->
+                                @endforeach
 
-                                <!-- Start Single Post List  -->
-                                <div class="content-blog post-list-view mb--20">
-                                    <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-05.png" alt="Blog Images">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <h6 class="title"><a href="blog-details.html">Apple presents App Best of 2020 winners</a></h6>
-                                        <div class="axil-post-meta">
-                                            <div class="post-meta-content">
-                                                <ul class="post-meta-list">
-                                                    <li>Mar 20, 2022</li>
-                                                    <li>300k Views</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Post List  -->
-
-                                <!-- Start Single Post List  -->
-                                <div class="content-blog post-list-view">
-                                    <div class="thumbnail">
-                                        <a href="blog-details.html">
-                                            <img src="assets/images/blog/blog-06.png" alt="Blog Images">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <h6 class="title"><a href="blog-details.html">Gallaudet University innovation in education</a></h6>
-                                        <div class="axil-post-meta">
-                                            <div class="post-meta-content">
-                                                <ul class="post-meta-list">
-                                                    <li>Mar 15, 2022</li>
-                                                    <li>300k Views</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Post List  -->
 
                             </div>
                             <!-- End Single Widget  -->
@@ -230,17 +200,17 @@
                             <!-- End Single Widget  -->
 
                             <!-- Start Single Widget  -->
-                            <div class="axil-single-widget mt--40 widget_search">
+                            {{-- <div class="axil-single-widget mt--40 widget_search">
                                 <h6 class="widget-title">Search</h6>
                                 <form class="blog-search" action="#">
                                     <button class="search-button"><i class="fal fa-search"></i></button>
                                     <input type="text" placeholder="Search">
                                 </form>
-                            </div>
+                            </div> --}}
                             <!-- End Single Widget  -->
 
                             <!-- Start Single Widget  -->
-                            <div class="axil-single-widget mt--40 widget_archive">
+                            {{-- <div class="axil-single-widget mt--40 widget_archive">
                                 <h6 class="widget-title">Archives List</h6>
                                 <ul>
                                     <li><a href="#">January 2020</a></li>
@@ -277,7 +247,7 @@
                                     <a href="#">CSS</a>
                                     <a href="#">JS</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- End Single Widget  -->
 
                         </aside>

@@ -2,9 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\aboutus;
 use App\Models\blog;
+use App\Models\component;
+use App\Models\component1;
+use App\Models\component2;
+use App\Models\component3;
+use App\Models\component4;
+use App\Models\component5;
+use App\Models\component6;
+use App\Models\component7;
+use App\Models\component8;
+use App\Models\component9;
 use App\Models\Kategori;
 
+use App\Models\kupon;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\header;
@@ -23,8 +35,14 @@ class AdminContoller extends Controller
         return view("admin.homeadmin");
     }
     public function products(){
+        if (auth()->user()->role == "Admin") {
+            $getir = product::latest()->get();
+        } elseif(auth()->user()->role == "Satici") {
+            $getir = product::UrunSatici()->latest()->get();
+        }
 
-        $getir = product::latest()->get(); //en son eklenen ürünü getir
+
+         //en son eklenen ürünü getir
 
         return view("admin.products",compact("getir")); //compact ile $getir değişkenini admin.products gönder
 
@@ -40,7 +58,13 @@ class AdminContoller extends Controller
         $size = ürünboyut::latest()->get();
         $kategori = kategori::latest()->get();
         $color = ürünrenk::latest()->get();
-        $getir = product::findorfail($id);
+        if (auth()->user()->role == "Admin") {
+            $getir = product::findorfail($id);
+        } else {
+            $getir = product::UrunSatici()->findorfail($id);
+        }
+
+
         return view("admin.productedit",compact("getir","size","color","kategori"));
 
     }
@@ -113,16 +137,29 @@ class AdminContoller extends Controller
         return view("admin.blogedit",compact("getir"));
     }
     public function orders(){
-        $getir = orderdetail::latest()->get();
+        if (auth()->user()->role == "Admin") {
+            $getir = orderdetail::latest()->get();
+        } else {
+            $getir = orderdetail::AktifSipariş()->latest()->get();
+        }
+
+
 
         return view("admin.orders",compact("getir"));
     }
     public function ordersid($id){
-        $getir = orderdetail::findorfail($id);
+        if (auth()->user()->role == "Admin") {
+            $getir = orderdetail::findorfail($id);
+        } else {
+            $getir = orderdetail::AktifSipariş()->findorfail($id);
+        }
+
+
         return view("admin.orderdetail",compact("getir"));
     }
     public function bizkimiz(){
-        return view("admin.about");
+        $getir = aboutus::first();
+        return view("admin.about",compact("getir"));
 
     }
     public function hizmetlerimiz(){
@@ -201,6 +238,41 @@ class AdminContoller extends Controller
     public function galery(){
         return view("admin.galery");
     }
+    public function kupon(){
+        $getir = kupon::get();
+        return view("admin.kuponlars",compact("getir"));
+    }
+    public function kuponekle(){
+        return view("admin.kuponadd");
+    }
+    public function kuponid($id){
+        $getir = kupon::findorfail($id);
+        return view("admin.kuponaddedit",compact("getir"));
+    }
+    public function kupondel($id){
+        $kupon = kupon::findorfail($id);
+        $kupon->delete();
+        return redirect()->back();
+    }
+    public function componenthome(){
+        $getir = component::latest()->get();
+        return view("admin.componenthome.components",compact("getir"));
+    }
+    public function componestadd(){
+        return view("admin.componenthome.componentadd");
+    }
+    public function componenthomeedit($id){
+        $getir = component::findorfail($id);
+        return view("admin.componenthome.componentedit",compact("getir"));
+    }
+    public function componentdelete($id){
+        $getir = component::findorfail($id);
+        $getir->delete();
+        return redirect()->back();
+    }
+
+
+
 
 
 

@@ -34,20 +34,29 @@
                         </ul>
                     </div>
                 </div>
+                @elseif(auth()->user()->role == "Satici" )
+                <div class="col-sm-6">
+                    <div class="header-top-link">
+                        <ul class="quick-link">
+                            <li><a href="{{ route("saticihomeadmin") }}">Merhaba Değerli Satıcımız {{ auth()->user()->name }}</a></li>
+                        </ul>
+                    </div>
+                </div>
 
                 @else
-                <div class="col-sm-6">
+                {{-- <div class="col-sm-6">
                     <div class="header-top-link">
                         <ul class="quick-link">
                             @if (auth()->user()->role == "Admin")
                             <li><a href="{{ route("hesabım") }}">Merhaba Admin {{ auth()->user()->name }}</a></li>
+                            @elseif(auth()->user()->role == "Satici")
                             @else
                             <li><a href="{{ route("hesabım") }}">Merhaba {{ auth()->user()->name }}</a></li>
                             @endif
 
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
                 @endif
 
@@ -125,6 +134,20 @@
                                 <ul>
                                     <li>
                                         <a href="{{ route("homeadmin") }}">Hesabım</a>
+                                    </li>
+
+                                </ul>
+                                <div class="login-btn">
+                                    <a href="{{ route("logout") }}" class="axil-btn btn-bg-primary">Çıkış Yap</a>
+                                </div>
+
+                            </div>
+                            @elseif(auth()->user()->role == "Satici")
+                            <div class="my-account-dropdown">
+
+                                <ul>
+                                    <li>
+                                        <a href="{{ route("saticihomeadmin") }}">Satıcı Hesabım</a>
                                     </li>
 
                                 </ul>

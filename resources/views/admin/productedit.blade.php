@@ -59,7 +59,7 @@
 					</header>
 
 					<!-- start: page -->
-						<form class="ecommerce-form action-buttons-fixed" action="{{ route("producteditpost",$getir->id) }}" method="post" enctype="multipart/form-data">
+						<form class="ecommerce-form action-buttons-fixed" action="{{ route("saticiproducteditpost",$getir->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 							<div class="row mt-2">
 								<div class="col">

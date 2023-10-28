@@ -84,7 +84,7 @@
                                 <div class="col-lg-12">
                                     <div class="product-large-thumbnail-4 single-product-thumbnail axil-product">
                                         <div class="thumbnail">
-                                            <img src="{{ asset("assets/images/product/product-big-16.png") }}" alt="Product Images">
+                                            <img src="{{ asset("resimler/$product->resim") }}" alt="Product Images">
                                         </div>
 
                                     </div>
@@ -92,7 +92,7 @@
                                 <div class="col-lg-12">
                                     <div class="small-thumb-wrapper product-small-thumb-4 slick-layout-wrapper--10 axil-slick-arrow arrow-both-side">
                                         <div class="small-thumb-img">
-                                            <img src="{{ asset("assets/images/product/product-thumb/thumb-16.png") }}" alt="samll-thumb">
+                                            <img src="{{ asset("resimler/$product->resim") }}" alt="samll-thumb">
                                         </div>
 
                                     </div>
@@ -259,9 +259,16 @@
                                                         <div class="comment-body">
 
                                                             <div class="single-comment">
+                                                                @if ($com->resim == null)
                                                                 <div class="comment-img">
-                                                                    <img src="{{ asset("./assets/images/blog/author-image-4.png") }}" alt="Author Images">
+                                                                    <img style="width: 90px;" src="/uploads/user.png" alt="Author Images">
                                                                 </div>
+                                                                @else
+                                                                <div class="comment-img">
+                                                                    <img style="width: 90px;" src="/uploads/{{$com->resim}}" alt="Author Images">
+                                                                </div>
+                                                                @endif
+
                                                                 <div class="comment-inner">
                                                                     <h6 class="commenter">
                                                                         <a class="hover-flip-item-wrapper" href="#">
@@ -426,7 +433,7 @@
                         </div>
                     </div>
                     <div class="single-product-features">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-4">
                                 <div class="single-features">
                                     <div class="icon">
@@ -460,7 +467,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
@@ -472,23 +479,24 @@
         <div class="axil-new-arrivals-product-area fullwidth-container flash-sale-area section-gap-80-35">
             <div class="container ml--xxl-0">
                 <div class="section-title-border slider-section-title">
-                    <h2 class="title">Recently Viewed 💥</h2>
+                    <h2 class="title">Önerilen Ürünler 💥</h2>
                 </div>
                 <div class="recently-viwed-activation slick-layout-wrapper--15 axil-slick-angle angle-top-slide">
+                    @foreach ($random as $rnd )
                     <div class="slick-single-layout">
                         <div class="axil-product product-style-eight">
                             <div class="thumbnail">
-                                <a href="single-product-8.html">
-                                    <img data-sal="zoom-out" data-sal-delay="100" data-sal-duration="800" loading="lazy" class="main-img" src="assets/images/product/fashion/product-26.png" alt="Product Images">
+                                <a href="{{ route("productid",$rnd->id) }}">
+                                    <img data-sal="zoom-out" data-sal-delay="100" data-sal-duration="800" loading="lazy" class="main-img" src="{{ asset("resimler/$rnd->resim") }}" alt="Product Images">
                                 </a>
                                 <div class="label-block label-left">
-                                    <div class="product-badget sale">Sale</div>
+                                    <div class="product-badget sale">Satılık</div>
                                 </div>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
                                         <li class="select-option">
-                                            <a href="single-product-8.html">
-                                                <i class="far fa-shopping-cart"></i> Add to Cart
+                                            <a href="{{ route("addtocartnormal",$rnd ->id) }}">
+                                                <i class="far fa-shopping-cart"></i> Sepete Ekle
                                             </a>
                                         </li>
                                     </ul>
@@ -496,105 +504,29 @@
                             </div>
                             <div class="product-content">
                                 <div class="inner">
-                                    <h5 class="title"><a href="single-product-8.html">Kalrez® Spectrum™ 6375</a></h5>
+                                    <h5 class="title"><a href="{{ route("productid",$rnd->id) }}">{{ $rnd->baslik }}</a></h5>
                                     <div class="product-rating">
-                                        <span class="icon">
+                                        {{-- <span class="icon">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                </span>
-                                        <span class="rating-number">6,400</span>
+                                </span> --}}
+                                        {{-- <span class="rating-number">6,400</span> --}}
                                     </div>
                                     <div class="product-price-variant">
-                                        <span class="price old-price">$30.00</span>
-                                        <span class="price current-price">$17.84</span>
+
+                                        <span class="price current-price">{{ $rnd->fiyat }} TL</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-eight">
-                            <div class="thumbnail">
-                                <a href="single-product-8.html">
-                                    <img data-sal="zoom-out" data-sal-delay="150" data-sal-duration="800" loading="lazy" class="main-img" src="assets/images/product/fashion/product-27.png" alt="Product Images">
-                                </a>
-                                <div class="label-block label-left">
-                                    <div class="product-badget">20% OFF</div>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul class="cart-action">
-                                        <li class="select-option">
-                                            <a href="single-product-8.html">
-                                                <i class="far fa-shopping-cart"></i> Add to Cart
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <h5 class="title"><a href="single-product-8.html">Calvin Klein womens Solid Sheath With Chiffon Bell Sleeves Dress</a></h5>
-                                    <div class="product-rating">
-                                        <span class="icon">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                        <span class="rating-number">6,400</span>
-                                    </div>
-                                    <div class="product-price-variant">
-                                        <span class="price old-price">$100.00</span>
-                                        <span class="price current-price">$78.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slick-single-layout">
-                        <div class="axil-product product-style-eight">
-                            <div class="thumbnail">
-                                <a href="single-product-8.html">
-                                    <img data-sal="zoom-out" data-sal-delay="200" data-sal-duration="800" loading="lazy" class="main-img" src="assets/images/product/fashion/product-28.png" alt="Product Images">
-                                </a>
-                                <div class="label-block label-left">
-                                    <div class="product-badget">TOP SELLING</div>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul class="cart-action">
-                                        <li class="select-option">
-                                            <a href="single-product-8.html">
-                                                <i class="far fa-shopping-cart"></i> Add to Cart
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="inner">
-                                    <h5 class="title"><a href="single-product-8.html">Gildan Men's Ultra Cotton T-Shirt, Style G2000,</a></h5>
-                                    <div class="product-rating">
-                                        <span class="icon">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                        <span class="rating-number">6,400</span>
-                                    </div>
-                                    <div class="product-price-variant">
-                                        <span class="price old-price">$20.00</span>
-                                        <span class="price current-price">$17.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
+
+
 
 
 
@@ -607,7 +539,7 @@
 
 
     <!-- Start Footer Area  -->
-@include('footer');
+
 
 
 

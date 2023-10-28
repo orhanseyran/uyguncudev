@@ -261,7 +261,7 @@
                         <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="bx bx-lock"></i> Lock Screen</a>
                     </li> --}}
                     <li>
-                        <a role="menuitem" tabindex="-1" href="{{ route("logout") }}"><i class="bx bx-power-off"></i> Logout</a>
+                        <a role="menuitem" tabindex="-1" href="{{ route("logout") }}"><i class="bx bx-power-off"></i> Çıkış Yap</a>
                     </li>
                 </ul>
             </div>

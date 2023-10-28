@@ -13,65 +13,65 @@
     <!-- End Header -->
 
     <main class="main-wrapper">
-        <!-- Start Breadcrumb Area  -->
+        <!-- Başlangıç Breadcrumb Alanı -->
         <div class="axil-breadcrumb-area">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="axil-breadcrumb-item"><a href="index.html">Anasayfa</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">Contact</li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">İletişim</li>
                             </ul>
-                            <h1 class="title">Contact With Us</h1>
+                            <h1 class="title">Bizimle İletişime Geçin</h1>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-4">
                         <div class="inner">
                             <div class="bradcrumb-thumb">
-                                <img src="assets/images/product/product-45.png" alt="Image">
+                                <img src="assets/images/product/product-45.png" alt="Resim">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Breadcrumb Area  -->
+        <!-- Bitiş Breadcrumb Alanı -->
 
-        <!-- Start Contact Area  -->
+        <!-- Başlangıç İletişim Alanı -->
         <div class="axil-contact-page-area axil-section-gap">
             <div class="container">
                 <div class="axil-contact-page">
                     <div class="row row--30">
                         <div class="col-lg-8">
                             <div class="contact-form">
-                                <h3 class="title mb--10">We would love to hear from you.</h3>
-                                <p>If you’ve got great products your making or looking to work with us then drop us a line.</p>
-                                <form  method="POST" action="{{ route("contactpost") }}" class="">
+                                <h3 class="title mb--10">Sizden Haber Almak İsteriz.</h3>
+                                <p>Eğer harika ürünler üretiyorsanız veya bizimle çalışmak istiyorsanız, bize bir mesaj bırakın.</p>
+                                <form method="POST" action="{{ route("contactpost") }}" class="">
                                     @csrf
                                     <div class="row row--10">
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="contact-name">Name <span>*</span></label>
+                                                <label for="contact-name">Ad <span>*</span></label>
                                                 <input type="text" name="ad" id="contact-name">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="contact-phone">Phone <span>*</span></label>
+                                                <label for="contact-phone">Telefon <span>*</span></label>
                                                 <input type="text" name="telefon" id="contact-phone">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
-                                                <label for="contact-email">E-mail <span>*</span></label>
+                                                <label for="contact-email">E-posta <span>*</span></label>
                                                 <input type="email" name="mail" id="contact-email">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="contact-message">Your Message</label>
+                                                <label for="contact-message">Mesajınız</label>
                                                 <textarea name="mesaj" id="contact-message" cols="1" rows="2"></textarea>
                                             </div>
                                         </div>
@@ -81,31 +81,30 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="contact-location mb--40">
-                                <h4 class="title mb--20">Our Store</h4>
-                                <span class="address mb--20">8212 E. Glen Creek Street Orchard Park, NY 14127, United States of America</span>
-                                <span class="phone">Phone: +123 456 7890</span>
-                                <span class="email">Email: Hello@etrade.com</span>
+                                <h4 class="title mb--20">Mağazamız</h4>
+                                <span class="address mb--20">8212 E. Glen Creek Street Orchard Park, NY 14127, Amerika Birleşik Devletleri</span>
+                                <span class="phone">Telefon: +123 456 7890</span>
+                                <span class="email">E-posta: Hello@etrade.com</span>
                             </div>
                             <div class="contact-career mb--40">
-                                <h4 class="title mb--20">Careers</h4>
-                                <p>Instead of buying six things, one that you really like.</p>
+                                <h4 class="title mb--20">Kariyer</h4>
+                                <p>Altı şey almak yerine, gerçekten hoşlandığınız bir şey alın.</p>
                             </div>
                             <div class="opening-hour">
-                                <h4 class="title mb--20">Opening Hours:</h4>
-                                <p>Monday to Saturday: 9am - 10pm
-                                    <br> Sundays: 10am - 6pm
+                                <h4 class="title mb--20">Açılış Saatleri:</h4>
+                                <p>Pazartesi'den Cumartesi'ye: 9am - 10pm
+                                    <br> Pazar: 10am - 6pm
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Start Google Map Area  -->
+                <!-- Başlangıç Google Harita Alanı -->
                 <div class="axil-google-map-wrap axil-section-gap pb--0">
                     <div class="mapouter">
                         <div class="gmap_canvas">
@@ -113,10 +112,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Google Map Area  -->
+                <!-- Bitiş Google Harita Alanı -->
             </div>
         </div>
-        <!-- End Contact Area  -->
+        <!-- Bitiş İletişim Alanı -->
     </main>
 
 

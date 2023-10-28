@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\footer;
+use App\Models\kupon;
 use App\Models\orderdetail;
 use App\Models\blog;
 use App\Models\Kategori;
 use App\Models\product;
 use App\Models\aboutus;
+use App\Models\component;
 use App\Models\services;
 use App\Models\header;
 use App\Models\portfolyo;
@@ -32,6 +34,7 @@ class AdminControllerPost extends Controller
         $orderadd -> fiyat = $request->fiyat;
         $orderadd->user_id = auth()->id();
         $orderadd->username= auth()->user()->name;
+        $orderadd->active = auth()->user()->id;
 
         if ($request->hasFile("resim")) {
 
@@ -274,10 +277,19 @@ class AdminControllerPost extends Controller
 
     }
     public function ordersidpost(Request $request ,$id){
-        $getir = orderdetail::findorfail($id);
-        $getir->status = $request->status;
-        $getir->update();
-        return view("admin.orderdetail",compact("getir"));
+        if (auth()->user()->role == "Admin") {
+            $getir = orderdetail::findorfail($id);
+            $getir->status = $request->status;
+            $getir->update();
+            return view("admin.orderdetail",compact("getir"));
+        } else {
+            $getir = orderdetail::AktifSipariş()->findorfail($id);
+            $getir->status = $request->status;
+            $getir->update();
+            return view("admin.orderdetail",compact("getir"));
+        }
+
+
     }
     public function bizkimizpost(Request $request){
         $tekAbout = new aboutus();
@@ -299,7 +311,7 @@ class AdminControllerPost extends Controller
            // İlgili ürünün resim sütununu güncelle
            $tekAbout->resim = $resimAdi;
        }
-       $tekAbout->save();
+       $tekAbout->update();
        session()->flash("basarı", "Biz Kimiz Sayfası Başarı İle Eklendi");
        return redirect()->back();
 
@@ -480,6 +492,96 @@ class AdminControllerPost extends Controller
        return redirect()->back();
     }
 
+    public function kuponaddpost(Request $request){
+        $kupon = new kupon();
+        $kupon->code = $request->code;
+        $kupon->discount_percentage = $request->discount_percentage;
+        $kupon->save();
+        return redirect()->back();
+
 
     }
+    public function kuponaddedits(Request $request,$id){
+        $kupon = kupon::findorfail($id);
+        $kupon->code = $request->code;
+        $kupon->discount_percentage = $request->discount_percentage;
+        $kupon->update();
+        return redirect()->back();
+    }
+    public function componenthomepost(Request $request){
+        $validatedData = $request->validate([
+            'baslik' => 'required|string',
+            'aciklama1' => 'nullable|string',
+            'aciklama2' => 'nullable|string',
+            'aciklama3' => 'nullable|string',
+            'aciklama4' => 'nullable|string',
+            'aciklama5' => 'nullable|string',
+            'aciklama6' => 'nullable|string',
+            'aciklama7' => 'nullable|string',
+            'aciklama8' => 'nullable|string',
+            'aciklama9' => 'nullable|string',
+            'aciklama10' => 'nullable|string',
+            'kategori' => 'nullable|string',
+            'resim' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Örnek resim validasyonu
+            'link' => 'nullable|string',
+        ]);
 
+        $component = new component(); // Modeli kullanarak yeni bir örnek oluşturun
+        $component->fill($validatedData); // Validasyonu geçen verileri doldurun
+
+        if ($request->hasFile('resim')) {
+            $resim = $request->file('resim');
+            $resimAdi = time() . '.' . $resim->getClientOriginalExtension();
+            $resimYolu = public_path('resimler/' . $resimAdi);
+            $resim->move(public_path('resimler'), $resimAdi);
+
+            // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+            // İlgili ürünün resim sütununu güncelle
+            $component->resim = $resimAdi;
+        }
+
+        $component->save();
+        session()->flash("basari", "Veri Başarıyla Eklendi");
+        return redirect()->back();
+    }
+    public function componenthomeditpost(Request $request,$id){
+        $validatedData = $request->validate([
+            'baslik' => 'required|string',
+            'aciklama1' => 'nullable|string',
+            'aciklama2' => 'nullable|string',
+            'aciklama3' => 'nullable|string',
+            'aciklama4' => 'nullable|string',
+            'aciklama5' => 'nullable|string',
+            'aciklama6' => 'nullable|string',
+            'aciklama7' => 'nullable|string',
+            'aciklama8' => 'nullable|string',
+            'aciklama9' => 'nullable|string',
+            'aciklama10' => 'nullable|string',
+            'kategori' => 'nullable|string',
+            'resim' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Örnek resim validasyonu
+            'link' => 'nullable|string',
+        ]);
+
+        $component = component::findorfail($id); // Modeli kullanarak yeni bir örnek oluşturun
+        $component->fill($validatedData); // Validasyonu geçen verileri doldurun
+
+        if ($request->hasFile('resim')) {
+            $resim = $request->file('resim');
+            $resimAdi = time() . '.' . $resim->getClientOriginalExtension();
+            $resimYolu = public_path('resimler/' . $resimAdi);
+            $resim->move(public_path('resimler'), $resimAdi);
+
+            // Küçük, orta ve büyük boyutlu resimleri oluştur ve kaydet
+
+            // İlgili ürünün resim sütununu güncelle
+            $component->resim = $resimAdi;
+        }
+
+        $component->save();
+        session()->flash("basari", "Veri Başarıyla Eklendi");
+        return redirect()->back();
+    }
+
+
+}

@@ -67,10 +67,10 @@
                                 @foreach ( $slider as $s )
                                 <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
                                     <img src="resimler/{{ $s->picture }}" alt="Product">
-                                    <div class="product-price">
+                                    {{-- <div class="product-price">
                                         <span class="text">From</span>
                                         <span class="price-amount">$49.00</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 @endforeach
                             </div>
@@ -88,8 +88,8 @@
         <div class="axil-categorie-area bg-color-white axil-section-gapcommon">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> Kategoriler</span>
-                    <h2 class="title">Öne Çıkan Kategoriler</h2>
+                    <span class="title-highlighter highlighter-secondary"> <i class="far fa-tags"></i> {{ $componentkategori->baslik }}</span>
+                    <h2 class="title">{{ $componentkategori->aciklama1 }}</h2>
                 </div>
                 <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
                     <div class="slick-single-layout">
@@ -117,7 +117,7 @@
                         <div class="col-xl-5 col-lg-6">
                             <div class="poster-countdown-content">
                                 <div class="section-title-wrapper">
-                                    <span class="title-highlighter highlighter-secondary"> <i class="fal fa-headphones-alt"></i> Don’t Miss!!</span>
+                                    <span class="title-highlighter highlighter-secondary"> <i class="fal fa-headphones-alt"></i> Fırsat!!</span>
                                     <h2 class="title">{{ $rnd->baslik }}</h2>
                                 </div>
                                 <div class="poster-countdown countdown mb--40"></div>
@@ -154,10 +154,19 @@
         <!-- Start Expolre Product Area  -->
         <div class="axil-product-area bg-color-white axil-section-gap">
             <div class="container">
+                @if ($firsaturun == null)
                 <div class="section-title-wrapper">
                     <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> Ürünlerimiz</span>
                     <h2 class="title">Ürünlerimizi Keşfedin</h2>
                 </div>
+                @else
+                <div class="section-title-wrapper">
+                    <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> {{ $firsaturun->baslik }}</span>
+                    <h2 class="title">{{ $firsaturun->aciklama1 }}</h2>
+                </div>
+
+                @endif
+
                 <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
                     <div class="slick-single-layout">
                         <div class="row row--15">
@@ -175,9 +184,9 @@
                                             @endif
 
                                         </a>
-                                        <div class="label-block label-right">
+                                        {{-- <div class="label-block label-right">
                                             <div class="product-badget">20% Off</div>
-                                        </div>
+                                        </div> --}}
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
                                                 <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
@@ -204,7 +213,7 @@
                         </div>
                     </div>
                     <!-- End .slick-single-layout -->
-                    <div class="slick-single-layout">
+                    {{-- <div class="slick-single-layout">
                         <div class="row row--15">
 
                             <!-- End Single Product  -->
@@ -259,7 +268,7 @@
                             <!-- End Single Product  -->
 
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- End .slick-single-layout -->
                 </div>
                 <div class="row">
@@ -275,10 +284,19 @@
         <!-- Start Testimonila Area  -->
         <div class="axil-testimoial-area axil-section-gap bg-vista-white">
             <div class="container">
+                @if ($GelenYorumlar == null)
                 <div class="section-title-wrapper">
                     <span class="title-highlighter highlighter-secondary"> <i class="fal fa-quote-left"></i>Sizi Önemsiyoruz</span>
                     <h2 class="title">Sizden Gelen Yorumlar</h2>
                 </div>
+                @else
+                <div class="section-title-wrapper">
+                    <span class="title-highlighter highlighter-secondary"> <i class="fal fa-quote-left"></i>{{ $GelenYorumlar->baslik }}</span>
+                    <h2 class="title">{{ $GelenYorumlar->aciklama1 }}</h2>
+                </div>
+
+                @endif
+
 
                 <div class="testimonial-slick-activation testimonial-style-one-wrapper slick-layout-wrapper--20 axil-slick-arrow arrow-top-slide">
                     @foreach ($comments as $comment )
@@ -287,9 +305,16 @@
                             <p>“ {{ $comment->yorum }} “</p>
                         </div>
                         <div class="media">
+                            @if ($comment->resim == null)
                             <div class="thumbnail">
-                                <img src="./assets/images/testimonial/image-1.png" alt="testimonial image">
+                                <img style="width: 60px;" src="/uploads/user.png" alt="testimonial image">
                             </div>
+                            @else
+                            <div class="thumbnail">
+                                <img style="width: 80px;" src="/uploads/{{ $comment->resim }}" alt="testimonial image">
+                            </div>
+                            @endif
+
                             <div class="media-body">
                                 <span class="designation">{{ $comment->urun }}</span>
                                 <h6 class="title">{{ $comment->ad }} {{ $comment->soyad }}</h6>
@@ -341,12 +366,17 @@
                                     <div class="inner">
                                         <h5 class="title"><a href="{{ route("productid",$urun->id) }}">{{ $urun->baslik }}</a></h5>
                                         <div class="product-price-variant">
-                                            <span class="price old-price">$30</span>
-                                            <span class="price current-price">$20</span>
+                                            {{-- <span class="price old-price">$30</span> --}}
+                                            @if ($urun->fiyat == null)
+                                            <span class="price current-price">Fiyat Yok</span>
+                                            @else
+                                            <span class="price current-price">{{ $urun->fiyat}} TL</span>
+                                            @endif
+
                                         </div>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                {{-- <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li> --}}
                                                 <li class="select-option"><a href="{{ route("addtocart",$urun->id) }}">Sepete Ekle</a></li>
 
                                                 <li class="wishlist">
@@ -406,7 +436,7 @@
                             <div class="axil-product-list">
                                 <div class="thumbnail">
                                     <a href="{{ route("productid",$product->id) }}">
-                                        <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="resimler/{{ $product->resim }}" alt="Yantiti Leather Bags">
+                                        <img style="width: 300px;" data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="resimler/{{ $product->resim }}" alt="Yantiti Leather Bags">
                                     </a>
                                 </div>
                                 <div class="product-content">
@@ -424,10 +454,10 @@
                                     <div class="product-price-variant">
                                         @if ($product->fiyat == null)
                                         <span class="price current-price">Fiyat Yok</span>
-                                        <span class="price old-price">$49.99</span>
+
                                         @else
                                         <span class="price current-price">{{ $product->fiyat }}</span>
-                                        <span class="price old-price">$49.99</span>
+
                                         @endif
 
                                     </div>

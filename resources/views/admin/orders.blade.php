@@ -45,8 +45,8 @@
 
 				<section role="main" class="content-body content-body-modern mt-0">
 					<header class="page-header page-header-left-inline-breadcrumb">
-						<h2 class="font-weight-bold text-6">Orders</h2>
-						<div class="right-wrapper">
+						<h2 class="font-weight-bold text-6">Gelen Siparişlerim</h2>
+						{{-- <div class="right-wrapper">
 							<ol class="breadcrumbs">
 
 								<li><span>Home</span></li>
@@ -58,7 +58,7 @@
 							</ol>
 
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-						</div>
+						</div> --}}
 					</header>
 
 					<!-- start: page -->
@@ -71,9 +71,9 @@
 										<div class="datatable-header">
 											<div class="row align-items-center mb-3">
 
-												<div class="col-12 col-lg-auto mb-3 mb-lg-0">
+												{{-- <div class="col-12 col-lg-auto mb-3 mb-lg-0">
 													<a href="ecommerce-orders-detail.html" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Add Order</a>
-												</div>
+												</div> --}}
 
 												<div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
 													<div class="d-flex align-items-lg-center flex-column flex-lg-row">
@@ -131,8 +131,8 @@
 													<td><a href="ecommerce-orders-detail.html"><strong></strong>{{ $get->urun_adı }}</a></td>
 													<td>{{ number_format( $get->per_price ) }} TL</td>
 
-													<td><a href="{{ route("ordersid",$get->id) }}"><button type="button" class="btn btn-danger">İncele</button></a></td>
-													<td><span class="ecommerce-status on-hold">On Hold</span></td>
+													<td><a href="{{ route("saticiordersid",$get->id) }}"><button type="button" class="btn btn-danger">İncele</button></a></td>
+													<td><span class="ecommerce-status on-hold">{{ $get->status }}</span></td>
 												</tr>
 
                                                 @endforeach

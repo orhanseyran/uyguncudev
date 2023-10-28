@@ -84,7 +84,7 @@
 													<div class="form-group row align-items-center pb-3">
 														<h4>Sayfa Adı</h4>
 														<div class="">
-															<input type="text" class="form-control form-control-modern" name="baslik" value="" required />
+															<input type="text" class="form-control form-control-modern" name="baslik" value="{{ $getir->baslik }}" required />
 														</div>
 													</div>
                                                     <div style="width: 100%" class="form-group row">
@@ -92,7 +92,7 @@
                                                         <div class="">
                                                             <h4>İçerik</h4>
                                                             <div id="">
-                                                                <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required> </textarea>
+                                                                <textarea id="example" style="height:600px;" class="form-control form-control-modern" name="icerik" required>{!! $getir->icerik !!}</textarea>
                                                             </div>
 
 

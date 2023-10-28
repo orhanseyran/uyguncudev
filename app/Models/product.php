@@ -40,6 +40,9 @@ class product extends Model
        public function scoperenk($query,$color){
         return $query->where("color",[$color]);
      }
+    public function scopeUrunSatici($query){
+        return $query->where("active",auth()->user()->id);
+    }
     public function scopeAktifÜrün($query){
         return $query->where("active",1);
     }

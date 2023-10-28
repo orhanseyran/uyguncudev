@@ -23,7 +23,7 @@
                         {{-- <h2 class="title mb--40 mb_sm--30">Güncellemeleri Takip Etmek İçin</h2> --}}
                         <div class="input-group newsletter-form">
                             <div   class="position-relative newsletter-inner mb--10">
-                                <input s  placeholder="" name="email" type="text">
+                                <input  placeholder="" name="email" type="text">
                             </div>
                             <button type="submit" class="axil-btn mb--15">Abone Ol</button>
                         </div>

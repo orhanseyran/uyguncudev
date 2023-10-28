@@ -38,10 +38,10 @@ Route::middleware(["Guest"])->group(function(){
     Route::get("/register-user",[LoginAndRegisterController::class,"registerget"])->name("registerget");
     Route::post("/register",[LoginAndRegisterController::class,"registerpost"])->name("registerpost");
     Route::post("/register-user",[LoginAndRegisterController::class,"registeruser"])->name("registeruser");
-    Route::get("/logout",[LoginAndRegisterController::class,"logout"])->name("logout");
+
 
 });
-
+Route::get("/logout",[LoginAndRegisterController::class,"logout"])->name("logout");
 
 Route::middleware(["Admin"])->group(function(){
     Route::get("/Kullanıcılar",[AdminContoller::class,"users"])->name("users");
@@ -52,7 +52,6 @@ Route::middleware(["Admin"])->group(function(){
     Route::post("/useredit/{id}",[LoginAndRegisterController::class,"useredit"])->name("useredit");
     Route::get("/Kullanıcı-düzenle/{id}",[LoginAndRegisterController::class,"store"])->name("store");
     Route::get("/panelim",[AdminContoller::class,"homeadmin"])->name("homeadmin");
-    Route::get("/logout-admin",[LoginAndRegisterController::class,"logout"])->name("logout");
     Route::get("/ürünler",[AdminContoller::class,"products"])->name("products");
     Route::post("/ürün-ekle",[AdminControllerPost::class,"productpost"])->name("productpost");
     Route::get("/ürün-ekle",[AdminContoller::class,"productadd"])->name("productadd");
@@ -125,7 +124,52 @@ Route::middleware(["Admin"])->group(function(){
     Route::get("/Mail-Oku/{id}",[AdminContoller::class,"contactid"])->name("contactid");
     Route::get("/Mail-Sil/{id}",[AdminContoller::class,"contactdel"])->name("contactdel");
     Route::get("/Galeri",[AdminContoller::class,"galery"])->name("galery");
+    Route::get("/İndirim-Kuponları",[AdminContoller::class,"kupon"])->name("kupon");
+    Route::get("/İndirim-Kuponu-Ekle",[AdminContoller::class,"kuponekle"])->name("kuponekle");
+    Route::get("/İndirim-Kuponu-Düzenle/{id}",[AdminContoller::class,"kuponid"])->name("kuponid");
+    Route::get("/İndirim-Kuponu-Sil/{id}",[AdminContoller::class,"kupondel"])->name("kupondel");
+    Route::post("/İndirim-Kuponu-Ekle-post",[AdminControllerPost::class,"kuponaddpost"])->name("kuponaddpost");
+    Route::post("/İndirim-Kuponu-Düzenle-poat/{id}",[AdminControllerPost::class,"kuponaddedits"])->name("kuponaddedits");
+
+    Route::get("/Anasayfa-Düzeni",[AdminContoller::class,"componenthome"])->name("componenthome");
+    Route::get("/Anasayfa-ekle",[AdminContoller::class,"componestadd"])->name("componestadd");
+    Route::get("/Anasayfa-düzenle/{id}",[AdminContoller::class,"componenthomeedit"])->name("componenthomeedit");
+    Route::get("/Anasayfa-Sil/{id}",[AdminContoller::class,"componentdelete"])->name("componentdelete");
+    Route::post("/Ana-Sayfa-Ekle",[AdminControllerPost::class,"componenthomepost"])->name("componenthomepost");
+    Route::post("/Ana-Sayfa-Düzenle/{id}",[AdminControllerPost::class,"componenthomeditpost"])->name("componenthomeditpost");
 });
+Route::middleware(["Satici"])->group(function(){
+    Route::get("/Satici-Kullanıcılar",[AdminContoller::class,"users"])->name("saticiusers");
+    Route::get("/Satici-düzenle/{id}",[AdminContoller::class,"usr"])->name("saticiusr");
+    Route::get("/Satici-Kullanıcı-sil/{id}",[AdminContoller::class,"usersdelete"])->name("saticiusersdelete");
+    Route::get("/Satici-register",[LoginAndRegisterController::class,"register"])->name("saticiregister");
+    Route::post("/Satici-register",[LoginAndRegisterController::class,"registerpost"])->name("saticiregisterpost");
+    Route::post("/Satici-useredit/{id}",[LoginAndRegisterController::class,"useredit"])->name("saticiuseredit");
+    Route::get("/Satici-Kullanıcı-düzenle/{id}",[LoginAndRegisterController::class,"store"])->name("saticistore");
+    Route::get("/Satici-panelim",[AdminContoller::class,"homeadmin"])->name("saticihomeadmin");
+    Route::get("/Satici-ürünler",[AdminContoller::class,"products"])->name("saticiproducts");
+    Route::post("/Satici-ürün-ekle",[AdminControllerPost::class,"productpost"])->name("saticiproductpost");
+    Route::get("/Satici-ürün-ekle",[AdminContoller::class,"productadd"])->name("saticiproductadd");
+    Route::get("/Satici-ürün-düzenle/{id}",[AdminContoller::class,"productedit"])->name("saticiproductedit");
+    Route::post("/Satici-ürün-düzenle/{id}",[AdminControllerPost::class,"productedit"])->name("saticiproducteditpost");
+    Route::get("/Satici-ürün-sil/{id}",[AdminControllerPost::class,"delete"])->name("saticidelete");
+    // Route::post("/Satici-Ürün-renk-ekle",[AdminControllerPost::class,"coloraddpost"])->name("saticicoloraddpost");
+    // Route::post("/Satici-Ürün-renk-düzenle/{id}",[AdminControllerPost::class,"coloreditpost"])->name("saticicoloreditpost");
+    // Route::post("Satici-ürün-boyut-ekle",[AdminControllerPost::class,"sizeaddpost"])->name("saticisizeaddpost");
+    // Route::post("Satici-ürün-boyut-düzenle/{id}",[AdminControllerPost::class,"sizeeditpost"])->name("saticisizeeditpost");
+    Route::get("/logout-alici",[LoginAndRegisterController::class,"logoutalici"])->name("logoutalici");
+
+    Route::get("/siparişleri",[AdminContoller::class,"orders"])->name("saticiorders");
+    Route::get("/siparişim-detay/{id}",[AdminContoller::class,"ordersid"])->name("saticiordersid");
+    Route::post("/siparişim-detay-post{id}",[AdminControllerPost::class,"ordersidpost"])->name("saticiordersidpost");
+
+
+
+
+
+
+});
+
 
 Route::middleware(["Alici"])->group(function(){
     Route::get("/hesabim",[UserController::class,"myaccount"])->name("myaccount");
@@ -139,9 +183,11 @@ Route::get("/urun/{id}",[FrontAndController::class,"product"])->name("productid"
 Route::get("/hesabım",[FrontAndController::class,"hesabım"])->name("hesabım");
 Route::get("/sepetim",[ShoppingCartController::class,"cart"])->name("cart");
 Route::get("/Sepete-Ekle/{id}",[ShoppingCartController::class,"addtocart"])->name("addtocart");
+Route::get("/Sepete-Ekle-normal/{id}",[ShoppingCartController::class,"addtocartnormal"])->name("addtocartnormal");
 Route::get("/ödemesayfası/{id}",[ShoppingCartController::class,"checkout"])->name("checkout");
 Route::get("/sepet-update/{rawId}/{type}",[ShoppingCartController::class,"updatecart"])->name("updatecart");
 Route::get("/sil/{rawId}",[ShoppingCartController::class,"removecart"])->name("removecart");
+Route::get("/Sepeti-Boşalt",[ShoppingCartController::class,"destroycart"])->name("destroycart");
 Route::get("/ödeme",[CheakOutController::class,"checkout"])->name("checkout");
 Route::post("/ödeme-post",[CheakOutController::class,"store"])->name("store");
 Route::post("/shopieronay",[CheakOutController::class,"shopierödeme"])->name("shopierödeme");

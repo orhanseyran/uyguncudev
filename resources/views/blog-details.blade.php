@@ -135,41 +135,7 @@
                                             @endforeach
 
                                         </div>
-                                        <ul class="children">
-                                            <!-- Start Single Comment  -->
-                                            <li class="comment">
-                                                <div class="comment-body">
 
-                                                    <div class="single-comment">
-                                                        <div class="comment-img">
-                                                            <img src="{{ asset("./assets/images/blog/author-image-4.png") }}" alt="Author Images">
-                                                        </div>
-                                                        <div class="comment-inner">
-                                                            <h6 class="commenter">
-                                                                <a class="hover-flip-item-wrapper" href="#">
-                                                                    <span class="hover-flip-item">
-                                                                        <span data-text="Rahabi Khan">Annie Mario</span>
-                                                                    </span>
-                                                                </a>
-                                                            </h6>
-                                                            <div class="comment-meta">
-                                                                <div class="time-spent">Nov 23, 2018 at 12:23 pm
-                                                                </div>
-                                                                {{-- <div class="reply-edit">
-                                                                    <div class="reply">
-                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Yanıt ver @getbootstrap</button>
-                                                                    </div>
-                                                                </div> --}}
-                                                            </div>
-                                                            <div class="comment-text">
-                                                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse lobortis cursus lacinia. Vestibulum vitae leo id diam pellentesque ornare.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <!-- End Single Comment  -->
-                                        </ul>
                                     </li>
                                     <!-- End Single Comment  -->
 
@@ -407,7 +373,7 @@
         <!-- End Related Blog Area  -->
 
         <!-- Start Axil Newsletter Area  -->
-        <div class="axil-newsletter-area axil-section-gap pt--0">
+        {{-- <div class="axil-newsletter-area axil-section-gap pt--0">
             <div class="container">
                 <div class="etrade-newsletter-wrapper bg_image bg_image--5">
                     <div class="newsletter-content">
@@ -423,13 +389,13 @@
                 </div>
             </div>
             <!-- End .container -->
-        </div>
+        </div> --}}
         <!-- End Axil Newsletter Area  -->
 
     </main>
 
 
-    <div class="service-area">
+    {{-- <div class="service-area">
         <div class="container">
             <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
                 <div class="col">
@@ -479,7 +445,7 @@
             </div>
         </div>
     </div>
-    @include('footer');
+    @include('footer'); --}}
 
     <!-- JS
 ============================================ -->

@@ -63,9 +63,16 @@
 									<div class="datatables-header-footer-wrapper">
 										<div class="datatable-header">
 											<div class="row align-items-center mb-3">
+                                                @if (auth()->user()->role == "Admin")
 												<div class="col-12 col-lg-auto mb-3 mb-lg-0">
 													<a href="{{ route("productadd") }}" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Ürün Ekle</a>
 												</div>
+                                                @else
+												<div class="col-12 col-lg-auto mb-3 mb-lg-0">
+													<a href="{{ route("saticiproductadd") }}" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Ürün Ekle</a>
+												</div>
+                                                @endif
+
 												<div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
 													<div class="d-flex align-items-lg-center flex-column flex-lg-row">
 														<label class="ws-nowrap me-3 mb-0">Filtrele:</label>
@@ -126,12 +133,12 @@
                                                     @elseif($image = $urun->resim)
                                                     <td><img style="width: 80px" src="resimler/{{ $image }}" alt=""></td>
                                                     @endif
-													<td><a href="{{ route("productedit",$urun->id) }}"><strong>{{ $urun->baslik}}</strong></a></td>
+													<td><a href="{{ route("saticiproductedit",$urun->id) }}"><strong>{{ $urun->baslik}}</strong></a></td>
 													<td>{{ $urun->fiyat}}</td>
 													<td>{{ $urun->username}}</td>
-													<td><a href=" {{ route("productedit",$urun->id) }}"><button type="button" class="btn btn-danger">Düzenle</button></a></td>
+													<td><a href=" {{ route("saticiproductedit",$urun->id) }}"><button type="button" class="btn btn-danger">Düzenle</button></a></td>
                                                     <td>
-                                                        <a href="{{ route("delete",$urun->id)}} " onclick="return confirm('Silmek istediğinize emin misiniz?')" >
+                                                        <a href="{{ route("saticidelete",$urun->id)}} " onclick="return confirm('Silmek istediğinize emin misiniz?')" >
 
                                                             <button type="button" class="btn btn-warning">Sil</button>
 

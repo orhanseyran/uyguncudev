@@ -47,100 +47,95 @@
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="axil-breadcrumb-item"><a href="index.html">Ana Sayfa</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">About Us</li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">Hakkımızda</li>
                             </ul>
-                            <h1 class="title">About Our Store</h1>
+                            <h1 class="title">{{ $about->baslik }}</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    {{-- <div class="col-lg-6 col-md-4">
                         <div class="inner">
                             <div class="bradcrumb-thumb">
-                                <img src="assets/images/product/product-45.png" alt="Image">
+                                <img src="assets/images/product/product-45.png" alt="Resim">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
-        <!-- End Breadcrumb Area  -->
+        <!-- Breadcrumb Alanı Sonu -->
 
-        <!-- Start About Area  -->
+        <!-- Hakkında Alanına Başla -->
         <div class="axil-about-area about-style-1 axil-section-gap ">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-lg-6">
                         <div class="about-thumbnail">
                             <div class="thumbnail">
-                                <img src="./assets/images/about/about-01.png" alt="About Us">
+                                <img src="./assets/images/about/about-01.png" alt="Hakkımızda">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-8 col-lg-6">
                         <div class="about-content content-right">
-                            <span class="title-highlighter highlighter-primary2"> <i class="far fa-shopping-basket"></i>About Store</span>
-                            <h3 class="title">Online shopping includes both buying things online.</h3>
+                            <span class="title-highlighter highlighter-primary2"> <i class="far fa-shopping-basket"></i>{{ $about->baslik }}</span>
+                            <h3 class="title">Online alışveriş, hem çevrimiçi şeyler satın almayı içerir.</h3>
 
                             <div class="row">
                                 <div class="col-xl-12">
-                                    <p>Empower your sales teams with industry tailored
-                                        solutions that support manufacturers as they go
-                                        digital, and adapt to changing markets & customers
-                                        faster by creating new business.</p>
+                                    <p>Satış ekiplerinizi endüstriye özgü çözümlerle güçlendirin, üreticilere dijitalleşmeleri konusunda destek
+                                        verin ve değişen piyasalara ve müşterilere daha hızlı uyum sağlayarak yeni işler yaratın.</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End About Area  -->
+        <!-- Hakkında Alanı Sonu -->
 
-        <!-- Start About Area  -->
+        <!-- Hakkında Bilgi Alanına Başla -->
         <div class="about-info-area">
             <div class="container">
                 <div class="row row--20">
                     <div class="col-lg-4">
                         <div class="about-info-box">
                             <div class="thumb">
-                                <img src="assets/images/about/shape-01.png" alt="Shape">
+                                <img src="assets/images/about/shape-01.png" alt="Şekil">
                             </div>
                             <div class="content">
-                                <h6 class="title">40,000+ Happy Customer</h6>
-                                <p>Empower your sales teams with industry
-                                    tailored solutions that support.</p>
+                                <h6 class="title">40,000+ Mutlu Müşteri</h6>
+                                <p>Satış ekiplerinizi endüstriye özgü çözümlerle güçlendirin.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="about-info-box">
                             <div class="thumb">
-                                <img src="assets/images/about/shape-02.png" alt="Shape">
+                                <img src="assets/images/about/shape-02.png" alt="Şekil">
                             </div>
                             <div class="content">
-                                <h6 class="title">16 Years of Experiences</h6>
-                                <p>Empower your sales teams with industry
-                                    tailored solutions that support.</p>
+                                <h6 class="title">16 Yıllık Deneyim</h6>
+                                <p>Satış ekiplerinizi endüstriye özgü çözümlerle güçlendirin.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="about-info-box">
                             <div class="thumb">
-                                <img src="assets/images/about/shape-03.png" alt="Shape">
+                                <img src="assets/images/about/shape-03.png" alt="Şekil">
                             </div>
                             <div class="content">
-                                <h6 class="title">12 Awards Won</h6>
-                                <p>Empower your sales teams with industry
-                                    tailored solutions that support.</p>
+                                <h6 class="title">12 Ödül Kazanıldı</h6>
+                                <p>Satış ekiplerinizi endüstriye özgü çözümlerle güçlendirin.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- End About Area  -->
 
         <!-- Start Team Area  -->

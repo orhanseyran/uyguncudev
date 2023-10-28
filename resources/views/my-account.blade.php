@@ -53,13 +53,13 @@
                             <h1 class="title">Merhaba  {{ auth()->user()->name }} </h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    {{-- <div class="col-lg-6 col-md-4">
                         <div class="inner">
                             <div class="bradcrumb-thumb">
                                 <img src="assets/images/product/product-45.png" alt="Image">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -71,9 +71,16 @@
                 <div class="axil-dashboard-warp">
                     <div class="axil-dashboard-author">
                         <div class="media">
+                            @if (auth()->user()->resim  == null)
+                            <div class="thumbnail">
+                                <img  width="120px" src="uploads/user.png" alt="{{ auth()->user()->name }}">
+                            </div>
+                            @else
                             <div class="thumbnail">
                                 <img  width="120px" src="uploads/{{ auth()->user()->resim }}" alt="{{ auth()->user()->name }}">
                             </div>
+                            @endif
+
                             <div class="media-body">
                                 <h5 class="title mb-0">{{ auth()->user()->name }}</h5>
                                 <span class="joining-date">Üyelik Tarihi {{ auth()->user()->created_at}}</span>
@@ -100,7 +107,7 @@
                                         <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-dashboard" role="tab" aria-selected="true"><i class="fas fa-th-large"></i>Ana Sayfa</a>
                                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Siparişler</a>
                                         {{-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-downloads" role="tab" aria-selected="false"><i class="fas fa-file-download"></i>Downloads</a> --}}
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Adres Bilgilerim</a>
+                                        {{-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Adres Bilgilerim</a> --}}
                                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Hesap Detaylarım</a>
                                         <a class="nav-item nav-link" href="{{ route("logoutalici") }}"><i class="fal fa-sign-out"></i>Çıkış Yap</a>
                                     </div>
@@ -150,7 +157,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-address" role="tabpanel">
-                                    <div class="axil-dashboard-address">
+                                    {{-- <div class="axil-dashboard-address">
                                         <p class="notice-text">The following addresses will be used on the checkout page by default.</p>
                                         <div class="row row--30">
                                             <div class="col-lg-6">
@@ -283,7 +290,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="tab-pane fade" id="nav-account" role="tabpanel">
                                     <div class="col-lg-9">

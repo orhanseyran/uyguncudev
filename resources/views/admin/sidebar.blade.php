@@ -10,6 +10,7 @@
         <div class="nano-content">
             <nav id="menu" class="nav-main" role="navigation">
 
+                @if (auth()->user()->role == "Admin")
                 <ul class="nav nav-main">
                     <li>
                         <a class="nav-link" href="{{ route("homeadmin") }}">
@@ -51,6 +52,11 @@
                             <li>
                                 <a class="nav-link" href="{{ route("ürünrenk") }}">
                                     - Ürün Renkleri
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ route("kupon") }}">
+                                    - İndirim Kuponları
                                 </a>
                             </li>
                             {{-- <li>
@@ -109,12 +115,87 @@
                             </li> --}}
 
 
-                            <li>
-                                <a class="nav-link" href="{{ route("bizkimiz") }}">
-                                    <i class="bx bx-window-alt" aria-hidden="true"></i>
-                                    <span>Biz Kimiz Sayfası <em class="not-included"></em></span>
+
+
+                            <li class="nav-parent ">
+                                <a class="nav-link" href="#">
+                                    <i class="bx bx-planet" aria-hidden="true"></i>
+                                    <span>Ana Sayfayı Düzenle</span>
                                 </a>
+                                <ul class="nav nav-children">
+                                    <li>
+                                        <a class="nav-link" href="{{ route("componenthome") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component Anasayfa <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    {{-- <li>
+                                        <a class="nav-link" href="{{ route("component2") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 2 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component3") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 3 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component4") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 4 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component5") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 5 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component6") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 6 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component7") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 7 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component8") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 8 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component9") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 9 <em class="not-included"></em></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route("component10") }}">
+                                            <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                            <span>Component 10 <em class="not-included"></em></span>
+                                        </a>
+                                    </li> --}}
+
+
+                                </ul>
+                                <li>
+                                    <a class="nav-link" href="{{ route("bizkimiz") }}">
+                                        <i class="bx bx-window-alt" aria-hidden="true"></i>
+                                        <span>Biz Kimiz Sayfası <em class="not-included"></em></span>
+                                    </a>
+                                </li>
+
                             </li>
+
+
 
                         </ul>
                     </li>
@@ -222,6 +303,114 @@
 
                 </ul>
             </nav>
+            @elseif (auth()->user()->role == "Satici" )
+            <ul class="nav nav-main">
+                <li>
+                    <a class="nav-link" href="{{ route("saticihomeadmin") }}">
+                        <i class="bx bx-home-alt" aria-hidden="true"></i>
+
+                        <span>Ana Sayfa</span>
+                    </a>
+
+
+                </li>
+                <li class="nav-group-label">APPs</li>
+                <li class="nav-parent ">
+                    <a class="nav-link" href="#">
+                        <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                        <span>E-ticaret Sayfalar</span>
+                    </a>
+                    <ul class="nav nav-children">
+                        <li>
+                            <a class="nav-link" href="{{ route("saticiproducts") }}">
+                                - Ürünler
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route("saticiproductadd") }}">
+                                - Ürün Ekle
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ route("saticiorders") }}">
+                                - Siparişler
+                            </a>
+                        </li>
+                        {{-- <li>
+                            <a class="nav-link" href="{{ route("saticikategori") }}">
+                                - Katagori Listesi
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link" href="{{ route("saticikatagoriekle") }}">
+                                - Katagori Ekle
+                            </a>
+                        </li> --}}
+                        {{-- <li>
+                            <a class="nav-link" href="{{ route("saticiürünrenk") }}">
+                                - Ürün Renkleri
+                            </a>
+                        </li> --}}
+                        {{-- <li>
+                            <a class="nav-link" href="{{ route("saticikupon") }}">
+                                - İndirim Kuponları
+                            </a>
+                        </li> --}}
+                        {{-- <li>
+                            <a class="nav-link" href="{{ route("saticiorders") }}">
+                                - Siparişler
+                            </a>
+                        </li> --}}
+
+                    </ul>
+                </li>
+                <li class="nav-parent ">
+                    <a class="nav-link" href="#">
+                        <i class="bx bx-planet" aria-hidden="true"></i>
+                        <span>Web Site Sayfalar</span>
+                    </a>
+                    <ul class="nav nav-children">
+
+                        {{-- <li>
+                            <a class="nav-link" href="{{ route("blogekle") }}">
+                                - Blog Ekle
+                            </a>
+                        </li> --}}
+
+
+
+
+
+
+
+
+                    </ul>
+                </li>
+
+
+                <li>
+
+
+                </li>
+
+
+                <li>
+                    <a class="nav-link" href="/">
+                        <i class="bx bx-window-alt" aria-hidden="true"></i>
+                        <span>Siteye Dön <em class="not-included"></em></span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+
+
+            @endif
+
+
+
 
             <hr class="separator" />
 

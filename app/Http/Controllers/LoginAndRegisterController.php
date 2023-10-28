@@ -31,6 +31,12 @@ class LoginAndRegisterController extends Controller
                 return redirect(route("homeadmin"));
 
             }
+            elseif(Auth()->user()->role == "Satici"){
+
+                return redirect(route("saticihomeadmin"));
+
+            }
+
             elseif(Auth()->user()->role == "Alici"){
 
                 return redirect(route("myaccount"));
@@ -74,14 +80,9 @@ class LoginAndRegisterController extends Controller
     {
         Auth::logout(); // Kullanıcının oturumunu sonlandır
         session()->flash('giris', 'Çıkış İşlemi Başarılı');
-        return redirect('/'); // Kullanıcıyı anasayfaya yönlendir
+        return redirect(route("home")); // Kullanıcıyı anasayfaya yönlendir
     }
-    public function logoutalici(Request $request)
-    {
-        Auth::logout(); // Kullanıcının oturumunu sonlandır
-        session()->flash('giris', 'Çıkış İşlemi Başarılı');
-        return redirect('/'); // Kullanıcıyı anasayfaya yönlendir
-    }
+
     public function registerget(){
          $seo = seo::where("BladeAdı", "Register" )->first();
 
